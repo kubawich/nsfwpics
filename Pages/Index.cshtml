@@ -1,0 +1,45 @@
+﻿@page
+@model IndexModel
+@using System.IO;
+@{
+    ViewData["Title"] = "Home page";
+}
+<div id="app">
+    <br />
+    <div class="row ">
+        <ul class="pagination center-align">
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="/2">2</a></li>
+            <li class="waves-effect"><a href="/3">3</a></li>
+            <li class="waves-effect"><a href="/4">4</a></li>
+            <li class="waves-effect"><a href="/5">5</a></li>
+            <li class="waves-effect"><a href="/6">6</a></li>
+        </ul>
+    </div>
+    <br />
+    <div class="container">
+        @for (int i = 90; i <= 100; i++)
+        {
+            <div class="row center-align">
+                <span>{{ message }}</span>
+                <plus class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></plus>
+                <minus class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></minus>
+                <br /><br />
+                <img class="materialboxed col s-1 offset-s1 " src="@String.Format($"http://185.28.102.194/i/{i}.png")" />
+                <br /><br /><br /><br />
+            </div>
+            <br /><br /><br />
+        }
+    </div>
+    <div class="row ">
+        <ul class="pagination center-align">
+            <li class="active"><a href="#!">1</a></li>
+            <li class="waves-effect"><a href="/2">2</a></li>
+            <li class="waves-effect"><a href="/3">3</a></li>
+            <li class="waves-effect"><a href="/4">4</a></li>
+            <li class="waves-effect"><a href="/5">5</a></li>
+            <li class="waves-effect"><a href="/6">6</a></li>
+        </ul>
+    </div>
+    <br />
+</div>

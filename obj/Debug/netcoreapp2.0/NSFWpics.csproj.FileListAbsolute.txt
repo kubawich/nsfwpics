@@ -1,0 +1,11 @@
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\bin\Debug\netcoreapp2.0\NSFWpics.deps.json
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\bin\Debug\netcoreapp2.0\NSFWpics.runtimeconfig.json
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\bin\Debug\netcoreapp2.0\NSFWpics.runtimeconfig.dev.json
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\bin\Debug\netcoreapp2.0\NSFWpics.dll
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\bin\Debug\netcoreapp2.0\NSFWpics.pdb
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.csprojResolveAssemblyReference.cache
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.csproj.CoreCompileInputs.cache
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.AssemblyInfoInputs.cache
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.AssemblyInfo.cs
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.dll
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.pdb
