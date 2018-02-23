@@ -16270,7 +16270,8 @@ return zhTw;
 /* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-﻿$(document).ready(function () {
+﻿//Use it to build webpack ./node_modules/.bin/webpack ./wwwroot/js/site.js ./wwwroot/js/bundle.js
+$(document).ready(function () {
     $('.materialboxed').materialbox();
 })
 
@@ -16281,7 +16282,7 @@ console.log(moment().startOf('day').fromNow());
 var app = new Vue({
     el: '#app',
     data: {
-        message: '0'
+        message: moment().startOf('day').fromNow()
         }
 })
 
