@@ -1,16 +1,24 @@
-@media screen and (max-width: 600px) {
+body {
+    min-width: 600px; /* Suppose you want minimum width of 1000px */
+    width: auto !important; /* Firefox will set width as auto */
+    width: 600px; /* As IE6 ignores !important it will set width as 1000px; */
+}
+
+@media only screen and (max-width: 600px) {
     img {
         height:auto;
-        max-width: 200px;
-        min-width: 180px;
+        width: 100%;
+        
     }
 }
 
 img {
-    height:auto;
-    max-width:600px;
-    min-width:550px;
+    height: auto;
+    width: 100%;
+    max-width: 700px;
+    padding-right: 20%;
 }
 nav {
     margin-bottom:20px;
 }
+
