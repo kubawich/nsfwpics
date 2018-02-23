@@ -14,7 +14,7 @@ namespace NSFWpics.Pages
         [HttpGet("Index")]
         public IActionResult Index()
         {
-            connection.Server = "185.28.102.194";
+            /*connection.Server = "185.28.102.194";
             connection.UserID = "root";
             connection.Password = "Kubawich1";
             connection.Database = "content";
@@ -28,9 +28,26 @@ namespace NSFWpics.Pages
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
-            }
+            }*/
 
             return View();
+        }
+
+        public IActionResult Plus()
+        {
+            connection.Server = "185.28.102.194";
+            connection.UserID = "root";
+            connection.Password = "Kubawich1";
+            connection.Database = "content";
+            connection.SslMode = MySqlSslMode.None;
+
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd = new MySqlCommand("UPDATE imgs set points=3 where id=13", conn);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            return View("index");
         }
     }
 }

@@ -28,23 +28,24 @@
             }
         }*@
     <div class="container center-align">
-        @for (int i = 1; i <= 10; i++)
+        @for (int i = 10; i <= 20; i++)
         {
-            <div class="row  container">
-                <span id="feed" class="col offset-s5 offset-m6 offset-l6 offset-xl7">
-                    <span id="points">{{ message }}</span>
-                    <plus class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></plus>
-                    <minus class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></minus>
+            <div class="row" id="content_element">
+                <h4 class="col left ">#@(i-9)</h4>
+                <span id="feed" class="col right">
+                    <span id="points">{{ points }}</span>
+                    <button v-on:click="points += 1"  asp-controller="IndexController" asp-action="Plus" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
+                    <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                 </span>
                 <br /><br />
-                <img class="materialboxed col offset-s1 offset-m2 offset-l3 center-align" src="@String.Format($"http://185.28.102.194/img/{i}.png")" />
+                <img class="materialboxed col center-align " src="@String.Format($"http://185.28.102.194/img/{i}.png")" />
                 <br /><br /><br /><br />
             </div>
             <br /><br /><br />
         }
     </div>
     <div class="row ">
-        <ul class="pagination center-align">
+        <ul class="pagination center-align ">
             <li class="active"><a href="#!">1</a></li>
             <li class="waves-effect"><a href="/2">2</a></li>
             <li class="waves-effect"><a href="/3">3</a></li>

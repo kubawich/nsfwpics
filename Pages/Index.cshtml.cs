@@ -25,7 +25,6 @@ namespace NSFWpics.Pages
         public List<string>[] List()
         {
             connection.Server = "185.28.102.194";
-           //connection.Server = "localhost";
             connection.UserID = "root";
             connection.Password = "Kubawich1";
             connection.Database = "content";

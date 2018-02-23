@@ -16282,7 +16282,7 @@ console.log(moment().startOf('day').fromNow());
 var app = new Vue({
     el: '#app',
     data: {
-        message: 0
+        points: 0
         }
 })
 
