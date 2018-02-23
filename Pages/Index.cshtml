@@ -4,17 +4,6 @@
 @{
     ViewData["Title"] = "Home page";
 }
-@foreach (var item in Model.List())
-{
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item[0])<br />
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item[1])<br />
-    </td>
-</tr>
-}
 <div id="app">
     <br />
     <div class="row ">
@@ -28,6 +17,16 @@
         </ul>
     </div>
     <br />
+    @*Display elements from db*@
+    @* @for (int i = 0; i < 10; i++)
+        {
+
+            @foreach (var item in Model.List())
+            {
+                @Html.DisplayFor(modelItem => item[i])<br />
+                <br />
+            }
+        }*@
     <div class="container">
         @for (int i = 1; i <= 10; i++)
         {
