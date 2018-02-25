@@ -13,9 +13,10 @@ namespace NSFWpics.Pages
     public class IndexModel : PageModel
     {
         MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
-        public List<string>[] list;
+        public List<Image> list = new List<Image>();
         public int Id { get; set; }
         public int PageIncrement { get; set; }
+
         [BindProperty]
         public Image Image { get; set; }
 
@@ -26,7 +27,7 @@ namespace NSFWpics.Pages
             return Page();
         }
 
-        public List<string>[] List()
+        public List<Image> List()
         {
             connection.Server = "185.28.102.194";
             connection.UserID = "root";
@@ -34,28 +35,32 @@ namespace NSFWpics.Pages
             connection.Database = "content";
             connection.SslMode = MySqlSslMode.None;
 
-            //Create a list to store the result
-            list = new List<string>[5];
-            list[0] = new List<string>();
-            list[1] = new List<string>();
-            list[2] = new List<string>();
-            list[3] = new List<string>();
-            list[4] = new List<string>();
-
             MySqlConnection conn = new MySqlConnection(connection.ToString());
-            MySqlCommand cmd = new MySqlCommand("SELECT * from imgs", conn);
+            MySqlCommand cmd;
+            if (Id==0 || Id ==1)
+            {
+                 cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {Id} AND {Id +10}", conn);
+            }
+            else
+            {
+                 cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {(Id * 10 - 9)} AND {(Id * 10)}", conn);
+            }
 
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
 
-            while (reader.Read())
-            {
-                list[0].Add(reader["id"].ToString() + "");
-                list[1].Add(reader["uri"].ToString() + "");
-                list[2].Add(reader["author"].ToString() + "");
-                list[3].Add(reader["points"].ToString() + "");
-                list[4].Add(reader["date"].ToString() + "");
-            }
+                while (reader.Read())
+                {
+                    list.Add(new Image
+                    {
+                        Id = int.Parse(reader["id"].ToString()),
+                        Uri = reader["uri"].ToString(),
+                        Author = reader["author"].ToString(),
+                        Points = int.Parse(reader["points"].ToString()),
+                        Date = reader["date"].ToString()
+                    });
+                }
+            
             conn.Close();
             return list;
         }

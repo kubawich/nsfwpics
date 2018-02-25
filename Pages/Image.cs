@@ -9,7 +9,9 @@ namespace NSFWpics.Pages
 	public class Image 
 	{
         public int Id { get; set; }
-        [Required, StringLength(100)]
-        public string Name { get; set; }
+        public string Uri { get; set; }
+        public string Author { get; set; }
+        public int Points { get; set; }
+        public string Date { get; set; }
     }
 }

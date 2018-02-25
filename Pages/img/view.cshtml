@@ -6,7 +6,10 @@
 <div id="app">
     <div class="container center-align">
         <div class="row z-depth-5" id="content_element">
-            <h4 class="col left ">#@Model.Id</h4>
+            <span id="h" class="col left ">
+            <a href="./@Model.Id">#@Model.Id</a>
+            
+            </span>
             <span id="feed" class="col right">
                 <span id="points">{{ points }}</span>
                 <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
