@@ -24,7 +24,8 @@ nav {
 }
 
 #points {
-    margin: 0 3em 0 0;
+    margin: 0 1em 0 0;
+    font-size:xx-large;
 }
 
 #content_element {
@@ -37,3 +38,10 @@ nav {
     background: #e57373;
 }
 
+#h {
+    font-size:xx-large;
+}
+
+i {
+    font-size:10px;
+}

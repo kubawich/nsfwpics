@@ -12,17 +12,18 @@ namespace NSFWpics.Pages
 {
     public class IndexModel : PageModel
     {
-        IndexController ctrl = new IndexController();
         MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
-        public string cc, rows;
         public List<string>[] list;
-
+        public int Id { get; set; }
+        public int PageIncrement { get; set; }
         [BindProperty]
         public Image Image { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet(int id)
         {
-
+            Id = id;
+            PageIncrement = ((id * 10) - 10) +1;
+            return Page();
         }
 
         public List<string>[] List()

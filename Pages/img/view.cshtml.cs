@@ -9,8 +9,7 @@ using MySql.Data.MySqlClient;
 namespace NSFWpics.Pages.NewFolder
 {
     public class viewModel : PageModel
-    {
-        IndexController ctrl = new IndexController();
+    {        
         MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
         public string Con { get; set; }
         public int Id { get; set; }

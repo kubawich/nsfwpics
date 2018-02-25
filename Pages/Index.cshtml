@@ -1,4 +1,4 @@
-﻿@page
+﻿@page  "{id:int?}"
 @model IndexModel
 @using System.IO;
 @{
@@ -7,13 +7,12 @@
 <div id="app">
     <br />
     <div class="row ">
-        <ul class="pagination center-align">
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="/2">2</a></li>
-            <li class="waves-effect"><a href="/3">3</a></li>
-            <li class="waves-effect"><a href="/4">4</a></li>
-            <li class="waves-effect"><a href="/5">5</a></li>
-            <li class="waves-effect"><a href="/6">6</a></li>
+        <ul class="pagination center-align ">
+            <li class="active"><a href="./">1</a></li>
+            @for (int i = 2; i <= 10; i++)
+            {
+            <li class="waves-effect"><a href="./@i">@i</a></li>
+            }
         </ul>
     </div>
     <br />
@@ -27,32 +26,54 @@
                 <br />
             }
         }*@
-    <!--<a asp-page="./Add" asp-route-id="3">edit</a>-->
     <div class="container center-align">
-        @for (int i = 1; i <= 20; i++)
-        {
-            <div class="row z-depth-5" id="content_element">
-                <h4><a href="/img/view/@i" class="col left ">#@i</a></h4>
-                <span id="feed" class="col right">
-                    <span id="points">{{ points }}</span>
-                    <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
-                    <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
-                </span>
-                <br /><br />
-                <img class="materialboxed col center-align " src="@String.Format($"http://185.28.102.194/img/{i}.png")" />
-                <br /><br /><br /><br />
-            </div>
-            <br /><br /><br />
+        @if (Model.Id == 1 || Model.Id == 0)
+        {        
+            @for (int i = (Model.Id +1); i <= (Model.Id + 10); i++)
+            {
+                <div class="row z-depth-5" id="content_element">
+                    <span id="h" class="col left ">
+                    <a href="/img/view/@i" >#@i</a>
+                    </span>
+                    <span id="feed" class="col right">
+                        <span id="points">{{ points }}</span>                  
+                        <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
+                        <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>                    
+                    </span>
+                    <br /><br />
+                    <img class="materialboxed col center-align " src="@String.Format($"http://185.28.102.194/img/{i}.png")" />
+                    <br /><br /><br /><br />
+                </div>
+                <br /><br /><br />
+            }
         }
+        else{ 
+            @for (int i = (Model.PageIncrement); i <= (Model.PageIncrement + 10); i++)
+            {
+                <div class="row z-depth-5" id="content_element">
+                    <span id="h" class="col left ">
+                    <a href="/img/view/@i" >#@i</a>
+                    </span>
+                    <span id="feed" class="col right">
+                        <span id="points">{{ points }}</span>                  
+                        <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
+                        <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>                    
+                    </span>
+                    <br /><br />
+                    <img class="materialboxed col center-align " src="@String.Format($"http://185.28.102.194/img/{i}.png")" />
+                    <br /><br /><br /><br />
+                </div>
+                <br /><br /><br />
+            }
+       }
     </div>
     <div class="row ">
         <ul class="pagination center-align ">
-            <li class="active"><a href="#!">1</a></li>
-            <li class="waves-effect"><a href="/2">2</a></li>
-            <li class="waves-effect"><a href="/3">3</a></li>
-            <li class="waves-effect"><a href="/4">4</a></li>
-            <li class="waves-effect"><a href="/5">5</a></li>
-            <li class="waves-effect"><a href="/6">6</a></li>
+            <li class="active"><a href="/">1</a></li>
+            @for (int i = 2; i <= 10; i++)
+            {
+                <li class="waves-effect"><a href="./@i">@i</a></li>
+            }
         </ul>
     </div>
     <br />
