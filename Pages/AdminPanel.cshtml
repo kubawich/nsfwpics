@@ -5,11 +5,11 @@
 }
 
 <h2>AdminPanel</h2>
-<form method="post" class="container">
-    <label>Login</label>
-    <input type="text" name="login" />
-    <label>Password</label>
-    <input type="password" name="password" />
-    <input type="submit" name="submit" />
+<form method="post" class="container" asp-controller="AdminPanel">
+    <label asp-for="@Model.Login">@Model.Login</label>
+    <input type="text" asp-for="@Model.Login" id="login" />
+    <label asp-for="@Model.Password">@Model.Password</label>
+    <input type="password" required asp-for="@Model.Password" />
+    <input type="submit" asp-page-handler="login" name="submit" />
 </form>
 <br /><br /><br />

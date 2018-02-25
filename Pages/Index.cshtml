@@ -27,14 +27,15 @@
                 <br />
             }
         }*@
+    <!--<a asp-page="./Add" asp-route-id="3">edit</a>-->
     <div class="container center-align">
-        @for (int i = 10; i <= 20; i++)
+        @for (int i = 1; i <= 20; i++)
         {
-            <div class="row" id="content_element">
-                <h4 class="col left ">#@(i-9)</h4>
+            <div class="row z-depth-5" id="content_element">
+                <h4><a href="/img/view/@i" class="col left ">#@i</a></h4>
                 <span id="feed" class="col right">
                     <span id="points">{{ points }}</span>
-                    <button v-on:click="points += 1"  asp-controller="IndexController" asp-action="Plus" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
+                    <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
                     <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                 </span>
                 <br /><br />

@@ -1,8 +1,11 @@
-
+body {
+    background-color: #ffede8;
+}
 @media only screen and (max-width: 500px) {
     img {
+        max-width: 100%;
         height:auto;
-        width: 100%;
+        width: 600px;
     }
 }
 

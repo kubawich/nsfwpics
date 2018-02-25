@@ -8,9 +8,16 @@ namespace NSFWpics.Pages
 {
     public class AdminPanelController : Controller
     {
-        public IActionResult Index()
+        [HttpGet]
+        public IActionResult GRR()
         {
-            return View();
+            return Content($"Hello ");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Index(AdminPanelModel model)
+        {
+            return Content($"Hello {model.Login} {model.Password}");
         }
     }
 }

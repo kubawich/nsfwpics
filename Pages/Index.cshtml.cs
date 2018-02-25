@@ -17,6 +17,9 @@ namespace NSFWpics.Pages
         public string cc, rows;
         public List<string>[] list;
 
+        [BindProperty]
+        public Image Image { get; set; }
+
         public void OnGet()
         {
 
