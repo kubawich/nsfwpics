@@ -3,12 +3,13 @@
 @{
     ViewData["Title"] = "view";
 }
+</br></br></br></br>
 <div id="app">
     <div class="container center-align">
         <div class="row z-depth-5" id="content_element">
             <span id="h" class="col left ">
-            <a href="./@Model.Id">#@Model.Id</a>
-            
+                <a href="./@Model.Id">#@Model.Id</a>
+
             </span>
             <span id="feed" class="col right">
                 <span id="points">{{ points }}</span>
@@ -16,8 +17,9 @@
                 <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
             </span>
             <br /><br />
-            <img class="materialboxed col center-align " src="@Model.Con" />
+            <img class="col center-align " src="@Model.Con"  alt="@Model.Con" />
             <br /><br /><br /><br />
         </div>
     </div>
 </div>
+</br></br>

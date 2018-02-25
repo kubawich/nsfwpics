@@ -15,6 +15,12 @@
             }
         </ul>
     </div>
+    @for (int i = 0; i < 10; i++)
+    {
+
+        <p class="hide">@Model.List()[i].Uri</p>
+    }
+
     <br />
     <div class="container center-align">
         @if (Model.Id == 1 || Model.Id == 0)
@@ -26,12 +32,12 @@
                         <a href="/img/view/@(i+1)">#@Model.List()[i].Id </a>
                     </span>
                     <span id="feed" class="col right">
-                        <span id="points">{{ points }}</span>
+                        <span id="points" >{{ points }}</span>
                         <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
                         <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                    <img class="materialboxed col center-align " src="@Model.List()[i].Uri" />
+                    <img class="materialboxed col center-align " src="@Model.List()[i].Uri"/>
                     <br /><br /><br /><br />
                 </div>
                 <br /><br /><br />
@@ -39,11 +45,11 @@
         }
         else
         {
-            @for (int i = (Model.PageIncrement-1); i < (Model.PageIncrement + 9); i++)
+            @for (int i = (Model.Id * 10 - 9); i < (Model.Id * 10); i++)
             {
                 <div class="row z-depth-5" id="content_element">
                     <span id="h" class="col left ">
-                        <a href="/img/view/@(i+1)">#@Model.List()[i].Id</a>
+                        <a href="/img/view/@(i+1)">#@Model.List()[i-1].Id</a>
                     </span>
                     <span id="feed" class="col right">
                         <span id="points">{{ points }}</span>
@@ -51,7 +57,7 @@
                         <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                    <img class="materialboxed col center-align " src="@Model.List()[i].Uri" />
+                    <img class="materialboxed col center-align " src="@Model.List()[i-1].Uri"/>
                     <br /><br /><br /><br />
                 </div>
                 <br /><br /><br />
