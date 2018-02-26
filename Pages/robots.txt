@@ -1,0 +1,6 @@
+﻿User-Agent: *
+Disallow: 
+Allow: /*
+Allow: /img/view/*
+
+Sitemap: http://nsfwpics.pw/sitemap.xml

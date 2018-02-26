@@ -30,7 +30,7 @@ namespace NSFWpics.Pages
                 conn.Close();
             }*/
 
-            return View();
+            return View("/");
         }
     }
 }
