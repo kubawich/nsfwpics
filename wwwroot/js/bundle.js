@@ -16283,7 +16283,10 @@ var app = new Vue({
     el: '#app',
     data: {
         points: 0
-        }
+    },
+    methods: {
+        
+    }
 })
 
 
