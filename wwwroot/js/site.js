@@ -5,12 +5,12 @@ $(document).ready(function () {
 })
 
 console.log(window.location.href);
-
+var urlId = window.location.href; 
 var app = new Vue({
     el: '#app',
     data: {
         points: 0,
-        url: window.location.href
+        url: urlId.substring(18)
     },
     methods: {
         
