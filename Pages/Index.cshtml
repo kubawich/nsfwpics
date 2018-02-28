@@ -15,11 +15,13 @@
             }
         </ul>
     </div>
-    @for (int i = 0; i < 10; i++)
-    {
 
+
+    @for (int i =1; i <= 10; i++)
+    {
         <p class="hide">@Model.List()[i].Uri</p>
     }
+
 
     <br />
     <div class="container center-align">
@@ -31,13 +33,13 @@
                     <span id="h" class="col left ">
                         <a href="/img/view/@(i+1)">#@Model.List()[i].Id </a>
                     </span>
-                    <span id="feed" class="col right">
+                    <span id="feed" class="col right s-8">
                         <span id="points" >{{ points }}</span>
                         <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
                         <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                    <img class="materialboxed col center-align " src="@Model.List()[i].Uri"/>
+                    <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri"/>
                     <br /><br /><br /><br />
                 </div>
                 <br /><br /><br />
@@ -67,7 +69,7 @@
     <div class="row ">
         <ul class="pagination center-align ">
             <li class="active"><a href="/">1</a></li>
-            @for (int i = 2; i <= 10; i++)
+            @for (int i = 2; i <= 11; i++)
             {
                 <li class="waves-effect"><a href="./@i">@i</a></li>
             }

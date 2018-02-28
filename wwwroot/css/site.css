@@ -2,47 +2,29 @@ body {
     background-color: #ffede8;
 }
 
-@media only screen and (max-width: 500px) {
-    img {
-        max-width: 100%;
-        height:auto;
-        width: 100%;
-    }
-    a {
-        font-size: x-large;
-        padding-top: 5px;
-    }
-    #points{
-        margin: 0 0 0 0;
-        font-size: small;
-    }
-}
-
 img {
     height: auto;
     width: 100%;
-    max-width: 700px;
     padding-right: 20%;
 }
+
 nav {
-    margin-bottom:20px;
+    margin-bottom: 20px;
 }
 
 #feed {
-    margin-bottom:20px;
+    margin-bottom: 20px;
     padding-right: 2em;
 }
 
-.btn-floating.btn-large
-{
-    width:48px;
-    height:48px;
+.btn-floating.btn-large {
+    width: 48px;
+    height: 48px;
 }
 
-.btn-floating.btn-large i 
-{
-    line-height:48px;
-}
+    .btn-floating.btn-large i {
+        line-height: 48px;
+    }
 
 .btn-large i {
     font-size: 1.4rem;
@@ -56,7 +38,7 @@ nav {
 #content_element {
     background-color: gray;
     margin: 15px auto;
-    padding: 40px 30px;
+    padding: 10px 0px;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
@@ -65,12 +47,12 @@ nav {
 
 #h {
     font-size: xx-large;
-    padding-top:5px;
-    padding-left:1em;
+    padding-top: 5px;
+    padding-left: 1em;
 }
 
 i {
-    font-size:10px;
+    font-size: 10px;
 }
 
 span {

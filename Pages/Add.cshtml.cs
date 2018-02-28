@@ -9,9 +9,8 @@ namespace NSFWpics.Pages
 {
     public class AddModel : PageModel
     {
-        public IActionResult OnGet(int id)
+        public void OnGet()
         {
-            return Content($"Numer {id}");
         }
     }
 }

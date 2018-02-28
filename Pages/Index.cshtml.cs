@@ -22,8 +22,12 @@ namespace NSFWpics.Pages
 
         public IActionResult OnGet(int id)
         {
+            if (id == 1)
+            {
+                return Redirect("/");
+            }
             Id = id;
-            PageIncrement = ((id * 10) - 10) ;
+            PageIncrement = ((id * 10) - 9) ;
             return Page();
         }
 
@@ -41,7 +45,7 @@ namespace NSFWpics.Pages
             {
                 if (Id == 0 || Id == 1)
                 {
-                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {Id} AND {Id + 10}", conn);
+                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {Id} AND {Id + 11}", conn);
 
                     conn.Open();
                     MySqlDataReader reader = cmd.ExecuteReader();
@@ -61,8 +65,8 @@ namespace NSFWpics.Pages
                     conn.Close();
                     return list;
                 }
-            else
-            {
+                else
+                {
                     cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {(Id * 10 - 9)} AND {(Id * 10)}", conn);
 
                     conn.Open();
