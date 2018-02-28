@@ -17,11 +17,12 @@ namespace NSFWpics.Pages
         [HttpPost]
         public IActionResult OnPostLogin()
         {
-            if (Login == "kubawich" && Password == "123")
+            if (Request.Form["Login"] == "kubawich")
             {
-                return RedirectToPage("/Add/3");
+                return Redirect("/2");
             }
-            return Page();
+
+            return Redirect("/Add");
         }
     }
 }

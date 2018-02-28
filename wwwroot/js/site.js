@@ -10,7 +10,7 @@ var app = new Vue({
     el: '#app',
     data: {
         points: 0,
-        url: urlId.substring(18)
+        url: parseInt(urlId.substring(19))
     },
     methods: {
         
