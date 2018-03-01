@@ -1,6 +1,7 @@
 body {
     background-color: #ffede8;
-    font-family:Roboto
+    font-family:Roboto;
+    font-weight:lighter;
 }
 
 img {
@@ -43,7 +44,7 @@ nav {
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
     border-radius: 8px;
-    background: #e57373;
+    background: hsl(0, 69%, 67%);
 }
 
 #h {
@@ -64,4 +65,11 @@ span {
 
 .hide {
     visibility: hidden;
+}
+
+#footer_tags {
+    text-shadow: 0 2px white;
+    font-size: 0.5rem;
+    font-weight: lighter;
+    color: hsl(0, 69%, 78%)
 }

@@ -12,6 +12,7 @@ namespace NSFWpics.Pages
     public class AdminPanelModel : PageModel
     {
         public string Login { get; set; } = "Login";
+        public bool IsLogedIn { get; set; } = false;
         [Required, StringLength(100)]
         public string Password { get; set; } 
 
@@ -20,9 +21,9 @@ namespace NSFWpics.Pages
         {
             if (Request.Form["Login"] == "kubawich")
             {
-                
-                /*Response.Cookies["AdminLogin"][""]
-                return Redirect("/2");*/
+                IsLogedIn = true;
+                Response.Cookies.Append("LogedInCookie", "logedIn", new Microsoft.AspNetCore.Http.CookieOptions());
+                return Redirect("/2");
             }
 
             return Redirect("/Add");

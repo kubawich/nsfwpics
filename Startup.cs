@@ -28,7 +28,8 @@ namespace NSFWpics
             .AddCookie(options =>
             {
                 options.Cookie.Name = "AdminLoginCookie";
-                //options.Coook
+                options.Cookie.Expiration = new TimeSpan(1, 1, 1, 1, 100);
+                options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;                
             });
         }
 
@@ -50,7 +51,14 @@ namespace NSFWpics
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
+            var cookiePolicyOptions = new CookiePolicyOptions
+            {
+                MinimumSameSitePolicy = Microsoft.AspNetCore.Http.SameSiteMode.Strict
+            };
+
             app.UseAuthentication();
+
+            app.UseCookiePolicy(cookiePolicyOptions);
 
             app.UseStaticFiles();
 
