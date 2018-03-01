@@ -68,8 +68,8 @@ span {
 }
 
 #footer_tags {
-    text-shadow: 0 2px white;
-    font-size: 0.5rem;
-    font-weight: lighter;
+    text-shadow: 0 2px hsl(0, 69%, 60%);
+    font-size: 15px;
+    font-weight: bold;
     color: hsl(0, 69%, 78%)
 }
