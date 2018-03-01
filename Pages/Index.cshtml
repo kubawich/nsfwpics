@@ -40,7 +40,11 @@
                     </span>
                     <br /><br />
                     <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri"/>
-                    <br /><br /><br /><br />
+                    <br />
+                    <span id="img_tags">
+                        By @Model.List()[i].Author at @Model.List()[i].Date
+                    </span>
+                    <br />
                 </div>
                 <br /><br /><br />
                 @if (i == 5)
@@ -62,19 +66,23 @@
         {
             @for (int i = (Model.Id * 10 - 9); i < (Model.Id * 10); i++)
             {
-                <div class="row z-depth-5" id="content_element">
-                    <span id="h" class="col left ">
-                        <a href="/img/view/@i">#@Model.List()[i-1].Id</a>
-                    </span>
-                    <span id="feed" class="col right">
-                        <span id="points">{{ points }}</span>
-                        <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
-                        <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
-                    </span>
-                    <br /><br />
-                    <img class="materialboxed col center-align " src="@Model.List()[i-1].Uri"/>
-                    <br /><br /><br /><br />
-                </div>
+                    <div class="row z-depth-5" id="content_element">
+                        <span id="h" class="col left ">
+                            <a href="/img/view/@i">#@Model.List()[i - 1].Id</a>
+                        </span>
+                        <span id="feed" class="col right">
+                            <span id="points">{{ points }}</span>
+                            <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
+                            <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
+                        </span>
+                        <br /><br />
+                        <img class="materialboxed col center-align " src="@Model.List()[i-1].Uri" />
+                        <br />
+                        <span id="img_tags">
+                            By @Model.List()[i].Author at @Model.List()[i].Date
+                        </span>
+                        <br />
+                    </div>
                 <br /><br /><br />
             }
         }

@@ -13,6 +13,8 @@ namespace NSFWpics.Pages.NewFolder
         MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
         public string Con { get; set; }
         public int Id { get; set; }
+        [BindProperty]
+        public Image Image { get; set; }
 
         [HttpGet]
         public IActionResult OnGet(int id)
@@ -30,10 +32,23 @@ namespace NSFWpics.Pages.NewFolder
             if (id == 0)
             {
                 return Redirect("/");
-            }else cmd = new MySqlCommand($"SELECT uri from imgs where id={id}", conn);
+            }else cmd = new MySqlCommand($"SELECT uri, author, date, id, points from imgs where id={Id}", conn);
             conn.Open();
-            Con = cmd.ExecuteScalar().ToString();
-            
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Image = new Image
+                {
+                    Id = int.Parse(reader["id"].ToString()),
+                    Uri = reader["uri"].ToString(),
+                    Author = reader["author"].ToString(),
+                    Points = int.Parse(reader["points"].ToString()),
+                    Date = reader["date"].ToString()
+                };
+            }
+
             conn.Close();
             return Page();
         }

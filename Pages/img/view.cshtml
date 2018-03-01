@@ -8,7 +8,7 @@
     <div class="container center-align">
         <div class="row z-depth-5" id="content_element">
             <span id="h" class="col left ">
-                <a href="http://nsfwpics.pw">#@Model.Id</a>
+                <a href="http://nsfwpics.pw">#@Model.Image.Id</a>
 
             </span>
             <span id="feed" class="col right">
@@ -17,8 +17,12 @@
                 <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
             </span>
             <br /><br />
-            <img class="col center-align " src="@Model.Con"  alt="@Model.Con" />
-            <br /><br /><br /><br />
+            <img class="col center-align " src="@Model.Image.Uri" alt="@Model.Image.Uri" />
+            <br />
+            <span id="img_tags">
+                By @Model.Image.Author at @Model.Image.Date
+            </span>
+            <br />
         </div>
     </div>
 </div>
