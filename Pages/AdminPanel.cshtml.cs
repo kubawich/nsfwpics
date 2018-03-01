@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace NSFWpics.Pages
 {
@@ -19,7 +20,9 @@ namespace NSFWpics.Pages
         {
             if (Request.Form["Login"] == "kubawich")
             {
-                return Redirect("/2");
+                
+                /*Response.Cookies["AdminLogin"][""]
+                return Redirect("/2");*/
             }
 
             return Redirect("/Add");
