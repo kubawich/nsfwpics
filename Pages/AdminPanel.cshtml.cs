@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
+
 namespace NSFWpics.Pages
 {
     public class AdminPanelModel : PageModel
@@ -22,7 +23,9 @@ namespace NSFWpics.Pages
             if (Request.Form["Login"] == "kubawich")
             {
                 IsLogedIn = true;
+         
                 Response.Cookies.Append("LogedInCookie", "logedIn", new Microsoft.AspNetCore.Http.CookieOptions());
+                
                 return Redirect("/2");
             }
 
