@@ -22,7 +22,7 @@ var app = new Vue({
     },
     watch: {
         windowHeight(newHeight, oldHeight) {
-        this.txt = 'it changed from ' + newHeight + ' / ' + oldHeight;
+            this.txt = 'it changed from ' + newHeight + ' / ' + oldHeight;
         }
     },
 
@@ -34,4 +34,4 @@ var app = new Vue({
             });
         })
     },
-})
+});
