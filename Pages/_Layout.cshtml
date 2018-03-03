@@ -79,22 +79,33 @@
     </environment>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-fixed">
+        <nav class="navbar navbar-inverse navbar-fixed-top z-depth-2">
+            <div class="container nav-wrapper">
+                <div class="navbar-header row hide-on-large-and-down">
+                    <span class="col s-2"></span>
+                    <a href="http://nsfwpics.pw" class="navbar-brand col s-6 waves-effect waves-light">NSFWpics</a>
+                    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                    <div class="right hide-on-small-and-down">
+                        <a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn">Add</a>
+                        <a asp-page="/Best" class="waves-effect waves-light red lighten-3 btn">Best</a>
+                        <a asp-page="/Waiting" class="waves-effect waves-light red lighten-3 btn">Waiting</a>
+                        <a asp-page="/Random" class="waves-effect waves-light red lighten-3 btn">Random</a>
+                    </div>
 
-        <div class="container nav-wrapper">
-            <div class="navbar-header row hide-on-large-and-down">
-                <span class="col s-2"></span>
-                <a href="http://nsfwpics.pw" class="navbar-brand col s-6 waves-effect waves-light">NSFWpics</a>
-                <div class="right">
-                    <a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn">Add</a>
-                    <a asp-page="/Best" class="waves-effect waves-light red lighten-3 btn">Best</a>
-                    <a asp-page="/Waiting" class="waves-effect waves-light red lighten-3 btn">Waiting</a>
-                    <a asp-page="/Random" class="waves-effect waves-light red lighten-3 btn">Random</a>
                 </div>
-
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
+
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="http:/nsfwpics.pw/add"><i class="material-icons small">add</i>Add</a></li>
+        <li><a href="http:/nsfwpics.pw/best"><i class="material-icons">grade</i>Best</a></li>
+        <li><a href="http:/nsfwpics.pw/waiting"><i class="material-icons">access_time</i>Waiting</a></li>
+        <li><a href="http:/nsfwpics.pw/random"><i class="material-icons">looks</i>Random</a></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
     <div class="container body-content">
         @RenderBody()
     </div>
