@@ -75,15 +75,34 @@ $(document).ready(function () {
 
 console.log(window.location.href);
 var urlId = window.location.href; 
+var windowHeight;
+var txt;
 var app = new Vue({
     el: '#app',
     data: {
         points: 0,
-        url: parseInt(urlId.substring(19))
+        url: parseInt(urlId.substring(19)),
+        function() {
+            return {
+                windowHeight: 0,
+                txt: ''
+            }
+        }
     },
-    methods: {
-        
-    }
+    watch: {
+        windowHeight(newHeight, oldHeight) {
+        this.txt = 'it changed from ' + newHeight + ' / ' + oldHeight;
+        }
+    },
+
+    mounted() {
+        let that = this;
+        this.$nextTick(function () {
+            window.addEventListener('resize', function (e) {
+                that.windowHeight = window.innerWidth
+            });
+        })
+    },
 })
 
 
