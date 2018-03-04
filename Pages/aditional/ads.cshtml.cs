@@ -13,5 +13,10 @@ namespace NSFWpics.Pages.aditional
         {
 
         }
+
+        public IActionResult OnPostSend()
+        {
+            return Page();
+        }
     }
 }

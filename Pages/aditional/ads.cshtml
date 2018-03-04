@@ -11,7 +11,7 @@
             In case of bussiness proposal fill this form
         </h4>
         <br />
-        <form method="post" action="/sent">
+        <form method="post" name="forma">
             <div class="input-field">
                 <i class="material-icons prefix">email</i>
                 <input id="email" type="email" class="validate" required placeholder="email@domain.com" />
@@ -29,7 +29,7 @@
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">phone</i>
-                <input type="tel" placeholder="eg. +12 123456789"/>
+                <input type="tel" placeholder="eg. +12 123456789" />
                 <label>Phone No. *optional</label>
             </div>
             <div class="input-field">
@@ -37,13 +37,13 @@
                 <textarea id="textarea" class="materialize-textarea"></textarea>
                 <label for="textarea">What you'd like to tell us?</label>
             </div>
-            <input type="submit" value="Send" class="waves-effect waves-light red lighten-3 btn" />
+            <input type="hidden" name="submited" value="true" />
+            <input type="submit" value="Send" asp-page-handler="Send" class="waves-effect waves-light red lighten-3 btn" />
             <br /><br />
             <div class="g-recaptcha" data-sitekey="6LeWRUoUAAAAAMt8nKaMFX62NzC-HFf8w6I7Z-sW"></div>
         </form>
     </div>
 </div>
-<div class="container center-align">
+<div class="col s12">
     <a  href="http://www.exoclick.com/?login=kubawich"><img src="http://www.exoclick.com/banners/700x90.gif" border="0"></a>
 </div>
-
