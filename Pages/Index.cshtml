@@ -7,13 +7,28 @@
 <div id="app">
     <br />
     <div class="row ">
-        <ul class="pagination center-align ">
-            <li class="active"><a href="http://nsfwpics.pw">1</a></li>
-            @for (int i = 1; i <= 10; i++)
-            {
-                <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
-            }
-        </ul>
+       @if (Model.Id == 0 || Model.Id == 1)
+       {
+            <ul class="pagination center-align ">
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                }
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+       }
+       else
+       {    
+           
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                }
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+       }
     </div>
 
     <p class="hide">{{ url }}</p>
@@ -100,13 +115,27 @@
         }
     </div>
     <div class="row ">
-        <ul class="pagination center-align ">
-            <li class="active"><a href="http://nsfwpics.pw">1</a></li>
-            @for (int i = 2; i <= 11; i++)
-            {
-                <li class="waves-effect"><a href="./@i">@i</a></li>
-            }
-        </ul>
+       @if (Model.Id == 0 || Model.Id == 1)
+       {
+            <ul class="pagination center-align ">
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                }
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+       }
+       else
+       {    
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                @for (int i = 1; i <= 10; i++)
+                {
+                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                }
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+       }
     </div>
     <br />
     <div class="center-align">
