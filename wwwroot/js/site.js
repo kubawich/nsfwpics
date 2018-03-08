@@ -2,6 +2,7 @@
 
 $(document).ready(function () {
     $('.materialboxed').materialbox();
+    $('select').material_select();
 });
 
 console.log(window.location.href);

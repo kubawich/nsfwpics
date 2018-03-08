@@ -96,7 +96,7 @@ span {
     transform-origin: bottom left;
 }
 
-#file_add {
+.file_add {
     border-radius: 43px 43px 43px 43px;
     -moz-border-radius: 43px 43px 43px 43px;
     -webkit-border-radius: 43px 43px 43px 43px;
