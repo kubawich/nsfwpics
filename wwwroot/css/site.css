@@ -97,6 +97,7 @@ span {
 }
 
 .file_add {
+    padding: 3em 40px 3em 40px;
     border-radius: 43px 43px 43px 43px;
     -moz-border-radius: 43px 43px 43px 43px;
     -webkit-border-radius: 43px 43px 43px 43px;
