@@ -26,6 +26,7 @@ namespace NSFWpics.Pages
             {
                 return Redirect("/");
             }
+
             Id = id;
             PageIncrement = ((id * 10) - 9) ;
             return Page();
@@ -67,7 +68,7 @@ namespace NSFWpics.Pages
                 }
                 else
                 {
-                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {(Id * 10 - 9)} AND {(Id * 10)}", conn);
+                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {(Id * 10 - 10)} AND {(Id * 10 -1)}", conn);
 
                     conn.Open();
                     MySqlDataReader reader = cmd.ExecuteReader();
