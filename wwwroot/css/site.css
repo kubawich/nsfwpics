@@ -99,10 +99,11 @@ span {
 .file_add {
     color: hsl(0, 10%, 75%);
     padding: 3em 40px 3em 40px;
+    margin-top: 2em;
     border-radius: 43px 43px 43px 43px;
+    border-color: hsl(0, 10%, 75%);
     -moz-border-radius: 43px 43px 43px 43px;
     -webkit-border-radius: 43px 43px 43px 43px;
-    border: 6px solid #000000;
+    border: 6px solid hsl(0, 10%, 75%);
     border-style: dashed;
-    border-color: hsl(0, 10%, 75%);
 }
