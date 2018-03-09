@@ -1,6 +1,4 @@
-﻿User-Agent: *
+﻿User-agent: *
 Disallow: 
-Allow: /*
-Allow: /img/view/*
-
+Disallow: /cgi-bin/
 Sitemap: http://nsfwpics.pw/sitemap.xml

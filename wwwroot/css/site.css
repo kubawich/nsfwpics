@@ -104,4 +104,5 @@ span {
     -webkit-border-radius: 43px 43px 43px 43px;
     border: 6px solid #000000;
     border-style: dashed;
+    border-color: hsl(0, 10%, 75%);
 }
