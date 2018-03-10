@@ -19,6 +19,12 @@
                 <li class="waves-effect"><a href="./1051">1051</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
+         }else if (Model.Id == 1051)
+        {
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="./1051">1051</a></li>
+            </ul>
         }
         else
         {
@@ -60,7 +66,7 @@
                         <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                    <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" />
+                    <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" alt="@Model.List()[i].Uri" />
                     <br />
                     <span id="img_tags">
                         By @Model.List()[i].Author at @Model.List()[i].Date
@@ -99,7 +105,7 @@
                         <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                    <img class="materialboxed col center-align " src="@Model.List()[i].Uri" />
+                    <img class="materialboxed col center-align " src="@Model.List()[i].Uri" alt="@Model.List()[i].Uri" />
                     <br />
                     <span id="img_tags">
 
@@ -135,6 +141,12 @@
                 <li>...</li>
                 <li class="waves-effect"><a href="./1051">1051</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        }else if (Model.Id == 1051)
+        {
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="./1051">1051</a></li>
             </ul>
         }
         else
