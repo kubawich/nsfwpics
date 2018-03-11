@@ -1,4 +1,0 @@
-﻿User-agent: *
-Disallow: 
-Disallow: /cgi-bin/
-Sitemap: http://nsfwpics.pw/sitemap.xml
