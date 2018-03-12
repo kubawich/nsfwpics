@@ -52,7 +52,7 @@
             gtag('config', 'UA-114739201-1');
         </script>
         <!--<script src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>-->
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script  src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="~/css/site.min.css" />
@@ -68,7 +68,7 @@
             gtag('config', 'UA-114739201-1');
         </script>
         <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script  src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script defer src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
 
         <!--Exit add-->
@@ -106,8 +106,8 @@
                     <ul>
                         <li><a asp-page="/Add" >Add</a></li>
                         <li><a asp-page="/Best" >Best</a></li>
-                        <li><a asp-page="/Waiting" >Waiting</a></li>
                         <li><a asp-page="/Random" >Random</a></li>
+                        <li><a  onclick="Materialize.toast('This page is unavailable becasue there\'s no waiting pictures a the moment', 4000)">Waiting</a></li>
                     </ul>
               </div>
                 <span class="col s-2"></span>
@@ -115,8 +115,8 @@
                 <div class="right hide-on-med-and-down">
                     <a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn">Add</a>
                     <a asp-page="/Best" class="waves-effect waves-light red lighten-3 btn">Best</a>
-                    <a asp-page="/Waiting" class="waves-effect waves-light red lighten-3 btn">Waiting</a>
                     <a asp-page="/Random" class="waves-effect waves-light red lighten-3 btn">Random</a>
+                    <button class="waves-effect waves-light red lighten-3 btn  tooltipped" data-position="bottom" data-delay="50" data-tooltip="This page is unavailable becasue there's no waiting pictures a the moment">Waiting</button>
                 </div>
             </div>
         </nav>mater
