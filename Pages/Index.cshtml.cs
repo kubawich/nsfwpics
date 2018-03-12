@@ -42,6 +42,8 @@ namespace NSFWpics.Pages
 
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
+            #region old_method
+            /*
             try
             {
                 if (Id == 0 || Id == 1)
@@ -92,7 +94,62 @@ namespace NSFWpics.Pages
             catch (Exception)
             {
                 return list;
-            } 
+            } */
+            #endregion
+            #region new_method
+            try
+            {
+                if (Id == 0 || Id == 1)
+                {
+                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id ORDER BY id DESC LIMIT 10;", conn);
+
+                    conn.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        list.Add(new Image
+                        {
+                            Id = int.Parse(reader["id"].ToString()),
+                            Uri = reader["uri"].ToString(),
+                            Author = reader["author"].ToString(),
+                            Points = int.Parse(reader["points"].ToString()),
+                            Date = reader["date"].ToString()
+                        });
+                    }
+
+                    conn.Close();
+                    return list;
+                }
+                else
+                {
+                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id ORDER BY id DESC LIMIT 10 OFFSET {Id*10-10};", conn);
+
+                    conn.Open();
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        list.Add(new Image
+                        {
+                            Id = int.Parse(reader["id"].ToString()),
+                            Uri = reader["uri"].ToString(),
+                            Author = reader["author"].ToString(),
+                            Points = int.Parse(reader["points"].ToString()),
+                            Date = reader["date"].ToString()
+                        });
+                    }
+
+                    conn.Close();
+                    return list;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            #endregion
+            return list;
         }
     }
 }
