@@ -20,7 +20,7 @@
                 <a href="@Model.Image.Uri">#@Model.Image.Id</a>
             </span>
             <span id="feed" class="col right">
-                <span id="points">{{ points }}</span>
+                <span id="points">@Model.Image.Points</span>
                 <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
                 <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
             </span>

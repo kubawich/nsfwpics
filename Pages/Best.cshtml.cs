@@ -11,8 +11,9 @@ namespace NSFWpics.Pages
     public class BestModel : PageModel
     {
         public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
-        public int Id { get; private set; }
-        public string Con { get; private set; }
+        public int Id { get;  set; }
+        public string Con { get;  set; }
+        public int Points { get; set; }
         [BindProperty]
         public Image Image { get; set; }
 
@@ -28,7 +29,7 @@ namespace NSFWpics.Pages
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
 
-            cmd = new MySqlCommand($"SELECT uri, author, date, id, points from imgs where max(points)", conn);
+            cmd = new MySqlCommand($"SELECT id,uri,author,date,points from imgs group by points;", conn);
             conn.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
