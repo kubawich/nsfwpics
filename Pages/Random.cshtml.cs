@@ -21,7 +21,7 @@ namespace NSFWpics.Pages
         [HttpGet]
         public IActionResult OnGet()
         {
-            var i = rand.Next(1, 10500);
+            var i = rand.Next(1, 10513);
 
             connection.Server = "185.28.102.194";
             connection.UserID = "root";
