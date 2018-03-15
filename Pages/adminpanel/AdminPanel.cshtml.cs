@@ -20,16 +20,16 @@ namespace NSFWpics.Pages
         [HttpPost]
         public IActionResult OnPostLogin()
         {
-            if (Request.Form["Login"] == "kubawich")
+            if (Request.Form["Login"] == "admin")
             {
                 IsLogedIn = true;
          
                 Response.Cookies.Append("LogedInCookie", "logedIn", new Microsoft.AspNetCore.Http.CookieOptions());
                 
-                return Redirect("/2");
+                return Redirect("/adminpanel/AdminPanelLoged");
             }
 
-            return Redirect("/Add");
+            return Redirect("/adminpanel/AdminPanel");
         }
     }
 }

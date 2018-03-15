@@ -5,13 +5,13 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace NSFWpics.Pages.amp
+namespace NSFWpics.Pages.adminpanel
 {
-    public class IndexModel : PageModel
+    public class AdminPanelLogedModel : PageModel
     {
         public void OnGet()
         {
-
+            
         }
     }
 }

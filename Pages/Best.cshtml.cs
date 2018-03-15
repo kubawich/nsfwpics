@@ -29,7 +29,7 @@ namespace NSFWpics.Pages
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
 
-            cmd = new MySqlCommand($"SELECT id,uri,author,date,points from imgs group by points;", conn);
+            cmd = new MySqlCommand($"SELECT id,uri,author,date,points FROM imgs GROUP BY points;", conn);
             conn.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();

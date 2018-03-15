@@ -32,7 +32,7 @@ namespace NSFWpics.Pages.NewFolder
             if (id == 0)
             {
                 return Redirect("/");
-            }else cmd = new MySqlCommand($"SELECT uri, author, date, id, points from imgs where id={Id}", conn);
+            }else cmd = new MySqlCommand($"SELECT uri, author, date, id, points FROM imgs WHERE id={Id}", conn);
             conn.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();

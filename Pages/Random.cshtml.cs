@@ -32,7 +32,7 @@ namespace NSFWpics.Pages
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd; 
 
-            cmd = new MySqlCommand($"SELECT uri, author, date, id, points from imgs where id={i}", conn);
+            cmd = new MySqlCommand($"SELECT uri, author, date, id, points FROM imgs WHERE id={i}", conn);
             conn.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
