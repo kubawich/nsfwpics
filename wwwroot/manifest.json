@@ -1,0 +1,25 @@
+﻿{
+  "display": "standalone",
+  "theme_color": "#EE6E73",
+  "background_color": "#EF9A9A",
+  "short_name": "NSFWpics",
+  "name": "NSFWpics adults imageboard",
+  "icons": [
+    {
+      "src": "ico.ico",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "ico.ico",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "ico.ico",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "index.html?launcher=true"
+}
