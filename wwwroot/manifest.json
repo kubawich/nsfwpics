@@ -11,15 +11,15 @@
       "sizes": "48x48"
     },
     {
-      "src": "ico.ico",
+      "src": "ico_196.png",
       "type": "image/png",
       "sizes": "96x96"
     },
     {
-      "src": "ico.ico",
+      "src": "ico_192.png",
       "type": "image/png",
       "sizes": "192x192"
     }
   ],
-  "start_url": "index.html?launcher=true"
+  "start_url": "launcher=true"
 }
