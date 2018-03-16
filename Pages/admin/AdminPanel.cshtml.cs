@@ -26,10 +26,10 @@ namespace NSFWpics.Pages
          
                 Response.Cookies.Append("LogedInCookie", "logedIn", new Microsoft.AspNetCore.Http.CookieOptions());
                 
-                return Redirect("/adminpanel/AdminPanelLoged");
+                return Redirect("/admin/AdminPanelLoged");
             }
 
-            return Redirect("/adminpanel/AdminPanel");
+            return Redirect("/admin/AdminPanel");
         }
     }
 }
