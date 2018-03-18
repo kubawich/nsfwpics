@@ -18,6 +18,7 @@
                     <option value="2" name="video">GIF/APNG/WEBM video</option>
                     <option  v-on:change="streamable = true" value="3" name="streamable">Streamable</option>
                 </select>
+                <button v-on:click="streamable = true">asdad</button>
                 <input v-if="streamable" type="url" placeholder="https://streamable.com/dxe6b" />
                 <label v-else>Choose file type you'd like to upload</label>
             </div>
