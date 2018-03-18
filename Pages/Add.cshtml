@@ -16,7 +16,7 @@
                 <select asp-for="UploadOption" name="UploadOption" v-on:change="streamable = true">
                     <option value="1" selected="selected" name="img">PNG/JPG/WEBP image</option>
                     <option value="2" name="video">GIF/APNG/WEBM video</option>
-                    <option onclick="app.streamable = true" value="3" name="streamable">Streamable</option>
+                    <option  value="3" name="streamable"><button v-on:click="streamable = true">Streamable</button></option>
                 </select>
                 <input v-if="streamable" type="url" placeholder="https://streamable.com/dxe6b" />
                 <label v-else>Choose file type you'd like to upload</label>
