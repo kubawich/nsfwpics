@@ -94,13 +94,13 @@ namespace NSFWpics.Pages
                     using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
                     {
                         client.BufferSize = 4 * 1024;
-                        client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.png");
+                        client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.mp4");
                     }
                     client.Disconnect();
                     client.Dispose();
                 }
                 //Add uploaded photo to SQL database
-                cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.png','Anonymous',0)", conn);
+                cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.mp4','Anonymous',0)", conn);
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
