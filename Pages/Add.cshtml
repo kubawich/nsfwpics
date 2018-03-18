@@ -13,12 +13,11 @@
     <form method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="input-field col s12 container">
-                <select asp-for="UploadOption" name="UploadOption">
+                <select asp-for="UploadOption" name="UploadOption" v-on:change="streamable = true">
                     <option value="1" selected="selected" name="img">PNG/JPG/WEBP image</option>
                     <option value="2" name="video">GIF/APNG/WEBM video</option>
-                    <option  v-on:change="streamable = true" value="3" name="streamable">Streamable</option>
+                    <option value="3" name="streamable">Streamable</option>
                 </select>
-                <button v-on:click="streamable = true">asdad</button>
                 <input v-if="streamable" type="url" placeholder="https://streamable.com/dxe6b" />
                 <label v-else>Choose file type you'd like to upload</label>
             </div>
