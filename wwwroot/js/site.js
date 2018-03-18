@@ -5,10 +5,18 @@ $(document).ready(function () {
     $('select').material_select();
 });
 
+let content = () => {
+    for (var i = 0; i < document.getElementsByName('photo'); i++) {
+        console.log(i);
+    }
+}
+console.log(content);
+
 var app = new Vue({
     el: '#app',
     data: {
-        points: 0
+        points: 0,
+        posts: []
     },
 
     watch: {

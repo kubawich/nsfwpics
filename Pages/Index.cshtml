@@ -6,6 +6,13 @@
 }
 <div id="app">
     <br />
+
+
+    <video width="320" height="240" src="~/small.mp4" controls> 
+    </video>
+
+
+
     <!--PAGINATION-->
     <div class="row ">
         @if (Model.Id == 0 || Model.Id == 1)
@@ -19,7 +26,8 @@
                 <li class="waves-effect"><a href="./1051">1051</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
-         }else if (Model.Id == 1051)
+        }
+        else if (Model.Id == 1051)
         {
             <ul class="pagination center-align ">
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
@@ -66,7 +74,7 @@
                         <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                    <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" alt="@Model.List()[i].Uri" />
+                    <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" alt="Photo from link @Model.List()[i].Uri" id="photo_no_@Model.List()[i].Id" name="photo" />
                     <br />
                     <span id="img_tags">
                         By @Model.List()[i].Author at @Model.List()[i].Date
@@ -142,7 +150,8 @@
                 <li class="waves-effect"><a href="./1051">1051</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
-        }else if (Model.Id == 1051)
+        }
+        else if (Model.Id == 1051)
         {
             <ul class="pagination center-align ">
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>

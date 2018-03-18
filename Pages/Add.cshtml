@@ -10,26 +10,33 @@
         <h1 class="center-align">Add</h1>
     </div>
     <br />
-    <form class="container ">
-        <div class="input-field col s12 container">
-            <select>
-                <option value="1">PNG/JPG image</option>
-                <option value="2">GIF/APNG animation</option>
-                <option value="3">Streamable video</option>
-            </select>
-            <label>Choose file type you'd like to upload</label>
-        </div>
-        <br />
-        <div class="file-field input-field">
-            <div class="btn blue lighten-1 waves-effect waves-light">
-                <i class="material-icons left">cloud</i>
+    <form method="post" enctype="multipart/form-data">
+        <div class="container">
+            <div class="input-field col s12 container">
+                <select asp-for="UploadOption" name="UploadOption">
+                    <option value="1" selected="selected" name="img">PNG/JPG/WEBP image</option>
+                    <option value="2" name="video">GIF/APNG/WEBM video</option>
+                    <option value="3" name="streamable">Streamable</option>
+                </select>
+                <label>Choose file type you'd like to upload</label>
+            </div>
+            <br />
+            <div class="file-field input-field">
+                <div class="btn blue lighten-1 waves-effect waves-light">
+                    <i class="material-icons left">cloud</i>
+                    <span>File</span>
+                    <input type="file" multiple accept="image/*" asp-for="Upload">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" placeholder="Chose image to upload">
+                </div>
+            </div>
+            <div class="btn light-green darken-1 waves-effect waves-light">
                 <span>File</span>
-                <input type="file" multiple accept="image/*">
+                <input type="submit" id="btnUpload" value="Upload" />
             </div>
-            <div class="file-path-wrapper">
-                <input class="file-path validate" type="text" placeholder="Chose image to upload">
-            </div>
-        </div>
+         </div>            
     </form>
-</div>
+    </div>
 <br /><br />
+
