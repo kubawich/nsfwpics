@@ -16,9 +16,9 @@
                 <select asp-for="UploadOption" name="UploadOption" v-model="uploadOption">
                     <option value="1" selected="selected" name="img">PNG/JPG/WEBP image</option>
                     <option value="2" name="video">GIF/APNG/WEBM video</option>
-                    <option  value="3" name="streamable">Streamable</option>
+                    <option value="3" name="streamable">Streamable</option>
                 </select>
-                <input v-if="uploadOption == 3" type="url" placeholder="https://streamable.com/dxe6b" />
+                <input v-if="uploadOption == 3" type="url" placeholder="https://streamable.com/dxe6b" name="streamable_link" />
                 <label v-else>Choose file type you'd like to upload</label>
             </div>
             <br />

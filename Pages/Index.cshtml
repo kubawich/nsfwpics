@@ -122,15 +122,20 @@
                         <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                     @{ 
+                      @{ 
                         string link = Model.List()[i].Uri.ToString();
                         string extension = link.Substring(link.Length - 3);
-                        if (extension != "mp4")
+                        if (extension == "png")
                         {
                             <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" alt="Photo from link @Model.List()[i].Uri" id="photo_no_@Model.List()[i].Id" name="photo" />
-                        } else
+                        } else if (extension == "mp4")
                         {
-                            <video width="300" height="100" src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="video_no_@Model.List()[i].Id" name="video" controls />
+                            <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" width="400" height="250" class="afterglow" controls />
+                        }
+                        else
+                        {
+                            <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;">
+                            <iframe src="@Model.List()[i].Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>
                         }
 
                     }
