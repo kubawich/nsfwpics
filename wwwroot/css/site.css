@@ -4,7 +4,13 @@ body {
     font-weight:lighter;
 }
 
-img, video {
+img {
+    height: auto;
+    width: 100%;
+    padding-right: 20%;
+}
+
+video {
     height: auto;
     width: 100%;
     padding-right: 20%;

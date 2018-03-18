@@ -16,23 +16,23 @@
                 <select asp-for="UploadOption" name="UploadOption">
                     <option value="1" selected="selected" name="img">PNG/JPG/WEBP image</option>
                     <option value="2" name="video">GIF/APNG/WEBM video</option>
-                    <option value="3" name="streamable">Streamable</option>
+                    <option  v-on:click="streamable = true" value="3" name="streamable">Streamable</option>
                 </select>
-                <label>Choose file type you'd like to upload</label>
+                <input v-if="streamable" type="url" placeholder="https://streamable.com/dxe6b" />
+                <label v-else>Choose file type you'd like to upload</label>
             </div>
             <br />
             <div class="file-field input-field">
                 <div class="btn blue lighten-1 waves-effect waves-light">
                     <i class="material-icons left">cloud</i>
                     <span>File</span>
-                    <input type="file" multiple accept="image/*" asp-for="Upload">
+                    <input type="file" asp-for="Upload">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text" placeholder="Chose image to upload">
+                    <input class="file-path validate" type="text" placeholder="Chose file to upload">
                 </div>
             </div>
             <div class="btn light-green darken-1 waves-effect waves-light">
-                <span>File</span>
                 <input type="submit" id="btnUpload" value="Upload" />
             </div>
          </div>            

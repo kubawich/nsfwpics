@@ -62,48 +62,90 @@ namespace NSFWpics.Pages
             {
                 #region PHOTOS_UPLOAD
                 //Upload photo to server
-                using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+                string name = Upload.FileName;
+                string extension = name.Substring(name.Length - 3);
+                if (extension == "png" || extension == "jpg" || extension == "peg" || extension == "ebp")
                 {
-                    client.Connect();
-                    client.ChangeDirectory("/var/www/html/img");
-
-                    using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
+                    using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
                     {
-                        client.BufferSize = 4 * 1024;
-                        client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.png");
+                        client.Connect();
+                        client.ChangeDirectory("/var/www/html/img");
+
+                        using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
+                        {
+                            client.BufferSize = 4 * 1024;
+                            client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.png");
+                        }
+                        client.Disconnect();
+                        client.Dispose();
                     }
-                    client.Disconnect();
-                    client.Dispose();
+                    //Add uploaded photo to SQL database
+                    cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.png','Anonymous',0)", conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
                 }
-                //Add uploaded photo to SQL database
-                cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.png','Anonymous',0)", conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                else Redirect("/add");
                 #endregion
             }
             else if (Request.Form["UploadOption"] == "2")
             {
                 #region PHOTOS_videos
                 //Upload photo to server
-                using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+                string name = Upload.FileName;
+                string extension = name.Substring(name.Length - 3);
+                if (extension == "mp4" || extension == "ebm")
                 {
-                    client.Connect();
-                    client.ChangeDirectory("/var/www/html/img");
-
-                    using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
+                    using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
                     {
-                        client.BufferSize = 4 * 1024;
-                        client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.mp4");
+                        client.Connect();
+                        client.ChangeDirectory("/var/www/html/img");
+
+                        using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
+                        {
+                            client.BufferSize = 4 * 1024;
+                            client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.mp4");
+                        }
+                        client.Disconnect();
+                        client.Dispose();
                     }
-                    client.Disconnect();
-                    client.Dispose();
+                    //Add uploaded photo to SQL database
+                    cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.mp4','Anonymous',0)", conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
                 }
-                //Add uploaded photo to SQL database
-                cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.mp4','Anonymous',0)", conn);
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                else Redirect("/add");
+                #endregion
+            }
+            else if (Request.Form["UploadOption"] == "3")
+            {
+                #region streamable
+                //Upload photo to server
+                string name = Upload.FileName;
+                string extension = name.Substring(name.Length - 3);
+                if (extension == "mp4" || extension == "ebm")
+                {
+                    using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+                    {
+                        client.Connect();
+                        client.ChangeDirectory("/var/www/html/img");
+
+                        using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
+                        {
+                            client.BufferSize = 4 * 1024;
+                            client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.mp4");
+                        }
+                        client.Disconnect();
+                        client.Dispose();
+                    }
+                    //Add uploaded photo to SQL database
+                    cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.mp4','Anonymous',0)", conn);
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                else Redirect("/add");
                 #endregion
             }
         }
