@@ -74,7 +74,15 @@ namespace NSFWpics.Pages
                         using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
                         {
                             client.BufferSize = 4 * 1024;
-                            client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.png");
+                            if (extension == "png" || extension == "jpg" || extension == "jpeg")
+                            {
+                                client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.png");
+                            }
+                            else if (extension == "ebp")
+                            {
+                                client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.webp");
+                            }
+                            else Redirect("/Add");
                         }
                         client.Disconnect();
                         client.Dispose();
@@ -93,8 +101,8 @@ namespace NSFWpics.Pages
                 #region PHOTOS_videos
                 //Upload photo to server
                 string name = Upload.FileName;
-                string extension = name.Substring(name.Length - 3);
-                if (extension == "mp4" || extension == "ebm")
+                string extension = name.Substring(name.Length - 4);
+                if (extension == ".mp4" || extension == "webm" || extension == "apng")
                 {
                     using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
                     {
@@ -104,7 +112,19 @@ namespace NSFWpics.Pages
                         using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
                         {
                             client.BufferSize = 4 * 1024;
-                            client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.mp4");
+                            if (extension == ".mp4")
+                            {
+                                client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.mp4");
+                            }
+                            else if (extension == "webm")
+                            {
+                                client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.webm");
+                            }
+                            else if (extension == "apng")
+                            {
+                                client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.apng");
+                            }
+                            else Redirect("/Add");
                         }
                         client.Disconnect();
                         client.Dispose();

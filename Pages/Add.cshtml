@@ -5,20 +5,20 @@
     ViewData["Title"] = "Add";
 }
 <!--There have to be way for streamable, it look's like this <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="https://streamable.com/s/dxe6b/rzchgk" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>-->
-<div class="container file_add" id="app2">
+<div class="container file_add">
     <div class="container center-align">
         <h1 class="center-align">Add</h1>
     </div>
     <br />
     <form method="post" enctype="multipart/form-data">
         <div class="container">
-            <div class="input-field col s12 container">
+            <div class="input-field col s12 container"  id="app2">
                 <select name="UploadOption" v-model="uploadOption">
                     <option value="1">PNG/JPG/WEBP image</option>
                     <option value="2">GIF/APNG/WEBM video</option>
-                    <option value="3">Streamable</option>
+                    <!--<option value="3">Streamable</option>-->
                 </select>
-                <input v-if="uploadOption === 3" type="url" placeholder="https://streamable.com/dxe6b"  name="streamable_link"/>
+                <input v-if="uploadOption == 3" type="url" placeholder="https://streamable.com/dxe6b"  name="streamable_link"/>
                 <label v-else>Choose file type you'd like to upload</label>
             </div>
             <br />
@@ -39,4 +39,11 @@
     </form>
     </div>
 <br /><br />
-
+<script>
+    new Vue({
+        el: "#app2",
+        data: {
+            uploadOption: null
+        }
+    })
+</script>
