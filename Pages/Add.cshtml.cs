@@ -122,7 +122,7 @@ namespace NSFWpics.Pages
             {
             #region streamable
             //Upload streamable to server                                
-            cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('{Request.Form["streamable_link"].ToString()}','Anonymous',0)", conn);
+            cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('{Request.Form["streamable_link"]}','Anonymous',0)", conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();

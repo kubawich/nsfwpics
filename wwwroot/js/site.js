@@ -4,12 +4,11 @@ $(document).ready(function () {
     $('.materialboxed').materialbox();
     $('select').material_select();
 });
-console.clear();
+
 var app = new Vue({
     el: '#app',
     data: {
-        points: 0,
-        uploadOption: null
+        points: 0
     },
 
     watch: {
@@ -18,3 +17,10 @@ var app = new Vue({
     mounted() {
     }
 });
+
+new Vue({
+    el: "#app2",
+    data: {
+        uploadOption: null
+    }
+})
