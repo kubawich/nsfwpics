@@ -4,7 +4,7 @@ $(document).ready(function () {
     $('.materialboxed').materialbox();
     $('select').material_select();
 });
-
+console.clear();
 var app = new Vue({
     el: '#app',
     data: {
