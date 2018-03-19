@@ -18,7 +18,7 @@ var app = new Vue({
     }
 });
 
-new Vue({
+var app2 = new Vue({
     el: "#app2",
     data: {
         uploadOption: null
