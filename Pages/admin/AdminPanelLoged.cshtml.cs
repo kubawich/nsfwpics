@@ -93,13 +93,13 @@ namespace NSFWpics.Pages.adminpanel
             cmd.ExecuteNonQuery();
             conn.Close();
             //Delete file
-            using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+            /*using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
             {
                 client.Connect();
                 client.Delete($"/var/www/html/img/{Image.Id.ToString()}.png");
                 client.Disconnect();
                 client.Dispose();
-            }
+            }*/
 
             return Page();
         }
