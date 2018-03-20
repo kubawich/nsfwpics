@@ -75,7 +75,10 @@
                             <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" alt="Photo from link @Model.List()[i].Uri" id="photo_no_@Model.List()[i].Id" name="photo" />
                         } else if (extension == "mp4")
                         {
-                            <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" width="400" height="250" class="afterglow" controls />
+                            <div class="afterglow video-js vjs-afterglow-skin vjs-responsive vjs-controls-enabled vjs-workinghover vjs-has-started localvideo-dimensions vjs-paused vjs-user-inactive">
+
+                            <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" class="materialboxed col center-align s-12 " controls loop/>
+                            </div>
                         }
                         else
                         {
