@@ -149,7 +149,6 @@ namespace NSFWpics.Pages
                 throw;
             }
             #endregion
-            return list;
         }
     }
 }

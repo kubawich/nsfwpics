@@ -24,7 +24,7 @@ namespace NSFWpics.Pages
             {
                 IsLogedIn = true;
          
-                Response.Cookies.Append("LogedInCookie", "logedIn", new Microsoft.AspNetCore.Http.CookieOptions());
+                Response.Cookies.Append("LogedInCookie", "true", new Microsoft.AspNetCore.Http.CookieOptions());
                 
                 return Redirect("/admin/AdminPanelLoged");
             }
