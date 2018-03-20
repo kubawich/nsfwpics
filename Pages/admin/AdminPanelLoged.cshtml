@@ -28,7 +28,10 @@
                     <span id="points">@Model.Image.Points</span>
                     <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light "><i class="material-icons">thumb_up</i></button>
                     <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light "><i class="material-icons">thumb_down</i></button>
-                    <input type="submit" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete_forever</i></input>
+                    <span class="btn light-green darken-1 waves-effect waves-light">
+                        <i class="material-icons left">delete_forever</i>
+                        <input type="submit" id="btnUpload" value="Upload">
+                    </span>
                 </span>
             </form>
             <br /><br />

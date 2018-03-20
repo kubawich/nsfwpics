@@ -74,7 +74,7 @@ namespace NSFWpics.Pages.adminpanel
             }
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             //Delete db record
             connection.Server = "185.28.102.194";
@@ -96,10 +96,12 @@ namespace NSFWpics.Pages.adminpanel
             using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
             {
                 client.Connect();
-                client.DeleteFile($"/var/www/html/img/{Image.Id}");
+                client.Delete($"/var/www/html/img/{Image.Id.ToString()}.png");
                 client.Disconnect();
                 client.Dispose();
             }
+
+            return Page();
         }
     }
 }
