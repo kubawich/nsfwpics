@@ -150,5 +150,24 @@ namespace NSFWpics.Pages
             }
             #endregion
         }
+
+        public void Plus(int id)
+        {
+            connection.Server = "185.28.102.194";
+            connection.UserID = "root";
+            connection.Password = "Kubawich1";
+            connection.Database = "content";
+            connection.SslMode = MySqlSslMode.None;
+
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd;
+
+
+            cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {id};", conn);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }

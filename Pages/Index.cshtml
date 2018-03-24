@@ -62,9 +62,9 @@
                         <a href="/img/view/@Model.List()[i].Id" id="img_index">#@Model.List()[i].Id </a>
                     </span>
                     <span id="feed" class="col right s-8">
-                        <span id="points">@Model.List()[i].Points</span>
-                        <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
-                        <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
+                        <span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
+                        <button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i>{{ points }} </button>
+                        <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i>{{ points }}</button>
                     </span>
                     <br /><br />
                     @{ 

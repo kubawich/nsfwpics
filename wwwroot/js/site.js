@@ -5,6 +5,11 @@ $(document).ready(function () {
     $('select').material_select();
 });
 
+
+function plus(img_id) {
+    document.getElementById(`points_${img_id}`).innerHTML = document.getElementById(`points_${img_id}`).innerHTML + 1;
+}
+
 var app = new Vue({
     el: '#app',
     data: {
@@ -13,9 +18,6 @@ var app = new Vue({
 
     watch: {
     },
-
-    mounted() {
-    }
 });
 
 
