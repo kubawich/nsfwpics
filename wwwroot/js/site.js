@@ -18,7 +18,12 @@ var app = new Vue({
         points: 0
     },
 
-    watch: {
+});
+
+var app2 = new Vue({
+    el: '#app2',
+    data: {
+        upload: null
     },
 });
 

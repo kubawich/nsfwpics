@@ -9,6 +9,7 @@
     <None Remove="wwwroot\images\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Capture.PNG" />
     <None Remove="Pages\googled61091e3d95cb875.html" />
   </ItemGroup>
   <ItemGroup>

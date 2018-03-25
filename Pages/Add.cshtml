@@ -5,14 +5,14 @@
     ViewData["Title"] = "Add";
 }
 <!--There have to be way for streamable, it look's like this <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="https://streamable.com/s/dxe6b/rzchgk" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>-->
-<div class="container file_add" id="target">
+<div class="container file_add" id="app2">
     <div class="container center-align">
         <h1 class="center-align">Add</h1>
     </div>
     <br />
     <form method="post" enctype="multipart/form-data">
         <div class="container">
-            <div class="input-field col s12 container" id="app2">
+            <div class="input-field col s12 container">
                 <select name="UploadOption" v-model="uploadOption">
                     <option value="1">PNG/JPG/WEBP image</option>
                     <option value="2">GIF/APNG/WEBM video</option>
@@ -33,9 +33,15 @@
             <div class="preview">
                 <p>No files currently selected for upload</p>
             </div>
-            <div class="btn light-green darken-1 waves-effect waves-light modal-trigger" onclick="showModal()">
+            <div class="btn light-green darken-1 waves-effect waves-light modal-trigger" v-model="upload">
                 <i class="material-icons left">cloud_upload</i>
-                <input type="submit" id="btnUpload" value="Upload" >
+                <input type="submit" id="btnUpload" value="Upload">
+            </div>
+            <div class="container" v-if="upload">
+                <h4>Wait until file's uploaded</h4>
+                <div class="progress">
+                    <div class="indeterminate"></div>
+                </div>
             </div>
             <br /><br />
             <div class="form-group">
@@ -45,15 +51,6 @@
     </form>
 </div>
 <br /><br />
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4>Wait until file's uploaded</h4>
-        <div class="progress">
-            <div class="indeterminate"></div>
-        </div>
-    </div>
-</div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
     function showModal() {
