@@ -32,15 +32,9 @@
             <div class="preview">
                 <p>No files currently selected for upload</p>
             </div>
-            <div class="btn light-green darken-1 waves-effect waves-light modal-trigger" v-model="upload">
+            <div class="btn light-green darken-1 waves-effect waves-light modal-trigger" >
                 <i class="material-icons left">cloud_upload</i>
                 <input type="submit" id="btnUpload" value="Upload">
-            </div>
-            <div class="container" v-if="upload">
-                <h4>Wait until file's uploaded</h4>
-                <div class="progress">
-                    <div class="indeterminate"></div>
-                </div>
             </div>
             <br /><br />
             <div class="form-group">
