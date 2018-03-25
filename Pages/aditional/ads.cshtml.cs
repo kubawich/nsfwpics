@@ -23,13 +23,13 @@ namespace NSFWpics.Pages.aditional
             if (!resultCaptcha.Success)
             {
                 ModelState.AddModelError("", "Captcha is not valid");
-                return Redirect("google.com");
+                return Redirect("/ads");
             }
             if (ModelState.IsValid)
             {
-                return Redirect("wykop.com");
+                return Redirect("/ads");
             }
-            else return Redirect("facebook.com");
+            else return Redirect("/ads");
         }
 
         private async Task<CaptchaVerification> VerifyCaptcha()
