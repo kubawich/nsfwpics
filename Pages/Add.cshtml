@@ -53,8 +53,9 @@
     </div>
 </div>
 <script>
-    var elem = document.querySelector('.modal');
-    var instance = M.Modal.init(elem, options);
+    $(document).ready(function () {
+        $('.modal').modal();
+    });
 
     var input = document.querySelector('input');
     var preview = document.querySelector('.preview');
