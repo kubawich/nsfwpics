@@ -15,7 +15,6 @@ namespace NSFWpics.Pages.aditional
     {
         public void OnGet()
         {
-
         }
 
         public async Task<IActionResult> OnPostAsync()

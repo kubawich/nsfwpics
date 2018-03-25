@@ -7,7 +7,9 @@ $(document).ready(function () {
 
 
 function plus(img_id) {
-    document.getElementById(`points_${img_id}`).innerHTML = document.getElementById(`points_${img_id}`).innerHTML + 1;
+    var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+    console.log(pts);
+    document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
 }
 
 var app = new Vue({

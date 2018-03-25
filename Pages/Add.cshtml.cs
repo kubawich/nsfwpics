@@ -1,13 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql.Data.MySqlClient;
+using Newtonsoft.Json;
 using Renci.SshNet;
 
 namespace NSFWpics.Pages
@@ -33,9 +37,28 @@ namespace NSFWpics.Pages
         {
         }
 
-        public void OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
+
             #region SQL_server_connection
+            
+            //CAPTCHA
+            var resultCaptcha = await VerifyCaptcha();
+            if (!resultCaptcha.Success)
+            {
+                ModelState.AddModelError("", "Captcha is not valid");
+                return Redirect("http://nsfwpics.pw/add");
+            }
+            if(ModelState.IsValid)
+            {
+                postFiles();
+                return Page();
+            } 
+            else return Redirect("/add");
+        }
+
+        public void postFiles()
+        {
             connection.Server = "185.28.102.194";
             connection.UserID = "root";
             connection.Password = "Kubawich1";
@@ -82,7 +105,7 @@ namespace NSFWpics.Pages
                             {
                                 client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.webp");
                             }
-                            else Redirect("/Add");
+                            else  Redirect("/Add");
                         }
                         client.Disconnect();
                         client.Dispose();
@@ -93,7 +116,7 @@ namespace NSFWpics.Pages
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-                else Redirect("/add");
+                else  Redirect("/add");
                 #endregion
             }
             else if (Request.Form["UploadOption"] == "2")
@@ -124,7 +147,7 @@ namespace NSFWpics.Pages
                             {
                                 client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.apng");
                             }
-                            else Redirect("/Add");
+                            else  Redirect("/Add");
                         }
                         client.Disconnect();
                         client.Dispose();
@@ -135,10 +158,43 @@ namespace NSFWpics.Pages
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-                else Redirect("/add");
+                else  Redirect("/add");
                 #endregion
             }
-            else Redirect("/add");
         }
+
+        private async Task<CaptchaVerification> VerifyCaptcha()
+        {
+            string userIP = string.Empty;
+            var ipAddress = Request.HttpContext.Connection.RemoteIpAddress;
+            if (ipAddress != null) userIP = ipAddress.MapToIPv4().ToString();
+
+            var captchaResponse = Request.Form["g-recaptcha-response"];
+            var payload = string.Format("&secret={0}&remoteip={1}&response={2}",
+                "6LeWRUoUAAAAAGDSGfW16HjwDjFTED_blkHccZhD",
+                userIP,
+                captchaResponse
+                );
+
+            var client = new System.Net.Http.HttpClient();
+            client.BaseAddress = new Uri("https://www.google.com");
+            var request = new HttpRequestMessage(HttpMethod.Post, "/recaptcha/api/siteverify");
+            request.Content = new StringContent(payload, Encoding.UTF8, "application/x-www-form-urlencoded");
+            var response = await client.SendAsync(request);
+            return JsonConvert.DeserializeObject<CaptchaVerification>(response.Content.ReadAsStringAsync().Result);
+        }
+    }
+
+    public class CaptchaVerification
+    {
+        public CaptchaVerification()
+        {
+        }
+
+        [JsonProperty("success")]
+        public bool Success { get; set; }
+
+        [JsonProperty("error-codes")]
+        public IList Errors { get; set; }
     }
 }
