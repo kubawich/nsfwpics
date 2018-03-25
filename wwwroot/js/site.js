@@ -12,6 +12,12 @@ function plus(img_id) {
     document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
 }
 
+function minus(img_id) {
+    var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+    console.log(pts);
+    document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
+}
+
 var app = new Vue({
     el: '#app',
     data: {

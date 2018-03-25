@@ -19,10 +19,10 @@
                 <a href="http://nsfwpics.pw/img/view/@Model.Image.Id">#@Model.Image.Id</a>
 
             </span>
-            <span id="feed" class="col right">
-                <span id="points">@Model.Image.Points</span>
-                <button v-on:click="points += 1" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i></button>
-                <button v-on:click="points -= 1" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i></button>
+            <span id="feed" class="col right s-8">
+                <span id="points_@Model.Image.Id" class="points">@Model.Image.Points</span>
+                <button onclick="plus(@Model.Image.Id)" class="btn-floating btn-large waves-effect waves-light light-green"><i class="material-icons">thumb_up</i>{{ points }}</button>
+                <button onclick="minus(@Model.Image.Id)" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">thumb_down</i>{{ points }}</button>
             </span>
             <br /><br />
             @{ 
