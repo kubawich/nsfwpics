@@ -4,7 +4,6 @@
 @{
     ViewData["Title"] = "Add";
 }
-<!--There have to be way for streamable, it look's like this <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;"><iframe src="https://streamable.com/s/dxe6b/rzchgk" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>-->
 <div class="container file_add" id="app2">
     <div class="container center-align">
         <h1 class="center-align">Add</h1>
@@ -13,11 +12,11 @@
     <form method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="input-field col s12 container">
-                <select name="UploadOption" v-model="uploadOption">
+                <select name="UploadOption">
                     <option value="1">PNG/JPG/WEBP image</option>
                     <option value="2">GIF/APNG/WEBM video</option>
                 </select>
-                <label v-else>Choose file type you'd like to upload</label>
+                <label>Choose file type you'd like to upload</label>
             </div>
             <br />
             <div class="file-field input-field">
@@ -27,7 +26,7 @@
                     <input type="file" asp-for="Upload">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate " name="filepond" data-max-file-size="15MB" type="text" placeholder="Chose file to upload">
+                    <input class="file-path validate" data-max-file-size="15MB" type="text" placeholder="Chose file to upload">
                 </div>
             </div>
             <div class="preview">
@@ -53,12 +52,6 @@
 <br /><br />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-    function showModal() {
-        $(document).ready(function () {
-            $('.modal').modal();
-        });
-    }
-
     var input = document.querySelector('input');
     var preview = document.querySelector('.preview');
     input.addEventListener('change', updateImageDisplay);
