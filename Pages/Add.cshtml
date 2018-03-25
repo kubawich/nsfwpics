@@ -33,7 +33,7 @@
             <div class="preview">
                 <p>No files currently selected for upload</p>
             </div>
-            <div class="btn light-green darken-1 waves-effect waves-light modal-trigger" data-target="modal1">
+            <div class="btn light-green darken-1 waves-effect waves-light modal-trigger" onclick=" $(document).ready(function () { $('.modal').modal();});">
                 <i class="material-icons left">cloud_upload</i>
                 <input type="submit" id="btnUpload" value="Upload" >
             </div>
@@ -48,8 +48,10 @@
 <!-- Modal Structure -->
 <div id="modal1" class="modal">
     <div class="modal-content">
-        <h4>Modal Header</h4>
-        <p>A bunch of text</p>
+        <h4>Please wait while file's uploading</h4>
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
