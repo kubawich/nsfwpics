@@ -7,15 +7,24 @@ $(document).ready(function () {
 
 
 function plus(img_id) {
-    var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
-    console.log(pts);
-    document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
+    var clicked = false;
+    if (!clicked) {
+        var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+        console.log(pts);
+        document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
+        clicked = true;
+    }
+    
 }
 
 function minus(img_id) {
-    var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
-    console.log(pts);
-    document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
+    var clicked = false;
+    if (!clicked) {
+        var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+        console.log(pts);
+        document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
+        clicked = true;
+    }
 }
 
 var app = new Vue({
