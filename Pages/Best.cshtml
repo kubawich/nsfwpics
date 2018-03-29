@@ -25,20 +25,22 @@
                 <button onclick="minus(@Model.Image.Id)" class="btn-floating btn-large waves-effect waves-light red" id="button_minus_@Model.Image.Id"><i class="material-icons">thumb_down</i></button>
             </span>
             <br /><br />
-            @{ 
+            @{
                 string link = Model.Image.Uri.ToString();
                 string extension = link.Substring(link.Length - 3);
                 if (extension == "png")
                 {
                     <img class="materialboxed col center-align s-12" src="@Model.Image.Uri" alt="Photo from link @Model.Image.Uri" id="photo_no_@Model.Image.Id" name="photo" />
-                } else if (extension == "mp4")
+                }
+                else if (extension == "mp4")
                 {
                     <video src="@Model.Image.Uri" alt="Video from link @Model.Image.Uri" id="my-video" width="400" height="250" class="afterglow" controls />
                 }
                 else
                 {
                     <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;">
-                    <iframe src="@Model.Image.Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>
+                        <iframe src="@Model.Image.Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe>
+                    </div>
                 }
 
             }
@@ -59,5 +61,21 @@
         <script type="text/javascript" src="https://ads.exosrv.com/ads.js"></script>
         <noscript><a href="https://main.exosrv.com/img-click.php?idzone=2935150" target="_blank"><img src="https://syndication.exosrv.com/ads-iframe-display.php?idzone=2935150&output=img&type=300x50" width="300" height="50"></a></noscript>
     </div>
+    <!--DISQUS-->
+    <div id="disqus_thread" class="container"></div>
+    <script>
+
+        var disqus_config = function () {
+        this.page.url = 'http://nsfwpics.pw/';
+        this.page.identifier = @Model.Image.Uri;
+        };
+        (function () { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://nsfwpics.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 </br></br>
