@@ -12,9 +12,12 @@ function plus(img_id) {
         var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
         console.log(pts);
         document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
+        document.getElementById(`button_plus_${img_id}`).onclick = function () {
+            this.disabled = true;
+        }
         clicked = true;
     }
-    
+       
 }
 
 function minus(img_id) {
@@ -23,6 +26,9 @@ function minus(img_id) {
         var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
         console.log(pts);
         document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
+        document.getElementById(`button_minus_${img_id}`).onclick = function () {
+            this.disabled = true;
+        }
         clicked = true;
     }
 }
