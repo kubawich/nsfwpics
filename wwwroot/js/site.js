@@ -6,6 +6,11 @@ $(document).ready(function () {
 });
 
 
+function showUpload() {
+    var preloader = document.getElementById("preloader");
+    preloader.style.opacity = "1";
+}
+
 function plus(img_id) {
     var clicked = false;
     if (!clicked) {
