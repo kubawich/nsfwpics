@@ -151,8 +151,9 @@ namespace NSFWpics.Pages
             #endregion
         }
 
-        public void Plus(int id)
+        public void Plus(string id)
         {
+            int ID = Convert.ToUInt16(id);
             connection.Server = "185.28.102.194";
             connection.UserID = "root";
             connection.Password = "Kubawich1";
@@ -163,7 +164,7 @@ namespace NSFWpics.Pages
             MySqlCommand cmd;
 
 
-            cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {id};", conn);
+            cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {ID};", conn);
 
             conn.Open();
             cmd.ExecuteNonQuery();

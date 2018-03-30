@@ -6,6 +6,10 @@ $(document).ready(function () {
 });
 
 
+function paginationActiveSite(id) {
+    document.getElementById(`${id}`).classList.add("active");
+}
+
 function showUpload() {
     var preloader = document.getElementById("preloader");
     preloader.style.opacity = "1";

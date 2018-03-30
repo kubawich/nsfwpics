@@ -1,9 +1,36 @@
 ﻿@page  "{id:int?}"
 @model IndexModel
 @using System.IO;
+@using MySql;
+@using MySql.Data.MySqlClient;
+@functions{
+
+    MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
+    public bool Plus(int id)
+    {
+        connection.Server = "185.28.102.194";
+        connection.UserID = "root";
+        connection.Password = "Kubawich1";
+        connection.Database = "content";
+        connection.SslMode = MySqlSslMode.None;
+
+        MySqlConnection conn = new MySqlConnection(connection.ToString());
+        MySqlCommand cmd;
+
+
+        cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {id};", conn);
+
+        conn.Open();
+        cmd.ExecuteNonQuery();
+        conn.Close();
+
+        return true;
+    }
+}
 @{
     ViewData["Title"] = "Home page";
 }
+
 <div id="app">
     <br />
     <!--PAGINATION-->
@@ -13,10 +40,10 @@
             <ul class="pagination center-align ">
                 @for (int i = 1; i <= 7; i++)
                 {
-                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                    <li class="waves-effect" id="@Model.Id"><a href="./@i">@i</a></li>
                 }
                 <li>...</li>
-                <li class="waves-effect"><a href="./1051">1051</a></li>
+                <li class="waves-effect" id="@Model.Id"><a href="./1051">1051</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         }
@@ -67,23 +94,25 @@
                         <button onclick="minus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light red" id="button_minus_@Model.List()[i].Id"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                    @{ 
+                    @{
                         string link = Model.List()[i].Uri.ToString();
                         string extension = link.Substring(link.Length - 3);
                         if (extension == "png")
                         {
                             <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" alt="Photo from link @Model.List()[i].Uri" id="photo_no_@Model.List()[i].Id" name="photo" />
-                        } else if (extension == "mp4")
+                        }
+                        else if (extension == "mp4")
                         {
                             <div class="afterglow video-js vjs-afterglow-skin vjs-responsive vjs-controls-enabled vjs-workinghover vjs-has-started localvideo-dimensions vjs-paused vjs-user-inactive">
 
-                            <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" class="materialboxed col center-align s-12 " controls loop/>
+                                <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" class="materialboxed col center-align s-12 " controls loop />
                             </div>
                         }
                         else
                         {
                             <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;">
-                            <iframe src="@Model.List()[i].Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>
+                                <iframe src="@Model.List()[i].Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe>
+                            </div>
                         }
 
                     }
@@ -121,24 +150,26 @@
                     </span>
                     <span id="feed" class="col right s-8">
                         <span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
-                        <button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green"  id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
-                        <button onclick="minus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light red"  id="button_minus_@Model.List()[i].Id"><i class="material-icons">thumb_down</i></button>
+                        <button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
+                        <button onclick="minus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light red" id="button_minus_@Model.List()[i].Id"><i class="material-icons">thumb_down</i></button>
                     </span>
                     <br /><br />
-                      @{ 
+                    @{
                         string link = Model.List()[i].Uri.ToString();
                         string extension = link.Substring(link.Length - 3);
                         if (extension == "png")
                         {
                             <img class="materialboxed col center-align s-12" src="@Model.List()[i].Uri" alt="Photo from link @Model.List()[i].Uri" id="photo_no_@Model.List()[i].Id" name="photo" />
-                        } else if (extension == "mp4")
+                        }
+                        else if (extension == "mp4")
                         {
                             <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" width="400" height="250" class="afterglow" controls />
                         }
                         else
                         {
                             <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;">
-                            <iframe src="@Model.List()[i].Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe></div>
+                                <iframe src="@Model.List()[i].Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe>
+                            </div>
                         }
 
                     }
@@ -215,3 +246,9 @@
         <br /><br />
     </div>
 </div>
+<script>
+    window.onload = paginationActiveSite(@Model.Id);
+    function paginationActiveSite(id) {
+        document.getElementById(id).classList.add("active");
+    }
+</script>
