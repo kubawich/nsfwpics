@@ -42,11 +42,4 @@ function minus(img_id) {
     }
 }
 
-var app = new Vue({
-    el: '#app',
-    data: {
-        points: 0
-    },
-
-});
 
