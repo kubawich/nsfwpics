@@ -42,7 +42,7 @@ namespace NSFWpics.Pages
             MySqlConnection conn2 = new MySqlConnection(connection.ToString());
             MySqlCommand cmd2;
 
-            cmd2 = new MySqlCommand($"SELECT id FROM imgs WHERE id ORDER BY id DESC LIMIT 1;", conn2);
+            cmd2 = new MySqlCommand($"SELECT COUNT(*) FROM imgs;", conn2);
 
             conn2.Open();
             MySqlDataReader reader2 = cmd2.ExecuteReader();
