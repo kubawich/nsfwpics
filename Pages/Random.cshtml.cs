@@ -38,7 +38,7 @@ namespace NSFWpics.Pages
 
             while (reader.Read())
             {
-                Id = int.Parse(reader["id"].ToString());
+                Id = int.Parse(reader["COUNT(*)"].ToString());
             }
             int MaxId = Id;
             int i = rand.Next(1, 10700);

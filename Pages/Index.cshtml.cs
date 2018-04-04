@@ -49,7 +49,7 @@ namespace NSFWpics.Pages
 
             while (reader2.Read())
             {
-                MaxId = Convert.ToInt16(int.Parse(reader2["id"].ToString()));
+                MaxId = Convert.ToInt16(int.Parse(reader2["COUNT(*)"].ToString()));
             }
 
             conn2.Close();
