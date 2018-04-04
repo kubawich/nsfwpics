@@ -16,6 +16,7 @@ namespace NSFWpics.Pages
         public List<Image> list = new List<Image>();
         public int Id { get; set; }
         public int PageIncrement { get; set; }
+        public int MaxId { get; set; }
 
         [BindProperty]
         public Image Image { get; set; }
@@ -42,61 +43,8 @@ namespace NSFWpics.Pages
 
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
-            #region old_method
-            /*
-            try
-            {
-                if (Id == 0 || Id == 1)
-                {
-                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {Id} AND {Id + 11}", conn);
 
-                    conn.Open();
-                    MySqlDataReader reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        list.Add(new Image
-                        {
-                            Id = int.Parse(reader["id"].ToString()),
-                            Uri = reader["uri"].ToString(),
-                            Author = reader["author"].ToString(),
-                            Points = int.Parse(reader["points"].ToString()),
-                            Date = reader["date"].ToString()
-                        });
-                    }
-
-                    conn.Close();
-                    return list;
-                }
-                else
-                {
-                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id BETWEEN {(Id * 10 - 10)} AND {(Id * 10 -1)}", conn);
-
-                    conn.Open();
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        list.Add(new Image
-                        {
-                            Id = int.Parse(reader["id"].ToString()),
-                            Uri = reader["uri"].ToString(),
-                            Author = reader["author"].ToString(),
-                            Points = int.Parse(reader["points"].ToString()),
-                            Date = reader["date"].ToString()
-                        });
-                    }
-
-                    conn.Close();
-                    return list;
-                }
-            }
-            catch (Exception)
-            {
-                return list;
-            } */
-            #endregion
-            #region new_method
             try
             {
                 if (Id == 0 || Id == 1)
@@ -148,7 +96,6 @@ namespace NSFWpics.Pages
             {
                 throw;
             }
-            #endregion
         }
 
         public void Plus(string id)

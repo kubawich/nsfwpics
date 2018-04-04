@@ -21,7 +21,6 @@ namespace NSFWpics.Pages
         [HttpGet]
         public IActionResult OnGet()
         {
-            var i = rand.Next(1, 10513);
 
             connection.Server = "185.28.102.194";
             connection.UserID = "root";
@@ -30,22 +29,36 @@ namespace NSFWpics.Pages
             connection.SslMode = MySqlSslMode.None;
 
             MySqlConnection conn = new MySqlConnection(connection.ToString());
-            MySqlCommand cmd; 
+            MySqlCommand cmd;
+
+            cmd = new MySqlCommand($"SELECT id FROM imgs WHERE id ORDER BY id DESC LIMIT 1;", conn);
+
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Id = int.Parse(reader["id"].ToString());
+            }
+            int MaxId = Id;
+            int i = rand.Next(1, MaxId);
+
+            conn.Close();
 
             cmd = new MySqlCommand($"SELECT uri, author, date, id, points FROM imgs WHERE id={i}", conn);
             conn.Open();
 
-            MySqlDataReader reader = cmd.ExecuteReader();
+            MySqlDataReader reader2 = cmd.ExecuteReader();
 
             while (reader.Read())
             {
                Image = new Image
                 {
-                    Id = int.Parse(reader["id"].ToString()),
-                    Uri = reader["uri"].ToString(),
-                    Author = reader["author"].ToString(),
-                    Points = int.Parse(reader["points"].ToString()),
-                    Date = reader["date"].ToString()
+                    Id = int.Parse(reader2["id"].ToString()),
+                    Uri = reader2["uri"].ToString(),
+                    Author = reader2["author"].ToString(),
+                    Points = int.Parse(reader2["points"].ToString()),
+                    Date = reader2["date"].ToString()
                 };
             }
 

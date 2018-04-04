@@ -86,6 +86,7 @@ namespace NSFWpics.Pages
                 #region PHOTOS_UPLOAD
                 //Upload photo to server
                 string name = Upload.FileName;
+                
                 string extension = name.Substring(name.Length - 3);
                 if (extension == "png" || extension == "jpg" || extension == "peg" || extension == "ebp")
                 {
@@ -122,7 +123,7 @@ namespace NSFWpics.Pages
             else if (Request.Form["UploadOption"] == "2")
             {
                 #region PHOTOS_videos
-                //Upload photo to server
+                //Upload video to server
                 string name = Upload.FileName;
                 string extension = name.Substring(name.Length - 4);
                 if (extension == ".mp4" || extension == "webm" || extension == "apng")

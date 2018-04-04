@@ -3,30 +3,6 @@
 @using System.IO;
 @using MySql;
 @using MySql.Data.MySqlClient;
-@functions{
-
-    MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
-    public bool Plus(int id)
-    {
-        connection.Server = "185.28.102.194";
-        connection.UserID = "root";
-        connection.Password = "Kubawich1";
-        connection.Database = "content";
-        connection.SslMode = MySqlSslMode.None;
-
-        MySqlConnection conn = new MySqlConnection(connection.ToString());
-        MySqlCommand cmd;
-
-
-        cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {id};", conn);
-
-        conn.Open();
-        cmd.ExecuteNonQuery();
-        conn.Close();
-
-        return true;
-    }
-}
 @{
     ViewData["Title"] = "Home page";
 }
@@ -43,40 +19,50 @@
                     <li class="waves-effect" id="@Model.Id"><a href="./@i">@i</a></li>
                 }
                 <li>...</li>
-                <li class="waves-effect" id="@Model.Id"><a href="./1051">1051</a></li>
+                <li class="waves-effect" id="@Model.Id"><a href="./1067">1067</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         }
-        else if (Model.Id == 1051)
+        else if (Model.Id == 1067)
         {
             <ul class="pagination center-align ">
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-                <li class="waves-effect"><a href="./1051">1051</a></li>
+                <li class="waves-effect" id="@Model.Id"><a href="./1067">1067</a></li>
             </ul>
         }
-        else
+        else if (Model.Id >= 3)
         {
 
             <ul class="pagination center-align ">
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-                @for (int i = Model.Id; i <= (Model.Id + 7); i++)
+                <li class="waves-effect"><a href="./1">1</a></li>
+                <li>...</li>
+                <li class="waves-effect"><a href="./@(Model.Id - 1)">@(Model.Id - 1)</a></li>
+                @for (int i = Model.Id; i <= (Model.Id + 4); i++)
                 {
-                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                    <li class="waves-effect" id="@Model.Id"><a href="./@i">@i</a></li>
                 }
                 <li>...</li>
-                <li class="waves-effect"><a href="./1051">1051</a></li>
+                <li class="waves-effect"><a href="./1067">1067</a></li>
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        }
+        else
+        {
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="./1">1</a></li>
+                @for (int i = Model.Id; i <= (Model.Id + 4); i++)
+                {
+                    <li class="waves-effect" id="@Model.Id"><a href="./@i">@i</a></li>
+                }
+                <li>...</li>
+                <li class="waves-effect"><a href="./1067">1067</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         }
     </div>
     <!--PAGINATION END-->
-    <!--BYPASS TO GET DATA FROM DB CORECTLY-->
-    <p class="hide">{{ url }}</p>
-    @for (int i = 1; i <= 10; i++)
-    {
-        <p class="hide">@Model.List()[i].Uri</p>
-    }
-    <!--BYPASS END-->
     <br />
     <!--CONTENT FOR MAIN PAGE-->
     <div class="container center-align">
@@ -201,32 +187,50 @@
         @if (Model.Id == 0 || Model.Id == 1)
         {
             <ul class="pagination center-align ">
-                @for (int i = 1; i <= 10; i++)
+                @for (int i = 1; i <= 7; i++)
                 {
-                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                    <li class="waves-effect" id="Down_@Model.Id"><a href="./@i">@i</a></li>
                 }
                 <li>...</li>
-                <li class="waves-effect"><a href="./1051">1051</a></li>
+                <li class="waves-effect" id="Down_@Model.Id"><a href="./1067">1067</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         }
-        else if (Model.Id == 1051)
+        else if (Model.Id == 1067)
         {
             <ul class="pagination center-align ">
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-                <li class="waves-effect"><a href="./1051">1051</a></li>
+                <li class="waves-effect" id="Down_@Model.Id"><a href="./1067">1067</a></li>
+            </ul>
+        }
+        else if (Model.Id >= 3)
+        {
+
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="./1">1</a></li>
+                <li>...</li>
+                <li class="waves-effect"><a href="./@(Model.Id - 1)">@(Model.Id - 1)</a></li>
+                @for (int i = Model.Id; i <= (Model.Id + 4); i++)
+                {
+                    <li class="waves-effect" id="Down_@Model.Id"><a href="./@i">@i</a></li>
+                }
+                <li>...</li>
+                <li class="waves-effect"><a href="./1067">1067</a></li>
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         }
         else
         {
             <ul class="pagination center-align ">
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-                @for (int i = Model.Id; i <= (Model.Id + 7); i++)
+                <li class="waves-effect"><a href="./1">1</a></li>
+                @for (int i = Model.Id; i <= (Model.Id + 4); i++)
                 {
-                    <li class="waves-effect" id="@i"><a href="./@i">@i</a></li>
+                    <li class="waves-effect" id="Down_@Model.Id"><a href="./@i">@i</a></li>
                 }
                 <li>...</li>
-                <li class="waves-effect"><a href="./1051">1051</a></li>
+                <li class="waves-effect"><a href="./1067">1067</a></li>
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         }
@@ -250,5 +254,6 @@
     window.onload = paginationActiveSite(@Model.Id);
     function paginationActiveSite(id) {
         document.getElementById(id).classList.add("active");
+        document.getElementById(`Down_${id}`).classList.add("active");
     }
 </script>
