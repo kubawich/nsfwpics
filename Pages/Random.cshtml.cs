@@ -41,16 +41,17 @@ namespace NSFWpics.Pages
                 Id = int.Parse(reader["id"].ToString());
             }
             int MaxId = Id;
-            int i = rand.Next(1, MaxId);
+            int i = rand.Next(1, 10700);
 
             conn.Close();
 
-            cmd = new MySqlCommand($"SELECT uri, author, date, id, points FROM imgs WHERE id={i}", conn);
-            conn.Open();
+            MySqlConnection conn2 = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd2 = new MySqlCommand($"SELECT uri, author, date, id, points FROM imgs WHERE id={i}", conn2);
+            conn2.Open();
 
-            MySqlDataReader reader2 = cmd.ExecuteReader();
+            MySqlDataReader reader2 = cmd2.ExecuteReader();
 
-            while (reader.Read())
+            while (reader2.Read())
             {
                Image = new Image
                 {
@@ -62,7 +63,7 @@ namespace NSFWpics.Pages
                 };
             }
 
-            conn.Close();
+            conn2.Close();
             return Page();
         }
     }

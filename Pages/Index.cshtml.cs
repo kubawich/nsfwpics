@@ -30,6 +30,31 @@ namespace NSFWpics.Pages
 
             Id = id;
             PageIncrement = ((id * 10) - 9) ;
+
+
+            connection.Server = "185.28.102.194";
+            connection.UserID = "root";
+            connection.Password = "Kubawich1";
+            connection.Database = "content";
+            connection.SslMode = MySqlSslMode.None;
+
+
+            MySqlConnection conn2 = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd2;
+
+            cmd2 = new MySqlCommand($"SELECT id FROM imgs WHERE id ORDER BY id DESC LIMIT 1;", conn2);
+
+            conn2.Open();
+            MySqlDataReader reader2 = cmd2.ExecuteReader();
+
+            while (reader2.Read())
+            {
+                MaxId = Convert.ToInt16(int.Parse(reader2["id"].ToString()));
+            }
+
+            conn2.Close();
+
+
             return Page();
         }
 
@@ -43,7 +68,6 @@ namespace NSFWpics.Pages
 
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
-
 
             try
             {
