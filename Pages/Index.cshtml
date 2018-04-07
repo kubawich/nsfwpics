@@ -91,7 +91,7 @@
                         {
                             <div class="afterglow video-js vjs-afterglow-skin vjs-responsive vjs-controls-enabled vjs-workinghover vjs-has-started localvideo-dimensions vjs-paused vjs-user-inactive">
 
-                                <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" class="materialboxed col center-align s-12 " controls loop />
+                                <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" class="materialboxed col center-align s-12 " controls loop muted/>
                             </div>
                         }
                         else
@@ -149,7 +149,7 @@
                         }
                         else if (extension == "mp4")
                         {
-                            <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" class="materialboxed col center-align s-12 " controls loop/>
+                            <video src="@Model.List()[i].Uri" alt="Video from link @Model.List()[i].Uri" id="my-video" class="materialboxed col center-align s-12 " controls loop muted/>
                         }
                         else
                         {
