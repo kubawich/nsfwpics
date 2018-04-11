@@ -9,6 +9,10 @@
     <None Remove="wwwroot\images\**" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Remove="Pages\RazorTagHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="92_21_55_37_664.png" />
     <None Remove="Capture.PNG" />
     <None Remove="Pages\googled61091e3d95cb875.html" />
   </ItemGroup>

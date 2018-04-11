@@ -8,7 +8,7 @@ $(document).ready(function () {
 
 
 
-function plus(img_id) {
+function plus(img_id, callback) {
     var clicked = false;
     if (!clicked) {
         var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
@@ -19,10 +19,16 @@ function plus(img_id) {
         }
         clicked = true;
     }
-       
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", `http://nsfwpics.pw/api/plus/${img_id}`, true); 
+    xmlHttp.send(null); 
 }
 
-function minus(img_id) {
+function minus(img_id, callback) {
     var clicked = false;
     if (!clicked) {
         var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
@@ -33,6 +39,13 @@ function minus(img_id) {
         }
         clicked = true;
     }
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            callback(xmlHttp.responseText);
+    }
+    xmlHttp.open("GET", `http://nsfwpics.pw/api/minus/${img_id}`, true);
+    xmlHttp.send(null); 
 }
 
 

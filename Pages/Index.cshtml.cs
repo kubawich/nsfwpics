@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MySql;
 using MySql.Data.MySqlClient;
-
 namespace NSFWpics.Pages
 {
     public class IndexModel : PageModel
