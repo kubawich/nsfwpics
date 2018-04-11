@@ -16,7 +16,7 @@ function plus(img_id, callback) {
         document.getElementById(`button_plus_${img_id}`).onclick = function () {
             this.disabled = true;
             if (document.getElementById(`button_minus_${img_id}`).disabled == true) {
-                document.getElementById(`button_minus_${img_id}`).disabled == false
+                document.getElementById(`button_minus_${img_id}`).disabled = false
             }
         }
         clicked = true;
@@ -38,7 +38,7 @@ function minus(img_id, callback) {
         document.getElementById(`button_minus_${img_id}`).onclick = function () {
             this.disabled = true;
             if (document.getElementById(`button_plus_${img_id}`).disabled == true) {
-                document.getElementById(`button_plus_${img_id}`).disabled == false
+                document.getElementById(`button_plus_${img_id}`).disabled = false
             }
         }
         clicked = true;
