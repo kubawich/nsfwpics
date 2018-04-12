@@ -1,27 +1,22 @@
-﻿//Use it to build webpack ./node_modules/.bin/webpack ./wwwroot/js/site.js ./wwwroot/js/bundle.js
-
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('.materialboxed').materialbox();
     $('select').material_select();
 });
 
 
-
-
 function plus(img_id, callback) {
-    var clicked = false;
-    if (!clicked) {
-        var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
-        document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
-        document.getElementById(`button_plus_${img_id}`).onclick = function () {
-            this.disabled = true;
-            if (document.getElementById(`button_minus_${img_id}`).disabled == true) {
-                document.getElementById(`button_minus_${img_id}`).disabled = false
-            }
+    let clicked = false;
+
+    let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+    document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
+    document.getElementById(`button_plus_${img_id}`).onclick = function () {
+        this.disabled = true;
+        if (document.getElementById(`button_minus_${img_id}`).disabled == true) {
+            document.getElementById(`button_minus_${img_id}`).disabled = false
         }
-        clicked = true;
     }
-    var xmlHttp = new XMLHttpRequest();
+    clicked = true;
+    let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
@@ -31,19 +26,17 @@ function plus(img_id, callback) {
 }
 
 function minus(img_id, callback) {
-    var clicked = false;
-    if (!clicked) {
-        var pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
-        document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
-        document.getElementById(`button_minus_${img_id}`).onclick = function () {
-            this.disabled = true;
-            if (document.getElementById(`button_plus_${img_id}`).disabled == true) {
-                document.getElementById(`button_plus_${img_id}`).disabled = false
-            }
+    let clicked = false;
+    let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+    document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
+    document.getElementById(`button_minus_${img_id}`).onclick = function () {
+        this.disabled = true;
+        if (document.getElementById(`button_plus_${img_id}`).disabled == true) {
+            document.getElementById(`button_plus_${img_id}`).disabled = false
         }
-        clicked = true;
     }
-    var xmlHttp = new XMLHttpRequest();
+    clicked = true;
+    let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
