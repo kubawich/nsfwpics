@@ -46,7 +46,6 @@
     <base href="http://nsfwpics.pw/">
     <title>@ViewData["Title"] - NSFWpics</title>
     <script defer src='https://www.google.com/recaptcha/api.js'></script>
-    <script  src="~/js/afterglow.min.js"></script>
     <environment include="Development">
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114739201-1"></script>
@@ -57,6 +56,7 @@
 
             gtag('config', 'UA-114739201-1');
         </script>
+        <script src="~/js/site.js"></script>
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -74,7 +74,6 @@
         </script>
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
         <script defer src="//unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="~/css/site.min.css" />
@@ -85,10 +84,10 @@
         <nav class="navbar navbar-inverse navbar-fixed-top z-depth-2">
             <div class="container nav-wrapper">
                 <div class="fixed-action-btn toolbar hide-on-large-only show-on-med-and-down">
-                    <a class="btn-floating btn-large light-blue lighten-2">
+                    <a class="btn-floating btn-large " style="background-color:#FF8080;">
                         <i class="large material-icons">menu</i>
                     </a>
-                    <ul>
+                    <ul style="font-weight:bold; color:#ffffff;">
                         <li><a asp-page="/Add">Add</a></li>
                         <li><a asp-page="/Best">Best</a></li>
                         <li><a asp-page="/Random">Random</a></li>
@@ -104,7 +103,7 @@
                     <button class="waves-effect waves-light red lighten-3 btn  tooltipped" data-position="bottom" data-delay="50" data-tooltip="This page is unavailable becasue there's no waiting pictures at the moment">Waiting</button>
                 </div>
             </div>
-        </nav>mater
+        </nav>
     </div>
     <div class="container body-content">
         @RenderBody()

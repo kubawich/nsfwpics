@@ -5,17 +5,15 @@
 
 
 function plus(img_id, callback) {
-    let clicked = false;
-
     let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
     document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
     document.getElementById(`button_plus_${img_id}`).onclick = function () {
         this.disabled = true;
         if (document.getElementById(`button_minus_${img_id}`).disabled == true) {
-            document.getElementById(`button_minus_${img_id}`).disabled = false
+            document.getElementById(`button_minus_${img_id}`).disabled = false;
+            this.plus(img_id, callback);
         }
     }
-    clicked = true;
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
@@ -26,16 +24,15 @@ function plus(img_id, callback) {
 }
 
 function minus(img_id, callback) {
-    let clicked = false;
     let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
     document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
     document.getElementById(`button_minus_${img_id}`).onclick = function () {
         this.disabled = true;
         if (document.getElementById(`button_plus_${img_id}`).disabled == true) {
-            document.getElementById(`button_plus_${img_id}`).disabled = false
+            document.getElementById(`button_plus_${img_id}`).disabled = false;
+            this.plus(img_id, callback);
         }
     }
-    clicked = true;
     let xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
