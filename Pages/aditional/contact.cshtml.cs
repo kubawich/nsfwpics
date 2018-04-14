@@ -38,7 +38,7 @@ namespace NSFWpics.Pages.aditional
 
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
-            cmd = new MySqlCommand($"INSERT INTO messages(name,site,phone,content) values('{Request.Form["name"]}','{Request.Form["web"]}','{Request.Form["phone"]}','{Request.Form["content"]}')", conn);
+            cmd = new MySqlCommand($"INSERT INTO messages(name,site,phone,content) values('{Request.Form["name"]}','{Request.Form["web"]}','{Request.Form["phone"]}','{Request.Form["content"]}','{Request.Form["mail"]}')", conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();

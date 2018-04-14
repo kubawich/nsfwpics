@@ -7,12 +7,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 
 namespace NSFWpics.Pages.aditional
 {
     public class adsModel : PageModel
     {
+        MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
+
         public void OnGet()
         {
         }
@@ -25,11 +28,19 @@ namespace NSFWpics.Pages.aditional
                 ModelState.AddModelError("", "Captcha is not valid");
                 return Redirect("/ads");
             }
-            if (ModelState.IsValid)
-            {
-                return Redirect("/ads");
-            }
-            else return Redirect("/ads");
+            connection.Server = "185.28.102.194";
+            connection.UserID = "root";
+            connection.Password = "Kubawich1";
+            connection.Database = "content";
+            connection.SslMode = MySqlSslMode.None;
+
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd;
+            cmd = new MySqlCommand($"INSERT INTO messages(name,site,phone,content) values('{Request.Form["name"]}','{Request.Form["web"]}','{Request.Form["phone"]}','{Request.Form["content"]}','{Request.Form["mail"]}')", conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            return Redirect("http://nsfwpics.pw/aditional/ads");
         }
 
         private async Task<CaptchaVerification> VerifyCaptcha()
