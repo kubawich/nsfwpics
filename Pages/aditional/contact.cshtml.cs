@@ -42,8 +42,7 @@ namespace NSFWpics.Pages.aditional
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
-
-            return Redirect("/contact");
+            return Redirect("http://nsfwpics.pw/aditional/contact");
         }
 
         private async Task<CaptchaVerification> VerifyCaptcha()
