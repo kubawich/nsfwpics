@@ -30,6 +30,20 @@
                 <li class="waves-effect" id="@Model.Id"><a href="./@(Model.MaxId / 10)">@(Model.MaxId / 10)</a></li>
             </ul>
         }
+        else if (Model.Id == (Model.MaxId / 10) - 1 || Model.Id == (Model.MaxId / 10) - 2 || Model.Id == (Model.MaxId / 10) - 3 || Model.Id == (Model.MaxId / 10) - 4)
+        {
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="./1">1</a></li>
+                <li>...</li>
+                <li class="waves-effect" id="@(Model.Id-2)"><a href="./@(Model.Id-2)">@(Model.Id-2)</a></li>
+                <li class="waves-effect" id="@(Model.Id-1)"><a href="./@(Model.Id-1)">@(Model.Id-1)</a></li>
+                <li class="waves-effect" id="@Model.Id"><a href="./@Model.Id">@Model.Id</a></li>
+                <li>...</li>
+                <li class="waves-effect"><a href="./@(Model.MaxId / 10)">@(Model.MaxId / 10)</a></li>
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+            </ul>
+        }
         else if (Model.Id >= 3)
         {
 
@@ -201,6 +215,20 @@
             <ul class="pagination center-align ">
                 <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
                 <li class="waves-effect" id="Down_@Model.Id"><a href="./@(Model.MaxId / 10)">@(Model.MaxId / 10)</a></li>
+            </ul>
+        }
+        else if (Model.Id == (Model.MaxId / 10) - 1 || Model.Id == (Model.MaxId / 10) - 2 || Model.Id == (Model.MaxId / 10) - 3 || Model.Id == (Model.MaxId / 10) - 4)
+        {
+            <ul class="pagination center-align ">
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+                <li class="waves-effect"><a href="./1">1</a></li>
+                <li>...</li>
+                <li class="waves-effect" id="@(Model.Id-2)"><a href="./@(Model.Id-2)">@(Model.Id-2)</a></li>
+                <li class="waves-effect" id="@(Model.Id-1)"><a href="./@(Model.Id-1)">@(Model.Id-1)</a></li>
+                <li class="waves-effect" id="Down_@Model.Id"><a href="./@Model.Id">@Model.Id</a></li>
+                <li>...</li>
+                <li class="waves-effect"><a href="./@(Model.MaxId / 10)">@(Model.MaxId / 10)</a></li>
+                <li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
             </ul>
         }
         else if (Model.Id >= 3)

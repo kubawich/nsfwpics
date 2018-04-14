@@ -3,7 +3,8 @@
     $('select').material_select();
 });
 
-
+let plused = false;
+let minused = false;
 function plus(img_id, callback) {
     let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
     document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
