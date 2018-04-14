@@ -15,27 +15,27 @@
         <form method="post" name="forma">
             <div class="input-field">
                 <i class="material-icons prefix">email</i>
-                <input id="email" type="email" class="validate" required placeholder="email@domain.com" />
+                <input id="email" type="email" class="validate" required placeholder="email@domain.com" name="mail"/>
                 <label for="mail" data-error="wrong" data-success="right">Email</label>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">account_circle</i>
-                <input type="text" required />
+                <input type="text" required name="name"/>
                 <label>Name</label>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">web</i>
-                <input type="url" required />
-                <label>Site</label>
+                <input type="url" required placeholder="http://nsfwpics.pw" name="web"/>
+                <label for="mail" data-error="wrong" data-success="right">Site</label>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">phone</i>
-                <input type="tel" placeholder="eg. +12 123456789" />
+                <input type="tel" placeholder="eg. +12 123456789" name="phone"/>
                 <label>Phone No. *optional</label>
             </div>
             <div class="input-field">
                 <i class="material-icons prefix">format_quote</i>
-                <textarea id="textarea" class="materialize-textarea"></textarea>
+                <textarea id="textarea" class="materialize-textarea" name="content"></textarea>
                 <label for="textarea">What you'd like to tell us?</label>
             </div>
             <input type="hidden" name="submited" value="true" />

@@ -2,7 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -27,6 +29,31 @@ namespace NSFWpics.Pages.aditional
             }
             if (ModelState.IsValid)
             {
+
+                var fromAddress = new MailAddress("kubawich45@gmail.com", "contact");
+                var toAddress = new MailAddress("kubawich45@gmail.com", "Admin");
+                const string fromPassword = "Kubawich1";
+                string subject = $"{Request.Form["name"]} {Request.Form["web"]} {Request.Form["web"]} {Request.Form["phone"]}";
+                string body = $"{Request.Form["content"]}";
+
+                var smtp = new SmtpClient
+                {
+                    Host = "smtp.gmail.com",
+                    Port = 587,
+                    EnableSsl = true,
+                    DeliveryMethod = SmtpDeliveryMethod.Network,
+                    UseDefaultCredentials = false,
+                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
+                };
+                using (var message = new MailMessage(fromAddress, toAddress)
+                {
+                    Subject = subject,
+                    Body = body
+                })
+                {
+                    smtp.Send(message);
+                }
+
                 return Redirect("/contact");
             }
             else return Redirect("/contact");
