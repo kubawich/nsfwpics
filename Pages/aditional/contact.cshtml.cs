@@ -9,12 +9,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 
 namespace NSFWpics.Pages.aditional
 {
     public class contactModel : PageModel
     {
+        MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
+
         public void OnGet()
         {
         }
@@ -27,25 +30,20 @@ namespace NSFWpics.Pages.aditional
                 ModelState.AddModelError("", "Captcha is not valid");
                 return Redirect("/contact");
             }
-            if (ModelState.IsValid)
-            {
+            connection.Server = "185.28.102.194";
+            connection.UserID = "root";
+            connection.Password = "Kubawich1";
+            connection.Database = "content";
+            connection.SslMode = MySqlSslMode.None;
 
-                MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
-                mail.From = new MailAddress("kubawich45@gmail.com");
-                mail.To.Add("jakub.wichlinski@yahoo.com");
-                mail.Subject = "Test Mail - 1";
-                mail.Body = "mail with attachment";
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd;
+            cmd = new MySqlCommand($"INSERT INTO messages(name,site,phone,content) values('{Request.Form["name"]}','{Request.Form["web"]}','{Request.Form["phone"]}','{Request.Form["content"]}')", conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
 
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("kubawich45@gmail.com", "Kubawich1");
-                SmtpServer.EnableSsl = true;
-
-                SmtpServer.Send(mail);
-
-                return Redirect("/contact");
-            }
-            else return Redirect("/contact");
+            return Redirect("/contact");
         }
 
         private async Task<CaptchaVerification> VerifyCaptcha()
