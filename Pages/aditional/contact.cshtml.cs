@@ -30,29 +30,18 @@ namespace NSFWpics.Pages.aditional
             if (ModelState.IsValid)
             {
 
-                var fromAddress = new MailAddress("kubawich45@gmail.com", "contact");
-                var toAddress = new MailAddress("kubawich45@gmail.com", "Admin");
-                const string fromPassword = "Kubawich1";
-                string subject = $"{Request.Form["name"]} {Request.Form["web"]} {Request.Form["web"]} {Request.Form["phone"]}";
-                string body = $"{Request.Form["content"]}";
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("kubawich45@gmail.com");
+                mail.To.Add("jakub.wichlinski@yahoo.com");
+                mail.Subject = "Test Mail - 1";
+                mail.Body = "mail with attachment";
 
-                var smtp = new SmtpClient
-                {
-                    Host = "smtp.gmail.com",
-                    Port = 587,
-                    EnableSsl = true,
-                    DeliveryMethod = SmtpDeliveryMethod.Network,
-                    UseDefaultCredentials = false,
-                    Credentials = new NetworkCredential(fromAddress.Address, fromPassword)
-                };
-                using (var message = new MailMessage(fromAddress, toAddress)
-                {
-                    Subject = subject,
-                    Body = body
-                })
-                {
-                    smtp.Send(message);
-                }
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("kubawich45@gmail.com", "Kubawich1");
+                SmtpServer.EnableSsl = true;
+
+                SmtpServer.Send(mail);
 
                 return Redirect("/contact");
             }
