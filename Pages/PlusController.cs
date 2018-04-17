@@ -23,24 +23,8 @@ namespace NSFWpics.Pages
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
-            int ID = Convert.ToUInt16(id);
-            connection.Server = "185.28.102.194";
-            connection.UserID = "root";
-            connection.Password = "Kubawich1";
-            connection.Database = "content";
-            connection.SslMode = MySqlSslMode.None;
-
-            MySqlConnection conn = new MySqlConnection(connection.ToString());
-            MySqlCommand cmd;
-
-
-            cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {ID};", conn);
-
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-            return $"points updated -1 on {ID}";
+            NSFWpics.DBEntities.DBEntity.Instance.Plus(id);
+            return $"points updated -1 on {id}";
         }
 
         // POST api/<controller>
