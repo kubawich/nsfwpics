@@ -44,7 +44,7 @@
     <link rel="me" href="mailto:kubawich45@gmail.com">
     <link rel="manifest" href="~/manifest.json">
     <base href="http://nsfwpics.pw/">
-    <title>@ViewData["Title"] - NSFWpics</title>
+    <title>NSFWpics - @ViewData["Title"]</title>
     <script defer src='https://www.google.com/recaptcha/api.js'></script>
     <environment include="Development">
         <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -55,13 +55,6 @@
             gtag('js', new Date());
 
             gtag('config', 'UA-114739201-1');
-        </script>
-        <script>
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker
-                    .register('/serviceworker.js')
-                    .then(function () { console.log("Service Worker Registered"); });
-            }
         </script>
         <script src="~/js/site.js"></script>
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
