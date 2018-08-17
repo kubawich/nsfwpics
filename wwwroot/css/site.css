@@ -96,15 +96,10 @@ span {
     border-style: dashed;
 }
 
-.lazy-hidden {
-    opacity: 0
-}
-
-.lazy-loaded {
-    -webkit-transition: opacity .3s;
-    -moz-transition: opacity .3s;
-    -ms-transition: opacity .3s;
-    -o-transition: opacity .3s;
-    transition: opacity .3s;
-    opacity: 1
+#btnUpload {
+    min-width: 100%;
+    min-block-size: -webkit-fill-available;
+    min-height: 100%;
+    position: absolute;
+    right: 0px;
 }
