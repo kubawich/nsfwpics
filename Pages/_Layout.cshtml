@@ -91,16 +91,16 @@
                         <li><a asp-page="/Add">Add</a></li>
                         <li><a asp-page="/Best">Best</a></li>
                         <li><a asp-page="/Random">Random</a></li>
-                        <li><a onclick="Materialize.toast('This page is unavailable becasue there\'s no waiting pictures at the moment', 4000)">Waiting</a></li>
+                        <li><a asp-page="/Login">Login</a></li>
                     </ul>
                 </div>
                 <span class="col s-2"></span>
                 <a href="http://nsfwpics.pw" class="brand-logo col s-6 waves-effect waves-light">NSFWpics</a>
-                <div class="right hide-on-med-and-down">
-                    <a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn">Add</a>
-                    <a asp-page="/Best" class="waves-effect waves-light red lighten-3 btn">Best</a>
-                    <a asp-page="/Random" class="waves-effect waves-light red lighten-3 btn">Random</a>
-                    <button class="waves-effect waves-light red lighten-3 btn  tooltipped" data-position="bottom" data-delay="50" data-tooltip="This page is unavailable becasue there's no waiting pictures at the moment">Waiting</button>
+                <div class="right hide-on-med-and-down ">
+                    <a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>
+                    <a asp-page="/Best" class="waves-effect waves-light red lighten-3 btn-small">Best</a>
+                    <a asp-page="/Random" class="waves-effect waves-light red lighten-3 btn-small">Random</a>
+						  <a asp-page="/Login" style="margin-left:3em;" class="waves-effect waves-light red lighten-3 btn-small z-depth-3">Login</a>
                 </div>
             </div>
         </nav>
@@ -139,7 +139,7 @@
         </div>
         <div class="footer-copyright">
             <div class="container">
-                © 2018 <a href="https://www.linkedin.com/in/jakubwichlinski/">Jakub Wichliński</a> All rights reserved
+                © 2018 <a href="https://jakub.wichlinski.pl/">Jakub Wichliński</a> All rights reserved
                 <a class="grey-text text-lighten-4 right" href="http://nsfwpics.pw">Go to top page</a>
 
             </div>

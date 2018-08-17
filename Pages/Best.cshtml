@@ -31,16 +31,10 @@
                 if (extension == "png")
                 {
                     <img class="materialboxed col center-align s-12" src="@Model.Image.Uri" alt="Photo from link @Model.Image.Uri" id="photo_no_@Model.Image.Id" name="photo" />
-                }
-                else if (extension == "mp4")
-                {
+					 }
+					 else if (extension == "mp4" || extension == "ebm")
+					 {
                     <video src="@Model.Image.Uri" alt="Video from link @Model.Image.Uri" id="my-video" width="400" height="250" class="afterglow" controls />
-                }
-                else
-                {
-                    <div style="width: 100%; height: 0px; position: relative; padding-bottom: 56.250%;">
-                        <iframe src="@Model.Image.Uri" frameborder="0" width="100%" height="100%" allowfullscreen style="width: 100%; height: 100%; position: absolute;"></iframe>
-                    </div>
                 }
 
             }
