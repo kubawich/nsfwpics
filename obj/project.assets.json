@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.0": {
-      "BuildBundlerMinifier/2.8.391": {
+      "BuildBundlerMinifier/2.6.362": {
         "type": "package",
         "build": {
           "build/BuildBundlerMinifier.targets": {}
@@ -5198,13 +5198,13 @@
     }
   },
   "libraries": {
-    "BuildBundlerMinifier/2.8.391": {
-      "sha512": "JvnXAF6e55QKR9t+UcG/kVcWap22fHeKjkUcrJwl2N3vF/NpohuvZlBceqYF9S8aL8xOx6h+PX2plnymc23kiQ==",
+    "BuildBundlerMinifier/2.6.362": {
+      "sha512": "J8vHrhvkvBAkzf5eA0zDu9Z4RbVlA8lYWGq0UyvWh98kKpqQZpzUe3yC89Rq9nQyiO0pdULrPPs9sSmx+xq8jA==",
       "type": "package",
-      "path": "buildbundlerminifier/2.8.391",
+      "path": "buildbundlerminifier/2.6.362",
       "files": [
         "build/BuildBundlerMinifier.targets",
-        "buildbundlerminifier.2.8.391.nupkg.sha512",
+        "buildbundlerminifier.2.6.362.nupkg.sha512",
         "buildbundlerminifier.nuspec",
         "tools/net46/BundlerMinifier.dll",
         "tools/net46/NUglify.dll",
@@ -13538,7 +13538,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "BuildBundlerMinifier >= 2.8.391",
+      "BuildBundlerMinifier >= 2.6.362",
       "Microsoft.AspNetCore.All >= 2.0.5",
       "Microsoft.NETCore.App >= 2.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 2.0.3",
@@ -13589,7 +13589,7 @@
         "dependencies": {
           "BuildBundlerMinifier": {
             "target": "Package",
-            "version": "[2.8.391, )"
+            "version": "[2.6.362, )"
           },
           "Microsoft.AspNetCore.All": {
             "target": "Package",
