@@ -61,7 +61,7 @@ namespace NSFWpics
             app.UseCookiePolicy(cookiePolicyOptions);
 
             app.UseStaticFiles();
-
+   
             app.UseMvc();
         }
     }
