@@ -9,7 +9,7 @@ namespace NSFWpics.DBEntities
 {
     public class DBEntity
     {
-        public static DBEntity Instance = new DBEntity();
+        public static DBEntity Instance = new DBEntity();        
         public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder()
         {
             Server = "185.28.102.194",

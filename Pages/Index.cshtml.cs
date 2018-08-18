@@ -11,11 +11,11 @@ namespace NSFWpics.Pages
 {
     public class IndexModel : PageModel
     {
-        MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
+        readonly DBEntities.DBEntity _DB = new DBEntities.DBEntity();
         public List<Image> list = new List<Image>();
         public int Id { get; set; }
         public int PageIncrement { get; set; }
-        public int MaxId { get; set; }
+        public int MaxId { get; set; } 
 
         [BindProperty]
         public Image Image { get; set; }
@@ -30,50 +30,35 @@ namespace NSFWpics.Pages
             Id = id;
             PageIncrement = ((id * 10) - 9) ;
 
-
-            connection.Server = "185.28.102.194";
-            connection.UserID = "root";
-            connection.Password = "Kubawich1";
-            connection.Database = "content";
-            connection.SslMode = MySqlSslMode.None;
-
-
-            MySqlConnection conn2 = new MySqlConnection(connection.ToString());
-            MySqlCommand cmd2;
-
-            cmd2 = new MySqlCommand($"SELECT COUNT(*) FROM imgs;", conn2);
-
-            conn2.Open();
-            MySqlDataReader reader2 = cmd2.ExecuteReader();
-
-            while (reader2.Read())
+            using (MySqlConnection conn2 = new MySqlConnection(_DB.connection.ToString()))
+            using (MySqlCommand cmd2 = new MySqlCommand($"SELECT COUNT(*) FROM imgs;", conn2))
             {
-                MaxId = Convert.ToInt16(int.Parse(reader2["COUNT(*)"].ToString()));
+
+                conn2.Open();
+                MySqlDataReader reader2 = cmd2.ExecuteReader();
+
+                while (reader2.Read())
+                {
+                    MaxId = Convert.ToInt16(value: int.Parse(reader2["COUNT(*)"].ToString()) / 10);
+                }
+
+                conn2.Close();
             }
-
-            conn2.Close();
-
 
             return Page();
         }
 
         public List<Image> List()
         {
-            connection.Server = "185.28.102.194";
-            connection.UserID = "root";
-            connection.Password = "Kubawich1";
-            connection.Database = "content";
-            connection.SslMode = MySqlSslMode.None;
-
-            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlConnection conn = new MySqlConnection(_DB.connection.ToString());
             MySqlCommand cmd;
-
+            
             try
             {
                 if (Id == 0 || Id == 1)
                 {
                     cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id ORDER BY id DESC LIMIT 10;", conn);
-
+                    
                     conn.Open();
                     MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -119,26 +104,6 @@ namespace NSFWpics.Pages
             {
                 throw;
             }
-        }
-
-        public void Plus(string id)
-        {
-            int ID = Convert.ToUInt16(id);
-            connection.Server = "185.28.102.194";
-            connection.UserID = "root";
-            connection.Password = "Kubawich1";
-            connection.Database = "content";
-            connection.SslMode = MySqlSslMode.None;
-
-            MySqlConnection conn = new MySqlConnection(connection.ToString());
-            MySqlCommand cmd;
-
-
-            cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {ID};", conn);
-
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
         }
     }
 }

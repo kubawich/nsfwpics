@@ -10,7 +10,6 @@ namespace NSFWpics.Pages
 {
     public class BestModel : PageModel
     {
-        public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
         public int Id { get;  set; }
         public string Con { get;  set; }
         public int Points { get; set; }

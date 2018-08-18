@@ -10,7 +10,6 @@ namespace NSFWpics.Pages.NewFolder
 {
     public class viewModel : PageModel
     {        
-        MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
         public string Con { get; set; }
         public int Id { get; set; }
         [BindProperty]
