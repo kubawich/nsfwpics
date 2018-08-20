@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace NSFWpics.Pages
 {
     [Route("api/[controller]")]
@@ -26,7 +24,7 @@ namespace NSFWpics.Pages
             
                 return new string[] { image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString() };
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Get();
                 return new string[] {image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString(), "No entry, returning other"};

@@ -139,14 +139,26 @@ namespace NSFWpics.Pages
                             if (extension == ".mp4")
                             {
                                 client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.mp4");
+                                cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.mp4','Anonymous',0)", conn);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
                             }
                             else if (extension == "webm")
                             {
                                 client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.webm");
+                                cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.webm','Anonymous',0)", conn);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
                             }
                             else if (extension == "apng")
                             {
                                 client.UploadFile(Upload.OpenReadStream(), $"{MaxId + 1}.apng");
+                                cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.apng','Anonymous',0)", conn);
+                                conn.Open();
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
                             }
                             else  Redirect("/Add");
                         }
@@ -154,10 +166,10 @@ namespace NSFWpics.Pages
                         client.Dispose();
                     }
                     //Add uploaded photo to SQL database
-                    cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.mp4','Anonymous',0)", conn);
+                    /*cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) values('http://cdn.nsfwpics.pw/img/{MaxId + 1}.mp4','Anonymous',0)", conn);
                     conn.Open();
                     cmd.ExecuteNonQuery();
-                    conn.Close();
+                    conn.Close();*/
                 }
                 else  Redirect("/add");
                 #endregion

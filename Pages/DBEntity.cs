@@ -25,7 +25,7 @@ namespace NSFWpics.DBEntities
         /// <param name="ID">Number for identifying image in DB</param>
         public void Plus(int ID)
         {
-            ID = Convert.ToUInt16(ID);
+            ID = Convert.ToUInt16(ID);            
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
             cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {ID};", conn);
