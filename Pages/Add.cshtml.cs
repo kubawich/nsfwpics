@@ -37,6 +37,8 @@ namespace NSFWpics.Pages
         {
         }
 
+        [HttpPost]
+        [RequestSizeLimit(100_000_000)]
         public async Task<IActionResult> OnPostAsync()
         {
 

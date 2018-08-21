@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NSFWpics.Pages
 {
+    /// <summary>
+    /// Returns JSON with /random author, date, id, points count and unique uri
+    /// </summary>
     [Route("api/[controller]")]
     public class RandomController : Controller
     {

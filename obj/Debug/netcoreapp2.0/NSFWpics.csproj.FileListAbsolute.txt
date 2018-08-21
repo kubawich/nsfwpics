@@ -9,3 +9,4 @@ C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.
 C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.dll
 C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.pdb
 C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\NSFWpics.csprojAssemblyReference.cache
+C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs

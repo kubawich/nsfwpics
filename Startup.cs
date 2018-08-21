@@ -15,7 +15,7 @@ namespace NSFWpics
     {
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            Configuration = configuration;            
         }
 
         public IConfiguration Configuration { get; }
@@ -23,14 +23,7 @@ namespace NSFWpics
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(options =>
-            {
-                options.Cookie.Name = "AdminLoginCookie";
-                options.Cookie.Expiration = new TimeSpan(1, 1, 1, 1, 100);
-                options.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;                
-            });
+            services.AddMvc();           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,8 +53,8 @@ namespace NSFWpics
 
             app.UseCookiePolicy(cookiePolicyOptions);
 
-            app.UseStaticFiles();
-   
+            app.UseStaticFiles();            
+
             app.UseMvc();
         }
     }
