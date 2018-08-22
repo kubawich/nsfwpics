@@ -28,7 +28,9 @@ namespace NSFWpics.DBEntities
             ID = Convert.ToUInt16(ID);            
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
-            cmd = new MySqlCommand($"UPDATE imgs SET points = points + 1 WHERE id = {ID};", conn);
+            cmd = new MySqlCommand($"UPDATE imgs " +
+                $"SET points = points + 1 " +
+                $"WHERE id = {ID};", conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -43,7 +45,55 @@ namespace NSFWpics.DBEntities
             ID = Convert.ToUInt16(ID);
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
-            cmd = new MySqlCommand($"UPDATE imgs SET points = points - 1 WHERE id = {ID};", conn);
+            cmd = new MySqlCommand($"UPDATE imgs " +
+                $"SET points = points - 1 " +
+                $"WHERE id = {ID};", conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
+        /// <summary>
+        /// Gets last ID entrance from DB
+        /// </summary>
+        /// <returns>
+        /// Returns highest ID from DB
+        /// </returns>
+        public int MaxId()
+        {
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd;
+            var Id = 1;
+            cmd = new MySqlCommand($"SELECT id " +
+                $"FROM imgs " +
+                $"WHERE id " +
+                $"ORDER BY id " +
+                $"DESC LIMIT 1;", conn);
+
+            conn.Open();
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Id = int.Parse(reader["id"].ToString());
+            }
+            int MaxId = Id;
+
+            conn.Close();
+            return MaxId;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="MaxIdPlusOne"></param>
+        /// <param name="fileExtension"></param>
+        public void InsertImgToDb(int MaxIdPlusOne, string fileExtension)
+        {
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd;
+            cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
+                $"VALUES('http://cdn.nsfwpics.pw/img/{MaxIdPlusOne}{fileExtension}','Anonymous',0)", conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -94,7 +144,9 @@ namespace NSFWpics.DBEntities
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
 
-            cmd = new MySqlCommand($"SELECT id,uri,author,date,points FROM imgs WHERE points=(SELECT MAX(points) FROM imgs);", conn);
+            cmd = new MySqlCommand($"SELECT id,uri,author,date,points " +
+                $"FROM imgs " +
+                $"WHERE points=(SELECT MAX(points) FROM imgs);", conn);
             conn.Open();
 
             MySqlDataReader reader = cmd.ExecuteReader();
@@ -127,7 +179,8 @@ namespace NSFWpics.DBEntities
             int MaxId = rand.Next(1, 10700); ;
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
-            cmd = new MySqlCommand($"SELECT COUNT(*) FROM imgs;", conn);
+            cmd = new MySqlCommand($"SELECT COUNT(*) " +
+                $"FROM imgs;", conn);
 
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
