@@ -54,7 +54,9 @@ namespace NSFWpics.DBEntities
         /// </summary>
         /// <param name="ID">Number for identifying image in DB</param>
         /// <param name="image">Returns class based on DB table architecture</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns Image module from DB with given Image's id
+        /// </returns>
         public Image View(int ID, Image image)
         {
             MySqlConnection conn = new MySqlConnection(connection.ToString());
@@ -84,7 +86,9 @@ namespace NSFWpics.DBEntities
         /// Picks image with highest point rating
         /// </summary>
         /// <param name="image">Returns class based on DB table architecture</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Returns Image module from DB where id's highest
+        /// </returns>
         public Image Best(Image image)
         {
             MySqlConnection conn = new MySqlConnection(connection.ToString());
@@ -114,7 +118,9 @@ namespace NSFWpics.DBEntities
         /// Picks number of indicies in database, and next pick random photo from first to maximum.
         /// </summary>
         /// <param name="image">Returns class based on DB table architecture</param>
-        /// <returns></returns>
+        /// <returns>
+        /// Image class represtantion filled with random DB entry
+        /// </returns>
         public Image Random(Image image)
         {
             Random rand = new Random();
@@ -153,6 +159,73 @@ namespace NSFWpics.DBEntities
             }
             conn2.Close();
             return image;
+        }
+
+        /// <summary>
+        /// Returns whole 'site' module. Each site has 10 view entries
+        /// </summary>
+        /// <param name="id">Which site's entries to get</param>
+        /// <param name="image">Returns class based on DB table architecture</param>
+        /// <returns>
+        /// List of 10 Image entities representing given id's site module
+        /// </returns>
+        public List<Image> Site(int id, List<Image> image)
+        {
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd;
+
+            if (id == 0 || id == 1)
+            {
+                cmd = new MySqlCommand($"SELECT * " +
+                    $"FROM imgs " +
+                    $"WHERE id " +
+                    $"ORDER BY id DESC " +
+                    $"LIMIT 10;", conn);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    image.Add(new Image
+                    {
+                        Id = int.Parse(reader["id"].ToString()),
+                        Uri = reader["uri"].ToString(),
+                        Author = reader["author"].ToString(),
+                        Points = int.Parse(reader["points"].ToString()),
+                        Date = reader["date"].ToString()
+                    });
+                }
+
+                conn.Close();
+                return image;
+            }
+            else
+            {
+                cmd = new MySqlCommand($"SELECT * " +
+                    $"FROM imgs " +
+                    $"WHERE id " +
+                    $"ORDER BY id DESC " +
+                    $"LIMIT 10 OFFSET {id * 10 - 10};", conn);
+
+                conn.Open();
+                MySqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    image.Add(new Image
+                    {
+                        Id = int.Parse(reader["id"].ToString()),
+                        Uri = reader["uri"].ToString(),
+                        Author = reader["author"].ToString(),
+                        Points = int.Parse(reader["points"].ToString()),
+                        Date = reader["date"].ToString()
+                    });
+                }
+
+                conn.Close();
+                return image;
+            }           
         }
     }
 }
