@@ -48,22 +48,30 @@ namespace NSFWpics.Pages
             }
 
             var MaxId = DBEntities.DBEntity.Instance.MaxId() + 1;
+
             files = Upload;
             var extension = Path.GetExtension(files.FileName);
-
-            if (files != null)
+            using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
             {
-                using (var stream = new FileStream(
-                    $"{filePath}/{MaxId}{Path.GetExtension(files.FileName)}", 
-                    FileMode.CreateNew,FileAccess.ReadWrite))
+                if (files != null)
                 {
-                    await files.CopyToAsync(stream);
+                    client.Connect();
+                    client.ChangeDirectory("/var/www/html/img");
+                    using (FileStream fs = new FileStream(Path.GetFileName(Upload.FileName), FileMode.Create))
+                    {
+                          client.UploadFile(Upload.OpenReadStream(), 
+                              $"{MaxId}{Path.GetExtension(files.FileName)}");
+                        //await files.CopyToAsync(stream);
+                    }
+
                 }
-
-                DBEntities.DBEntity.Instance.InsertImgToDb(MaxId, extension.ToString());
+                client.Disconnect();
+                client.Dispose();
             }
+        DBEntities.DBEntity.Instance.InsertImgToDb(MaxId, extension.ToString());
 
-            return Redirect("/add");
+
+            return Redirect("/Add");
         }
 
 
