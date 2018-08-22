@@ -18,14 +18,8 @@ namespace NSFWpics.Pages
 {
     public class AddModel : PageModel
     {
-        MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
         [BindProperty]
         public IFormFile Upload { get; set; }
-        [BindProperty]
-        public Image Image { get; set; }
-        [BindProperty]
-        public string UploadOption { get; set; }
-        public int Id { get; set; }
         private IHostingEnvironment _environment;
 
         public AddModel(IHostingEnvironment environment)
