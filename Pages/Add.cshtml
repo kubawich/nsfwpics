@@ -11,10 +11,12 @@
     <form method="post" enctype="multipart/form-data">
 		 <div class="container">
 		 	<div class="input-field col s12 container">
-		 		<select name="UploadOption">
-		 			<option value="1">PNG/JPG image</option>
-		 			<option value="2">GIF/WEBM video</option>
-		 		</select>
+				<select name="UploadOption">
+					<option value="" disabled selected>Choose file type option</option>
+					<option value="1">PNG/JPG image</option>
+					<option value="2">GIF/WEBM video</option>
+				</select>
+				<label>File type</label>
 		 	</div>
 		 	<br />
 
@@ -69,26 +71,29 @@
             preview.appendChild(list);
             for (var i = 0; i < curFiles.length; i++) {
                 var listItem = document.createElement('li');
-                var para = document.createElement('p');
+                var para1 = document.createElement('p');
                 if (validFileType(curFiles[i])) {
-                    para.textContent = 'File name ' + curFiles[i].name + ', file size ' + returnFileSize(curFiles[i].size) + '.';
+                    para1.textContent = 'File name ' + curFiles[i].name + ', file size ' + returnFileSize(curFiles[i].size) + '.';
                     var image = document.createElement('img');
                     image.src = window.URL.createObjectURL(curFiles[i]);
                     listItem.appendChild(image);
-                    listItem.appendChild(para);
+                    listItem.appendChild(para1);
                 } else {
                     para.textContent = 'File name ' + curFiles[i].name + ': Not a valid file type. Update your selection.';
-                    listItem.appendChild(para);
+                    listItem.appendChild(para1);
                 }
                 list.appendChild(listItem);
             }
         }
     }
-    var fileTypes = [
-        'image/jpeg',
-        'image/pjpeg',
-        'image/png'
-    ]
+	var fileTypes = [
+		'image/jpeg',
+		'image/pjpeg',
+		'image/png',
+		'image/gif',
+		'video/mp4',
+		'video/webm'
+	];
     function validFileType(file) {
         for (var i = 0; i < fileTypes.length; i++) {
             if (file.type === fileTypes[i]) {
@@ -113,7 +118,7 @@
         var upload_node = '<blockquote id="waitquote" style="font-weight:bold; color:black;">Wait until file\'s uploaded</blockquote><div class="progress" style="border-radius:10px; margin:1.5rem 0 1rem 0; height:7px;" id="preloader"><br/><br/><div class="indeterminate" id="preloader_bar" style="background-color:#42a5f5;"></div>';
         img_upload.innerHTML = upload_node;
         let upload_button = document.getElementById("upload_button");
-        upload_button.style.opacity = "0";
-		  setTimeout(function () { upload_button.parentNode.removeChild(upload_button) }, 200);
+        upload_button.style.opacity = "0.3";
+			setTimeout(function () { upload_button.parentNode.removeChild(upload_button); }, 200);
     }
 </script>
