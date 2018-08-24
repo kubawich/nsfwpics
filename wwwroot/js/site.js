@@ -45,8 +45,8 @@ function minus(img_id, callback) {
 
 ; (function () {
     // Initialize
-    var bLazy = new Blazy({
-        offset: 180
-    });
+    var bLazy = new Blazy(
+
+    );
 });
 
