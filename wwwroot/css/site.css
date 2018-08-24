@@ -103,11 +103,3 @@ span {
     position: absolute;
     right: 0px;
 }
-
-.b-lazy {
-    opacity: 0;
-}
-
-.b-loaded {
-    transition: opacity 0.7s;
-}
