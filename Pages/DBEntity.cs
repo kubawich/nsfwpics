@@ -89,7 +89,7 @@ namespace NSFWpics.DBEntities
         /// <summary>
         /// Adds cdn's uploaded photo to DB
         /// </summary>
-        /// <param name="MaxIdPlusOne">Required to increment photo's id in DB</param>        
+        /// <param name="MaxIdPlusOne">Required to increment photo's id in DB</param>l        
         /// /// <param name="file">File to upload</param>
         public void UploadImgToDb(int MaxIdPlusOne, IFormFile file)
         {

@@ -43,4 +43,8 @@ function minus(img_id, callback) {
     xmlHttp.send(null); 
 }
 
+; (function () {
+    // Initialize
+    var bLazy = new Blazy();
+})();
 
