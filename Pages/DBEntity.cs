@@ -7,14 +7,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace NSFWpics.DBEntities
 {
     public class DBEntity
     {
-        public static DBEntity Instance = new DBEntity();        
+        public static DBEntity Instance = new DBEntity();
         public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder()
-        {
+        {            
             Server = "185.28.102.194",
             UserID = "root",
             Password = "Kubawich1",
@@ -93,7 +94,7 @@ namespace NSFWpics.DBEntities
         /// /// <param name="file">File to upload</param>
         public void UploadImgToDb(int MaxIdPlusOne, IFormFile file)
         {
-            var extension = Path.GetExtension(file.FileName);
+                        //var extension = Path.GetExtension(file.FileName);
             using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
             {
                 if (file != null)
@@ -103,7 +104,7 @@ namespace NSFWpics.DBEntities
                     using (FileStream fs = new FileStream(Path.GetFileName(file.FileName), FileMode.Create))
                     {
                         client.UploadFile(file.OpenReadStream(),
-                            $"{MaxIdPlusOne}{extension}");
+                            $"{MaxIdPlusOne}{Path.GetExtension(file.FileName)}");
                         //await files.CopyToAsync(stream);
                     }
                 }
@@ -114,7 +115,7 @@ namespace NSFWpics.DBEntities
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
             cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
-                $"VALUES('http://cdn.nsfwpics.pw/img/{MaxIdPlusOne}{extension}','Anonymous',0)", conn);
+                $"VALUES('http://cdn.nsfwpics.pw/img/{MaxIdPlusOne}{Path.GetExtension(file.FileName)}','Anonymous',0)", conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();

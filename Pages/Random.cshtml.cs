@@ -10,8 +10,6 @@ namespace NSFWpics.Pages
 {
     public class RandomModel : PageModel
     {
-        public int Id { get; private set; }
-        public string Con { get; private set; }
         [BindProperty]
         public Image Image { get; set; }
 
