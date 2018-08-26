@@ -4,14 +4,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NSFWpics.Pages
 {
-    /// <summary>
-    /// Returns JSON with /random author, date, id, points count and unique uri
-    /// </summary>
     [Route("api/[controller]")]
     public class RandomController : Controller
     {
         Image image = new Image();
-        // GET: api/<controller>
         [HttpGet]
         public IEnumerable<string> Get()
         {

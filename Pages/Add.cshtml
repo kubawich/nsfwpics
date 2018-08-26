@@ -24,10 +24,6 @@
 		 			<input type="submit" id="btnUpload" value="" onclick="showUpload()" style="min-width: 100%; min-block-size: -webkit-fill-available; min-height: 100%; position: absolute; right: 0px;">
 		 		</div>
 		 	</div>
-		 	<div class="row">
-		 		<div style="margin-left:3rem;" class="g-recaptcha" data-sitekey="6LeWRUoUAAAAAMt8nKaMFX62NzC-HFf8w6I7Z-sW"></div>
-		 	</div>
-		 	<br />
 		 	<div class="preview">
 		 		<p>No files currently selected for upload</p>
 		 	</div>
@@ -104,8 +100,8 @@
         let img_upload = document.getElementById("img_load");
         var upload_node = '<blockquote id="waitquote" style="font-weight:bold; color:black;">Wait until file\'s uploaded</blockquote><div class="progress" style="border-radius:10px; margin:1.5rem 0 1rem 0; height:7px;" id="preloader"><br/><br/><div class="indeterminate" id="preloader_bar" style="background-color:#42a5f5;"></div>';
         img_upload.innerHTML = upload_node;
-        let upload_button = document.getElementById("upload_button");
-        upload_button.style.opacity = "0.3";
+		  let upload_button = document.getElementById("upload_button");
+		  upload_button.classList.add("disabled");
 			setTimeout(function () { upload_button.parentNode.removeChild(upload_button); }, 200);
     }
 </script>

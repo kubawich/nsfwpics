@@ -26,10 +26,10 @@
             </span>
             <br /><br />
             @{
-                string link = Model.Image.Uri.ToString();
-                string extension = link.Substring(link.Length - 3);
-                if (extension == "png")
-                {
+					 string link = Model.Image.Uri.ToString();
+					 string extension = link.Substring(link.Length - 3);
+					 if (extension == "png" || extension == "peg" || extension == "jpg")
+					 {
                     <img class="materialboxed col center-align s-12" src="@Model.Image.Uri" alt="Photo from link @Model.Image.Uri" id="photo_no_@Model.Image.Id" name="photo" />
 					 }
 					 else if (extension == "mp4" || extension == "ebm")

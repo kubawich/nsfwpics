@@ -94,7 +94,6 @@ namespace NSFWpics.DBEntities
         /// /// <param name="file">File to upload</param>
         public void UploadImgToDb(int MaxIdPlusOne, IFormFile file)
         {
-                        //var extension = Path.GetExtension(file.FileName);
             using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
             {
                 if (file != null)
