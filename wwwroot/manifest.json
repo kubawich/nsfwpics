@@ -19,7 +19,13 @@
       "src": "ico_192.png",
       "type": "image/png",
       "sizes": "192x192"
+    },
+    {
+      "src": "ico_192.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
-  "start_url": "http://nsfwpics.pw/"
+  "start_url": "http://nsfwpics.pw/",
+  "orientation": "portrait-primary"
 }

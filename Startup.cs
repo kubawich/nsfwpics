@@ -23,33 +23,28 @@ namespace NSFWpics
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            try
+            if (env.IsDevelopment())
             {
-                if (env.IsDevelopment())
-                {
-                    app.UseBrowserLink();
-                    app.UseDeveloperExceptionPage();
-                }
-                else
-                {
-                    app.UseExceptionHandler("/Error");
-                }
-
-                app.UseForwardedHeaders(new ForwardedHeadersOptions
-                {
-                    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-                });
-
-                app.UseAuthentication();
-
-                app.UseStaticFiles();
-
-                app.UseMvc();
+                app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
             }
-            catch (Exception e)
+            else
             {
-                throw new Exception($"There was a problem with server  {e.Message.ToString()}");
-            }            
+                app.UseExceptionHandler("/Error");
+            }
+
+            app.UseForwardedHeaders(new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
+            });
+
+            var cookiePolicyOptions = new CookiePolicyOptions();
+
+            app.UseAuthentication();
+
+            app.UseStaticFiles();
+
+            app.UseMvc();                     
         }
     }
 }

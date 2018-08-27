@@ -1,7 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>04e03553-1fec-4149-8128-7b82f2ef859b</UserSecretsId>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Users\Kuba\Desktop\Projekty\Strona\NSFWpics\NSFWpics.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="wwwroot\images\**" />
