@@ -30,7 +30,7 @@
             @{
 					 string link = Model.Image.Uri.ToString();
 					 string extension = link.Substring(link.Length - 3);
-					 if (extension == "png" || extension == "peg" || extension == "jpg")
+					 if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 					 {
                     <img class="materialboxed col center-align s-12" src="@Model.Image.Uri" alt="Photo from link @Model.Image.Uri" id="photo_no_@Model.Image.Id" name="photo" />
 					 }
