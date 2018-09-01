@@ -9,7 +9,10 @@ self.addEventListener('install', function (event) {
                     './js/site.min.js',
                     './js/blazy.js',
                     './js/materialize.min.js',
-                    './Loader.png'
+                    './Loader.png',
+                    new Request('/img/view', { cache: 'no-cache' }),
+                    new Request('/Random', { cache: 'no-cache' }),
+                    new Request('/Best', { cache: 'no-cache' })
                 ]).then(function () {
                     self.skipWaiting();
                 });
