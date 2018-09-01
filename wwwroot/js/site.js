@@ -3,7 +3,7 @@
     $('select').material_select();
 });
 
-document.addEventListener('DOMContentLoaded', init, false);
+/*document.addEventListener('DOMContentLoaded', init, false);
 function init() {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
@@ -13,8 +13,7 @@ function init() {
                 console.log('ServiceWorker registration failed: ', err);
             });
         });
-    }
-}
+    }*/
 
 let plused = false;
 let minused = false;
