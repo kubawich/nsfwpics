@@ -3,18 +3,6 @@
     $('select').material_select();
 });
 
-/*document.addEventListener('DOMContentLoaded', init, false);
-function init() {
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function () {
-            navigator.serviceWorker.register('./sw.js').then(function (registration) {
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
-            }, function (err) {
-                console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-    }*/
-
 let plused = false;
 let minused = false;
 function plus(img_id, callback) {
