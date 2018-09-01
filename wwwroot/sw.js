@@ -10,7 +10,6 @@ self.addEventListener('install', function (event) {
                     './js/site.min.js',
                     './js/blazy.js',
                     './js/materialize.min.js',
-                    '/',
                     './Loader.png'
                 ]).then(function () {
                     self.skipWaiting();
