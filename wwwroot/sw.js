@@ -1,5 +1,4 @@
 ﻿const CACHE_NAME = 'my-site-cache-v1';
-const RUNTIME = 'runtime';
 self.addEventListener('install', function (event) {
     event.waitUntil(
         caches.open(CACHE_NAME)
@@ -18,7 +17,7 @@ self.addEventListener('install', function (event) {
 });
 
 self.addEventListener('activate', function (event) {
-    const currentCaches = [CACHE_NAME, RUNTIME];
+    const currentCaches = [CACHE_NAME];
     event.waitUntil(
         caches.keys().then(cacheNames => {
             return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
