@@ -11,7 +11,8 @@ namespace NSFWpics.Pages
         [HttpGet]
         public IActionResult OnGet()
         {
-            Image = DBEntities.DBEntity.Instance.Random(null);            
+            Image = new DBEntities.DBEntity().Random(null);
+            
             return Page();
         }
     }
