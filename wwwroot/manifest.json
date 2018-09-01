@@ -1,5 +1,5 @@
 ﻿{
-  "display": "standalone",
+  "display": "fullscreen",
   "theme_color": "#EE6E73",
   "background_color": "#EE6E73",
   "short_name": "NSFWpics",
@@ -26,6 +26,12 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": "http://nsfwpics.pw/",
-  "orientation": "portrait-primary"
+  "start_url": ".",
+  "orientation": "portrait-primary",
+  "lang": "eng",
+  "serviceworker": {
+    "src": "./sw.js",
+    "scope": ".",
+    "update_via_cache": "none"
+  }
 }
