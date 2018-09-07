@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,8 +24,8 @@ namespace NSFWpics.Pages
 
         [HttpPost]
         [RequestSizeLimit(40000000)]
-		[ValidateAntiForgeryToken]
-        public async Task<IActionResult> OnPostAsync(IFormFile files)
+		[EnableCors("https://nsfwpics.pw")]
+		public async Task<IActionResult> OnPostAsync(IFormFile files)
         {
             var MaxId = DBEntities.DBEntity.Instance.MaxId() + 1;  
             

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using NSFWpics.DBEntities;
 using System;
 using System.IO;
@@ -12,7 +13,8 @@ namespace NSFWpics.Pages.API
     public class AddController : Controller
     {
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> Post()
+		[EnableCors( "https://nsfwpics.pw")]
+		public async Task<IActionResult> Post()
         {
             try
             {

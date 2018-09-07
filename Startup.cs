@@ -20,6 +20,7 @@ namespace NSFWpics
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+			services.AddCors();
 			services.AddMvc().AddRazorPagesOptions(o =>
 			{
 				o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
@@ -47,7 +48,9 @@ namespace NSFWpics
 
             app.UseAuthentication();
 
-            app.UseStaticFiles();
+			app.UseCors(builder => builder.WithOrigins("https://nsfwpics.pw").AllowAnyHeader());
+
+			app.UseStaticFiles();
 
             app.UseMvc();                     
         }
