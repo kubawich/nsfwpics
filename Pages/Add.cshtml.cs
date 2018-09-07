@@ -24,7 +24,7 @@ namespace NSFWpics.Pages
 
         [HttpPost]
         [RequestSizeLimit(40000000)]
-		[EnableCors("https://nsfwpics.pw")]
+		[EnableCors("https://cdn.nsfwpics.pw")]
 		public async Task<IActionResult> OnPostAsync(IFormFile files)
         {
             var MaxId = DBEntities.DBEntity.Instance.MaxId() + 1;  
