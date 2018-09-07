@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Renci.SshNet.Sftp;
 
 namespace NSFWpics.DBEntities
 {
@@ -15,12 +16,13 @@ namespace NSFWpics.DBEntities
     {
         public static DBEntity Instance = new DBEntity();
         public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder()
-        {            
+        {
             Server = "185.28.102.194",
             UserID = "root",
             Password = "Kubawich1",
             Database = "content",
-            SslMode = MySqlSslMode.None
+            SslMode = MySqlSslMode.None,
+            AllowUserVariables = true
         };
 
         /// <summary>
@@ -68,18 +70,15 @@ namespace NSFWpics.DBEntities
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
             var Id = 1;
-            cmd = new MySqlCommand($"SELECT id " +
-                $"FROM imgs " +
-                $"WHERE id " +
-                $"ORDER BY id " +
-                $"DESC LIMIT 1;", conn);
+            cmd = new MySqlCommand($"SELECT MAX(id) " +
+                $"FROM imgs;", conn);
 
             conn.Open();
             MySqlDataReader reader = cmd.ExecuteReader();
 
             while (reader.Read())
             {
-                Id = int.Parse(reader["id"].ToString());
+                Id = int.Parse(reader["max(id)"].ToString());
             }
             int MaxId = Id;
 
@@ -104,7 +103,6 @@ namespace NSFWpics.DBEntities
                     {
                         client.UploadFile(file.OpenReadStream(),
                             $"{MaxIdPlusOne}{Path.GetExtension(file.FileName)}");
-                        //await files.CopyToAsync(stream);
                     }
                 }
                 client.Disconnect();
@@ -301,5 +299,37 @@ namespace NSFWpics.DBEntities
                 return image;
             }           
         }
+
+        public void RemoveImg(int id)
+        {
+            MySqlConnection conn = new MySqlConnection(connection.ToString());
+            MySqlCommand cmd;
+            
+            using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+            {
+                client.Connect();
+                client.DeleteFile($"../var/www/html/img/{id}.PNG");
+                client.Disconnect();
+                client.Dispose();
+            }
+
+            cmd = new MySqlCommand($"DELETE FROM imgs " +
+                $"WHERE id = {id};", conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+
+            conn.Open();
+            cmd.CommandText = $"CREATE PROCEDURE reset_imgs_autoincrement" +
+                $"BEGIN" +
+                $"SELECT @max := MAX(id) FROM imgs;" +
+                $"set @alter_statement = concat('ALTER TABLE imgs AUTO_INCREMENT = ', @max);" +
+                $"PREPARE stmt FROM @alter_statement;" +
+                $"EXECUTE stmt;" +
+                $"DEALLOCATE PREPARE stmt;" +
+                $"END";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+    }
     }
 }

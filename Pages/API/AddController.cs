@@ -22,7 +22,7 @@ namespace NSFWpics.Pages.API
                     return Content("Select file to upload");
             
                 DBEntity.Instance.UploadImgToDb(DBEntity.Instance.MaxId() + 1, file);
-                return Json($"Upload Successful to cdn.nsfwpics.pw/img/{DBEntity.Instance.MaxId() + 1}{Path.GetExtension(file.FileName)}");
+                return Json($"Upload Successful to cdn.nsfwpics.pw/img/{DBEntity.Instance.MaxId() }{Path.GetExtension(file.FileName)}");
             }
             catch(Exception e)
             {

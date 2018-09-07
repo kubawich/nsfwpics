@@ -14,12 +14,19 @@ namespace NSFWpics.Pages
         [HttpGet("{id:int}")]
         public IEnumerable<string> Get(int id)
         {
-            image.Author = NSFWpics.DBEntities.DBEntity.Instance.View(id, image).Author;
-            image.Date = NSFWpics.DBEntities.DBEntity.Instance.View(id, image).Date;
-            image.Id = NSFWpics.DBEntities.DBEntity.Instance.View(id, image).Id;
-            image.Points = NSFWpics.DBEntities.DBEntity.Instance.View(id, image).Points;
-            image.Uri = NSFWpics.DBEntities.DBEntity.Instance.View(id, image).Uri;
+            image.Author = DBEntities.DBEntity.Instance.View(id, image).Author;
+            image.Date = DBEntities.DBEntity.Instance.View(id, image).Date;
+            image.Id = DBEntities.DBEntity.Instance.View(id, image).Id;
+            image.Points = DBEntities.DBEntity.Instance.View(id, image).Points;
+            image.Uri = DBEntities.DBEntity.Instance.View(id, image).Uri;
             return new string[] { image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString() };
+        }
+
+
+        [HttpDelete("{id}")]
+        public void Delete([FromRoute]int id)
+        {
+            DBEntities.DBEntity.Instance.RemoveImg(id);
         }
     }
 }
