@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,8 +19,12 @@ namespace NSFWpics
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc();           
-        }
+            services.AddMvc();
+			services.AddMvc().AddRazorPagesOptions(o =>
+			{
+				o.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
+			});
+		}
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
