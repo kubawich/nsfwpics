@@ -112,7 +112,7 @@ namespace NSFWpics.DBEntities
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
             cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
-                $"VALUES('http://cdn.nsfwpics.pw/img/{MaxIdPlusOne}{Path.GetExtension(file.FileName)}','Anonymous',0)", conn);
+                $"VALUES('https://cdn.nsfwpics.pw/img/{MaxIdPlusOne}{Path.GetExtension(file.FileName)}','Anonymous',0)", conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
