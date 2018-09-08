@@ -196,21 +196,7 @@ namespace NSFWpics.DBEntities
         {
             Random rand = new Random();
 			int MaxId = this.MaxId();
-            MySqlConnection conn = new MySqlConnection(connection.ToString());
-            MySqlCommand cmd;
-            cmd = new MySqlCommand($"SELECT COUNT(*) " +
-                $"FROM imgs;", conn);
-
-          /*  conn.Open();
-            MySqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                MaxId = int.Parse(reader["COUNT(*)"].ToString());
-            }
-
-            conn.Close();*/
-            int i = rand.Next(9, MaxId);
+            int i = rand.Next(9, MaxId+1);
 
             MySqlConnection conn2 = new MySqlConnection(connection.ToString());
             MySqlCommand cmd2 = new MySqlCommand($"SELECT uri, author, date, id, points FROM imgs WHERE id={i}", conn2);
