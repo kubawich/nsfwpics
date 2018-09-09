@@ -22,11 +22,11 @@ namespace NSFWpics.Pages
             return new string[] { image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString() };
         }
 
-
         [HttpDelete("{id}")]
-        public void Delete([FromRoute]int id)
+        public JsonResult Delete([FromRoute]int id)
         {
             DBEntities.DBEntity.Instance.RemoveImg(id);
+			return Json($"Removed entity at id: {id}");
         }
     }
 }

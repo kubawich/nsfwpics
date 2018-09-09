@@ -294,7 +294,8 @@ namespace NSFWpics.DBEntities
             using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
             {
                 client.Connect();
-                client.DeleteFile($"../var/www/html/img/{id}.PNG");
+				client.ChangeDirectory($"/var/www/html/img");
+                client.DeleteFile($"{id}.png");
                 client.Disconnect();
                 client.Dispose();
             }
@@ -305,17 +306,12 @@ namespace NSFWpics.DBEntities
             cmd.ExecuteNonQuery();
             conn.Close();
 
+			int MaxId = this.MaxId();
+			cmd = new MySqlCommand($"ALTER TABLE imgs " +
+				$"AUTO_INCREMENT = {MaxId}", conn);
             conn.Open();
-            cmd.CommandText = $"CREATE PROCEDURE reset_imgs_autoincrement" +
-                $"BEGIN" +
-                $"SELECT @max := MAX(id) FROM imgs;" +
-                $"set @alter_statement = concat('ALTER TABLE imgs AUTO_INCREMENT = ', @max);" +
-                $"PREPARE stmt FROM @alter_statement;" +
-                $"EXECUTE stmt;" +
-                $"DEALLOCATE PREPARE stmt;" +
-                $"END";
             cmd.ExecuteNonQuery();
             conn.Close();
-    }
+		}
     }
 }

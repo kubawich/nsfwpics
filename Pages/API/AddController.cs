@@ -13,7 +13,6 @@ namespace NSFWpics.Pages.API
     public class AddController : Controller
     {
         [HttpPost, DisableRequestSizeLimit]
-		[EnableCors( "https://cdn.nsfwpics.pw")]
 		public async Task<IActionResult> Post()
         {
             try

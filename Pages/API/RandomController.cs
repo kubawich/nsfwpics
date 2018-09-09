@@ -13,12 +13,7 @@ namespace NSFWpics.Pages
         {
             try
             {
-                image.Author = NSFWpics.DBEntities.DBEntity.Instance.Random(image).Author;
-                image.Date = NSFWpics.DBEntities.DBEntity.Instance.Random(image).Date;
-                image.Id = NSFWpics.DBEntities.DBEntity.Instance.Random(image).Id;
-                image.Points = NSFWpics.DBEntities.DBEntity.Instance.Random(image).Points;
-                image.Uri = NSFWpics.DBEntities.DBEntity.Instance.Random(image).Uri;
-            
+				image = DBEntities.DBEntity.Instance.Random(image);            
                 return new string[] { image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString() };
             }
             catch (Exception)
