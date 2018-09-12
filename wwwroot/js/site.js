@@ -31,7 +31,7 @@ function plus(img_id, callback) {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", `http://nsfwpics.pw/api/plus/${img_id}`, true); 
+    xmlHttp.open("GET", `https://nsfwpics.pw/api/plus/${img_id}`, true); 
     xmlHttp.send(null); 
 }
 
@@ -50,7 +50,7 @@ function minus(img_id, callback) {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
             callback(xmlHttp.responseText);
     }
-    xmlHttp.open("GET", `http://nsfwpics.pw/api/minus/${img_id}`, true);
+    xmlHttp.open("GET", `https://nsfwpics.pw/api/minus/${img_id}`, true);
     xmlHttp.send(null); 
 }
 

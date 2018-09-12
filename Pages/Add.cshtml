@@ -9,28 +9,29 @@
 	</br>
     <form method="post" enctype="multipart/form-data">
 		 <div class="container">
-		 	<div class="file-field input-field row">
-		 		<div class="btn blue lighten-1 waves-effect waves-light  col s12 m5">
-		 			<i class="material-icons left">cloud</i>
-		 			<span>File</span>
-		 			<input type="file" asp-for="Upload">
-		 		</div>
-		 		<div class="col m1"></div>
-		 		<div>
-		 		</div>
-		 		<div class="btn light-green darken-1 waves-effect waves-light col s12 m5" id="upload_button">
-		 			<i class="material-icons left">cloud_upload</i>
-		 			<span>Upload</span>
-		 			<input type="submit" id="btnUpload" value="" onclick="showUpload()" style="min-width: 100%; min-block-size: -webkit-fill-available; min-height: 100%; position: absolute; right: 0px;">
-		 		</div>
-		 	</div>
+			 <div class="file-field input-field row">
+			 	<div class="btn blue lighten-1 waves-effect waves-light  col s12 m5">
+			 		<i class="material-icons left">cloud</i>
+			 		<span>File</span>
+			 		<input type="file" asp-for="Upload">
+			 	</div>
+			 	<div class="col m1"></div>
+			 	<div>
+			 	</div>
+			 	<div class="btn light-green darken-1 waves-effect waves-light col s12 m5" id="upload_button">
+			 		<i class="material-icons left">cloud_upload</i>
+			 		<span>Upload</span>
+			 		<input type="submit" id="btnUpload" value="" onclick="showUpload()" style="min-width: 100%; min-block-size: -webkit-fill-available; min-height: 100%; position: absolute; right: 0px;">
+			 	</div>
+			 	<div id="img_load">
+			 		<!--Here comes js genereted preloader =))-->
+			 	</div>
+			 </div>
 		 	<div class="preview">
 		 		<p>No files currently selected for upload</p>
 		 	</div>
 		 	<br />
-		 	<div id="img_load">
-		 		<!--Here comes js genereted preloader =))-->
-		 	</div>
+		 	
 		 </div>
     </form>
 </div>
