@@ -286,7 +286,13 @@ namespace NSFWpics.DBEntities
             }           
         }
 
-        public void RemoveImg(int id)
+
+		/// <summary>
+		/// Removes content with given ID and extension
+		/// </summary>
+		/// <param name="id">ID of content entry to remove</param>
+		/// <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+		public void RemoveImg(int id, string extension)
         {
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
@@ -295,7 +301,7 @@ namespace NSFWpics.DBEntities
             {
                 client.Connect();
 				client.ChangeDirectory($"/var/www/html/img");
-                client.DeleteFile($"{id}.png");
+                client.DeleteFile($"{id}.{extension}");
                 client.Disconnect();
                 client.Dispose();
             }

@@ -22,10 +22,16 @@ namespace NSFWpics.Pages
             return new string[] { image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString() };
         }
 
+		/// <summary>
+		/// Removes content with given ID and extension
+		/// </summary>
+		/// <param name="id">ID of content entry to remove</param>
+		/// <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+		/// <returns>Json with sucedeed status</returns>
         [HttpDelete("{id}")]
-        public JsonResult Delete([FromRoute]int id)
+        public JsonResult Delete([FromRoute]int id, [FromQuery] string extension)
         {
-            DBEntities.DBEntity.Instance.RemoveImg(id);
+            DBEntities.DBEntity.Instance.RemoveImg(id, extension);
 			return Json($"Removed entity at id: {id}");
         }
     }
