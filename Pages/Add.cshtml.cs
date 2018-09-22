@@ -24,13 +24,16 @@ namespace NSFWpics.Pages
 
         [HttpPost]
         [RequestSizeLimit(40000000)]
-		public async Task<IActionResult> OnPostAsync(IFormFile files)
+		public IActionResult OnPostAsync(IFormFile files)
         {
-            var MaxId = DBEntities.DBEntity.Instance.MaxId() + 1;  
-            
-            DBEntities.DBEntity.Instance.UploadImgToDb(MaxId, Upload);
+            var MaxId = DBEntities.DBEntity.Instance.MaxId() + 1;
 
-            return Redirect("/Add");
+			using (var DB = new DBEntities.DBEntity())
+			{
+				DB.UploadImgToDb(MaxId, Upload);
+			}
+
+            return  Redirect("/Add");
         }
     }
 }

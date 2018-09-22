@@ -12,7 +12,7 @@ using Renci.SshNet.Sftp;
 
 namespace NSFWpics.DBEntities
 {
-    public class DBEntity
+    public class DBEntity : IDisposable
     {
         public static DBEntity Instance = new DBEntity();
         public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder()
@@ -22,7 +22,7 @@ namespace NSFWpics.DBEntities
             Password = "Kubawich1",
             Database = "content",
             SslMode = MySqlSslMode.None,
-            AllowUserVariables = true
+            AllowUserVariables = true			
         };
 
         /// <summary>
@@ -319,5 +319,13 @@ namespace NSFWpics.DBEntities
             cmd.ExecuteNonQuery();
             conn.Close();
 		}
-    }
+
+		/// <summary>
+		/// Dispose class
+		/// </summary>
+		public void Dispose()
+		{
+			((IDisposable)Instance).Dispose();
+		}
+	}
 }

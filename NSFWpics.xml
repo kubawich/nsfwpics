@@ -4,6 +4,14 @@
         <name>NSFWpics</name>
     </assembly>
     <members>
+        <member name="M:NSFWpics.Pages.ViewController.Delete(System.Int32,System.String)">
+            <summary>
+            Removes content with given ID and extension
+            </summary>
+            <param name="id">ID of content entry to remove</param>
+            <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+            <returns>Json with sucedeed status</returns>
+        </member>
         <member name="M:NSFWpics.DBEntities.DBEntity.Plus(System.Int32)">
             <summary>
             Increment image's point rating by one
@@ -68,6 +76,18 @@
             <returns>
             List of 10 Image entities representing given id's site module
             </returns>
+        </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.RemoveImg(System.Int32,System.String)">
+            <summary>
+            Removes content with given ID and extension
+            </summary>
+            <param name="id">ID of content entry to remove</param>
+            <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+        </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.Dispose">
+            <summary>
+            Dispose class
+            </summary>
         </member>
     </members>
 </doc>
