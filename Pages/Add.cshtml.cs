@@ -28,11 +28,8 @@ namespace NSFWpics.Pages
         {
             var MaxId = DBEntities.DBEntity.Instance.MaxId() + 1;
 
-			using (var DB = new DBEntities.DBEntity())
-			{
-				DB.UploadImgToDb(MaxId, Upload);
-			}
-
+			new DBEntities.DBEntity().UploadImgToDb(MaxId, Upload);
+			
             return  Redirect("/Add");
         }
     }
