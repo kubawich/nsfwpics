@@ -27,6 +27,7 @@ namespace NSFWpics.Pages.API
 
 		//Login
 		[Produces("application/json")]
+		[ActionName("login")]
 		[HttpPost("/api/[controller]/login")]
 		public JsonResult Post([FromForm]string login, [FromForm]string password)
 		{
@@ -35,6 +36,7 @@ namespace NSFWpics.Pages.API
 
 		//Register
 		[Produces("application/json")]
+		[ActionName("register")]
 		[HttpPost("/api/[controller]/register")]
 		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
