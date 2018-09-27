@@ -9,36 +9,51 @@ namespace NSFWpics.Pages.API
 	[Route("api/[controller]")]
 	public class User : Controller
 	{
-		// GET: api/<controller>
+		//Get all users
+		[Produces("application/json")]
 		[HttpGet]
 		public IEnumerable<string> Get()
 		{
 			return new string[] { "value1", "value2" };
 		}
 
-		// GET api/<controller>/5
+		//Get user
+		[Produces("application/json")]
 		[HttpGet("{id}")]
-		public string Get(int id)
+		public string Get(int uid)
 		{
-			return "value";
+			return $"value {uid}";
 		}
 
-		// POST api/<controller>
+		//Login
+		[ActionName("Login")]
+		[Produces("application/json")]
 		[HttpPost]
-		public string Post([FromBody]string value)
+		public IActionResult Post([FromBody]string login, [FromBody]string password)
 		{
-			return "value";
+			return Ok();
 		}
 
-		// PUT api/<controller>/5
+		//Register
+		[ActionName("Register")]
+		[Produces("application/json")]
+		[HttpPost]
+		public IActionResult Post([FromBody]string login, [FromBody]string password, [FromBody]string mail)
+		{
+			return Created("dd", null);
+		}
+
+		//Update
+		[Produces("application/json")]
 		[HttpPut("{id}")]
-		public void Put(int id, [FromBody]string value)
+		public void Put(int uid, [FromQuery]string param,[FromQuery]string value)
 		{
 		}
 
-		// DELETE api/<controller>/5
+		//Delete
+		[Produces("application/json")]
 		[HttpDelete("{id}")]
-		public void Delete(int id)
+		public void Delete(int uid)
 		{
 		}
 	}

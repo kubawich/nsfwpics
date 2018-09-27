@@ -10,7 +10,9 @@ namespace NSFWpics.Pages
     public class BestController : Controller
     {
         Image image = new Image();
-        [HttpGet]
+
+		[Produces("application/json")]
+		[HttpGet]
         public IEnumerable<string> Get()
         {
             image.Author = NSFWpics.DBEntities.DBEntity.Instance.Best(image).Author;

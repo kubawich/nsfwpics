@@ -11,7 +11,8 @@ namespace NSFWpics.Pages
     public class ViewController : Controller
     {
         Image image = new Image();
-        [HttpGet("{id:int}")]
+		[Produces("application/json")]
+		[HttpGet("{id:int}")]
         public IEnumerable<string> Get(int id)
         {
             image.Author = DBEntities.DBEntity.Instance.View(id, image).Author;
@@ -28,7 +29,8 @@ namespace NSFWpics.Pages
 		/// <param name="id">ID of content entry to remove</param>
 		/// <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
 		/// <returns>Json with sucedeed status</returns>
-        [HttpDelete("{id}")]
+		[Produces("application/json")]
+		[HttpDelete("{id}")]
         public JsonResult Delete([FromRoute]int id, [FromQuery] string extension)
         {
             DBEntities.DBEntity.Instance.RemoveImg(id, extension);

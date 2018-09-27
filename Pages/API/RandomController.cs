@@ -8,7 +8,8 @@ namespace NSFWpics.Pages
     public class RandomController : Controller
     {
         Image image = new Image();
-        [HttpGet]
+		[Produces("application/json")]
+		[HttpGet]
         public IEnumerable<string> Get()
         {
             try

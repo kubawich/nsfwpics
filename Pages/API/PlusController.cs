@@ -10,7 +10,8 @@ namespace NSFWpics.Pages
     [Route("api/[controller]")]
     public class PlusController : Controller
     {
-        [HttpGet("{id:int}")]
+		[Produces("application/json")]
+		[HttpGet("{id:int}")]
         public string Get(int id)
         {
             NSFWpics.DBEntities.DBEntity.Instance.Plus(id);

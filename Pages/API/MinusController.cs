@@ -11,7 +11,8 @@ namespace NSFWpics.Pages
     public class MinusController : Controller
     {
         [HttpGet("{id:int}")]
-        public string Get(int id)
+		[Produces("application/json")]
+		public string Get(int id)
         {
             NSFWpics.DBEntities.DBEntity.Instance.Minus(id);
             return $"points updated -1 on {id}";
