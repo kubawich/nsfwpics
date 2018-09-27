@@ -3,5 +3,30 @@
 @{
 	 ViewData["Title"] = "Login";
 }
-<h1>Site in maintance, come back later</h1>
+<div class="container row">
+	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="http://localhost:53270/api/user/5">
+		<h1 class="center-align">Login</h1></br>
+		<input type="text" asp-for="LoginLogin" id="Login" />
+		<label for="Login">Login</label>
+		<input type="password" asp-for="LoginPassword" id="Password" />
+		<label for="Password">Password</label><br/><br />
+		<div class="btn  blue lighten-1  waves-effect waves-light col s12 m5" id="upload_button">
+			<span>Login</span>
+			<input type="submit" id="btnUpload" value="" style="min-width: 100%; min-block-size: -webkit-fill-available; min-height: 100%; position: absolute; right: 0px;">
+		</div>
+	</form>
+	<form asp-antiforgery="true" method="post" class="col s12 m6">
+		<h1 class="center-align">Register</h1></br>
+		<input type="text" asp-for="RegisterLogin" id="RegLogin" />
+		<label for="RegLogin">Login</label>
+		<input type="password" asp-for="RegisterPassword" id="RegPassword" />
+		<label for="RegPassword">Password</label>
+		<input type="text" asp-for="RegisterMail" id="RegMail" />
+		<label for="RegMail">E-mail</label><br /><br />
+		<div class="btn  blue lighten-1 waves-effect waves-light col s12 m5" id="upload_button">
+			<span>Register</span>
+			<input type="submit" id="btnUpload" value="" style="min-width: 100%; min-block-size: -webkit-fill-available; min-height: 100%; position: absolute; right: 0px;">
+		</div>
+	</form>
+</div>
 

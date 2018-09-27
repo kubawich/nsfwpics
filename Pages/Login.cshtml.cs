@@ -9,7 +9,18 @@ namespace NSFWpics.Pages
 {
     public class LoginModel : PageModel
     {
-        public void OnGet()
+		[BindProperty]
+		public string LoginLogin { get; set; }
+		[BindProperty]
+		public string LoginPassword { get; set; }
+		[BindProperty]
+		public string RegisterLogin { get; set; }
+		[BindProperty]
+		public string RegisterPassword { get; set; }
+		[BindProperty]
+		public string RegisterMail { get; set; }
+
+		public void OnGet()
         {
 
         }
