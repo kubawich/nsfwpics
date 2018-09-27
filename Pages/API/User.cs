@@ -26,21 +26,19 @@ namespace NSFWpics.Pages.API
 		}
 
 		//Login
-		[ActionName("Login")]
 		[Produces("application/json")]
-		[HttpPost]
-		public IActionResult Post([FromBody]string login, [FromBody]string password)
+		[HttpPost("/api/[controller]/login")]
+		public JsonResult Post([FromForm]string login, [FromForm]string password)
 		{
-			return Ok();
+			return Json("Loged");
 		}
 
 		//Register
-		[ActionName("Register")]
 		[Produces("application/json")]
-		[HttpPost]
-		public IActionResult Post([FromBody]string login, [FromBody]string password, [FromBody]string mail)
+		[HttpPost("/api/[controller]/register")]
+		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
-			return Created("dd", null);
+			return Json("Registred");
 		}
 
 		//Update

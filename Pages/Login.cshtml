@@ -5,7 +5,7 @@
 }
 <div class="container row">
 	<!--Login Form-->
-	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" asp-controller="User" asp-action="Login"  >
+	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data"  asp-route="/api/user/login">
 		<h1 class="center-align">Login</h1></br>
 		<input type="text" asp-for="LoginLogin" id="Login" />
 		<label for="Login">Login</label>
@@ -18,7 +18,7 @@
 	</form>
 
 	<!--Registration Form-->
-	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" asp-controller="User" asp-action="Register" >
+	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" asp-route="/api/user/login">
 		<h1 class="center-align">Register</h1></br>
 		<input type="text" asp-for="RegisterLogin" id="RegLogin" />
 		<label for="RegLogin">Login</label>
