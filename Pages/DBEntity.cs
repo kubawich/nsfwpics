@@ -17,9 +17,9 @@ namespace NSFWpics.DBEntities
         public static DBEntity Instance = new DBEntity();
         public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder()
         {
-            Server = Environment.GetEnvironmentVariable("nsfwpics_server_ip").ToString(),
-            UserID = Environment.GetEnvironmentVariable("nsfwpics_user_id").ToString(),
-            Password = Environment.GetEnvironmentVariable("nsfwpics_user_password").ToString(),
+            Server = "185.28.102.194",
+            UserID = "root",
+            Password = "Kubawich1",
             Database = "content",
             SslMode = MySqlSslMode.None,
             AllowUserVariables = true			
