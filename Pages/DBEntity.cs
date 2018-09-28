@@ -344,10 +344,12 @@ namespace NSFWpics.DBEntities
 			MySqlConnection conn = new MySqlConnection(connection.ToString());
 			MySqlCommand cmd;
 
-			cmd = new MySqlCommand($"SELECT EXIST(" +
+			cmd = new MySqlCommand($"SELECT EXISTS(" +
 				$"SELECT 1 " +
 				$"FROM users " +
-				$"WHERE login = {login} OR mail = {mail})", conn);
+				$"WHERE login = '{login}' " +
+				$"OR mail = '{mail}' " +
+				$"LIMIT 1)", conn);
 			conn.Open();
 			MySqlDataReader exist = cmd.ExecuteReader();
 			conn.Close();
