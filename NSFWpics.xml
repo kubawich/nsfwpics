@@ -12,6 +12,21 @@
             <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
             <returns>Json with sucedeed status</returns>
         </member>
+        <member name="T:NSFWpics.DBEntities.DBEntity">
+            <summary>
+            This class is complete framework of tools used in NSFWpics project for managing content as Images, Movies, Users etc. Best use case is invoking it's methods via API endpoint calls
+            </summary>
+        </member>
+        <member name="F:NSFWpics.DBEntities.DBEntity.Instance">
+            <summary>
+            Static instance of Db entites class, use it wherever you want
+            </summary>
+        </member>
+        <member name="F:NSFWpics.DBEntities.DBEntity.connection">
+            <summary>
+            DB connection string
+            </summary>
+        </member>
         <member name="M:NSFWpics.DBEntities.DBEntity.Plus(System.Int32)">
             <summary>
             Increment image's point rating by one
@@ -84,10 +99,28 @@
             <param name="id">ID of content entry to remove</param>
             <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
         </member>
-        <member name="M:NSFWpics.DBEntities.DBEntity.Dispose">
+        <member name="M:NSFWpics.DBEntities.DBEntity.GetUser(System.Int32)">
             <summary>
-            Dispose class
+            Returns user data with given id
             </summary>
+            <param name="uid"></param>
+            <returns>User from DB with given id</returns>
+        </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.DeleteUser(System.Int32)">
+            <summary>
+            Deletes user account with given id
+            </summary>
+            <param name="uid">User id to delete</param>
+            <returns>String status of operation Sucess/Failure</returns>
+        </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.UpdateUser(System.Int32,System.String,System.String)">
+            <summary>
+            Updates/changes user parameter with given id
+            </summary>
+            <param name="uid">User id to make update on</param>
+            <param name="changeType">Column name to update</param>
+            <param name="changeValue">New value for old resource at given column</param>
+            <returns>String status of operation Updated/Failed</returns>
         </member>
     </members>
 </doc>

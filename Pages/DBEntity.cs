@@ -12,9 +12,19 @@ using Renci.SshNet.Sftp;
 
 namespace NSFWpics.DBEntities
 {
-    public class DBEntity : IDisposable
+	/// <summary>
+	/// This class is complete framework of tools used in NSFWpics project for managing content as Images, Movies, Users etc. Best use case is invoking it's methods via API endpoint calls
+	/// </summary>
+    public class DBEntity
     {
+		/// <summary>
+		/// Static instance of Db entites class, use it wherever you want
+		/// </summary>
         public static DBEntity Instance = new DBEntity();
+
+		/// <summary>
+		/// DB connection string
+		/// </summary>
         public MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder()
         {
             Server = "185.28.102.194",
@@ -24,6 +34,8 @@ namespace NSFWpics.DBEntities
             SslMode = MySqlSslMode.None,
             AllowUserVariables = true			
         };
+
+		//Content based tools
 
         /// <summary>
         /// Increment image's point rating by one
@@ -319,13 +331,59 @@ namespace NSFWpics.DBEntities
             cmd.ExecuteNonQuery();
             conn.Close();
 		}
+		
+		//User based tools
+
+		public void Login(string login, string password)
+		{
+
+		}
+
+		public int Register(string login, string password, string mail)
+		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
+			cmd = new MySqlCommand($"SELECT EXIST(" +
+				$"SELECT 1 " +
+				$"FROM users " +
+				$"WHERE login = {login} OR mail = {mail})", conn);
+			conn.Open();
+			MySqlDataReader exist = cmd.ExecuteReader();
+			conn.Close();
+			return Convert.ToInt32(exist);
+		}
 
 		/// <summary>
-		/// Dispose class
+		/// Returns user data with given id
 		/// </summary>
-		public void Dispose()
+		/// <param name="uid"></param>
+		/// <returns>User from DB with given id</returns>
+		public User GetUser(int uid)
 		{
-			((IDisposable)Instance).Dispose();
+			return new User();
 		}
+
+		/// <summary>
+		/// Deletes user account with given id
+		/// </summary>
+		/// <param name="uid">User id to delete</param>
+		/// <returns>String status of operation Sucess/Failure</returns>
+		public string DeleteUser(int uid)
+		{
+			return $"User {uid} deleted";
+		}
+
+		/// <summary>
+		/// Updates/changes user parameter with given id
+		/// </summary>
+		/// <param name="uid">User id to make update on</param>
+		/// <param name="changeType">Column name to update</param>
+		/// <param name="changeValue">New value for old resource at given column</param>
+		/// <returns>String status of operation Updated/Failed</returns>
+		public string UpdateUser(int uid, string changeType, string changeValue)
+		{
+			return $"Updated user {uid}";
+		}		
 	}
 }

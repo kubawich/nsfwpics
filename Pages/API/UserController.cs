@@ -7,26 +7,27 @@ using Microsoft.AspNetCore.Mvc;
 namespace NSFWpics.Pages.API
 {
 	[Route("api/[controller]")]
-	public class User : Controller
+	public class UserController : Controller
 	{
 		//Get all users
 		[Produces("application/json")]
 		[HttpGet]
-		public IEnumerable<string> Get()
+		public IEnumerable<User> Get()
 		{
-			return new string[] { "value1", "value2" };
+			yield return new User();
 		}
 
 		//Get user
 		[Produces("application/json")]
 		[HttpGet("{id}")]
-		public string Get(int uid)
+		public User Get(int uid)
 		{
-			return $"value {uid}";
+			return new User();
 		}
 
 		//Login
 		[Produces("application/json")]
+		[ValidateAntiForgeryToken]
 		[ActionName("login")]
 		[HttpPost("/api/[controller]/login")]
 		public JsonResult Post([FromForm]string login, [FromForm]string password)
@@ -36,11 +37,13 @@ namespace NSFWpics.Pages.API
 
 		//Register
 		[Produces("application/json")]
+		[ValidateAntiForgeryToken]
 		[ActionName("register")]
 		[HttpPost("/api/[controller]/register")]
 		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
-			return Json("Registred");
+			var i =  DBEntities.DBEntity.Instance.Register(login, password, mail);
+			return Json(i.ToString());
 		}
 
 		//Update
