@@ -37,7 +37,6 @@ namespace NSFWpics.Pages.API
 
 		//Register
 		[Produces("application/json")]
-		[ValidateAntiForgeryToken]
 		[ActionName("register")]
 		[HttpPost("/api/[controller]/register")]
 		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)

@@ -351,9 +351,9 @@ namespace NSFWpics.DBEntities
 				$"OR mail = '{mail}' " +
 				$"LIMIT 1)", conn);
 			conn.Open();
-			MySqlDataReader exist = cmd.ExecuteReader();
+			var i = cmd.ExecuteScalar();
 			conn.Close();
-			return Convert.ToInt32(exist);
+			return int.Parse(i.ToString());
 		}
 
 		/// <summary>
