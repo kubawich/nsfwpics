@@ -28,7 +28,7 @@ namespace NSFWpics.Pages.API
 
 
 		//Register
-		[HttpPost, Produces("application/json"), ValidateAntiForgeryToken]
+		[HttpPost("/register"), Produces("application/json"), ValidateAntiForgeryToken]
 		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
 			var i = DBEntities.DBEntity.Instance.Register(login, password, mail);
