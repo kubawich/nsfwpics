@@ -99,7 +99,7 @@
             <param name="id">ID of content entry to remove</param>
             <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
         </member>
-        <member name="M:NSFWpics.DBEntities.DBEntity.GetUser(System.Int32)">
+        <member name="M:NSFWpics.DBEntities.DBEntity.GetUser(System.Nullable{System.Int32})">
             <summary>
             Returns user data with given id
             </summary>

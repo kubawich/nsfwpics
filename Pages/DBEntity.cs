@@ -298,7 +298,6 @@ namespace NSFWpics.DBEntities
             }           
         }
 
-
 		/// <summary>
 		/// Removes content with given ID and extension
 		/// </summary>
@@ -339,6 +338,13 @@ namespace NSFWpics.DBEntities
 
 		}
 
+		/// <summary>
+		/// Registers new user in system
+		/// </summary>
+		/// <param name="login">Login to identify user in system. There can be only one user in system with given Login</param>
+		/// <param name="password">SHA1 hash which reperesents password to identify user why loging to system</param>
+		/// <param name="mail">User's email address</param>
+		/// <returns>Registration proccess status success/failure</returns>
 		public string Register(string login, string password, string mail)
 		{
 			MySqlConnection conn = new MySqlConnection(connection.ToString());
@@ -352,9 +358,22 @@ namespace NSFWpics.DBEntities
 			conn.Open();
 			var i = cmd.ExecuteScalar();
 			conn.Close();
-			var DoesUserAlreadyExist = ((int)i == 1) ? "User already exists" : "Successfully Registered user";
+			//var DoesUserAlreadyExist = (int.Parse(i.ToString()) == 1) ? "User already exists" : "Successfully Registered user";
 
-			return DoesUserAlreadyExist;
+			if (int.Parse(i.ToString()) == 1)
+			{
+				return "User already exists";
+			}
+			else
+			{
+				cmd = new MySqlCommand($"INSERT INTO users (guid, login, password, mail)" +
+					$"VALUES (1, '{login}', SHA1('{password}'), '{mail}')", conn);
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+				return $"Successfully Registered user {login}";
+			}
+			return "Internal Error";
 		}
 
 		/// <summary>
@@ -362,8 +381,56 @@ namespace NSFWpics.DBEntities
 		/// </summary>
 		/// <param name="uid"></param>
 		/// <returns>User from DB with given id</returns>
-		public User GetUser(int uid)
+		public User GetUser(int? uid)
 		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+			MySqlDataReader reader = null;
+
+			if (uid == null)
+			{
+				cmd = new MySqlCommand($"SELECT * FROM users", conn);
+				conn.Open();
+				reader = cmd.ExecuteReader();				
+
+				while (reader.Read())
+				{
+					return new User
+					{
+						Guid = reader["guid"].ToString(),
+						Uid = reader["uid"].ToString(),
+						Login = reader["login"].ToString(),
+						Password = reader["password"].ToString(),
+						Mail = reader["mail"].ToString(),
+						Uploads = int.Parse(reader["uploads"].ToString())
+					};
+				}
+				conn.Close();
+			}
+			else if(uid != null)
+			{
+				cmd = new MySqlCommand($"SELECT * FROM users WHERE uid = {uid}", conn);
+				conn.Open();
+				reader = cmd.ExecuteReader();				
+
+				while (reader.Read())
+				{
+					return new User
+					{
+						Guid = reader["guid"].ToString(),
+						Uid = reader["uid"].ToString(),
+						Login = reader["login"].ToString(),
+						Password = reader["password"].ToString(),
+						Mail = reader["mail"].ToString(),
+						Uploads = int.Parse(reader["uploads"].ToString())
+					};
+				}
+				conn.Close();
+			}
+			else
+			{
+				return new User();
+			}
 			return new User();
 		}
 
@@ -374,6 +441,9 @@ namespace NSFWpics.DBEntities
 		/// <returns>String status of operation Sucess/Failure</returns>
 		public string DeleteUser(int uid)
 		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
 			return $"User {uid} deleted";
 		}
 
@@ -386,6 +456,9 @@ namespace NSFWpics.DBEntities
 		/// <returns>String status of operation Updated/Failed</returns>
 		public string UpdateUser(int uid, string changeType, string changeValue)
 		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
 			return $"Updated user {uid}";
 		}		
 	}

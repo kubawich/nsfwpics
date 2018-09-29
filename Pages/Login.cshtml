@@ -5,13 +5,13 @@
 }
 <div class="container row">
 	<!--Login Form-->
-	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" asp-controller="User" asp-action="login">
+	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="https://nsfwpics.pw/api/user/login">
 		<h1 class="center-align">Login</h1></br>
 
-		<input type="text" asp-for="LoginLogin" id="Login" required/>
+		<input type="text" asp-for="LoginLogin" id="Login" required name="login"/>
 		<label for="Login">Login</label>
 
-		<input type="password" asp-for="LoginPassword" id="Password" required/>
+		<input type="password" asp-for="LoginPassword" id="Password" required name="password"/>
 		<label for="Password">Password</label><br /><br />
 
 		<div class="btn  blue lighten-1  waves-effect waves-light col s12 m5" id="upload_button">

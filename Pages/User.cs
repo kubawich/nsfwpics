@@ -13,8 +13,6 @@ namespace NSFWpics.Pages
         public string Login { get; set; }
         public string Password { get; set; }
         public string Mail { get; set; }
-		public int Uploaded { get; set; }
-		public string[] Uploads { get; set; }
-
+		public int Uploads { get; set; }
 	}
 }
