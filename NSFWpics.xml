@@ -4,6 +4,36 @@
         <name>NSFWpics</name>
     </assembly>
     <members>
+        <member name="M:NSFWpics.Pages.API.UsersController.Get">
+            <summary>
+            Get all users from DB
+            </summary>
+            <returns>JSON with all users in DB</returns>
+        </member>
+        <member name="M:NSFWpics.Pages.API.UsersController.Get(System.Int32)">
+            <summary>
+            Show user data with given id
+            </summary>
+            <param name="id">User identifeir in DB</param>
+            <returns>User data with given id</returns>
+        </member>
+        <member name="M:NSFWpics.Pages.API.UsersController.Post(System.String,System.String)">
+            <summary>
+            Endpoint used to Login user to system
+            </summary>
+            <param name="login">Login used to identify user in system</param>
+            <param name="password">SHA1 hash to identify user's identity in DB</param>
+            <returns></returns>
+        </member>
+        <member name="M:NSFWpics.Pages.API.UsersController.Post(System.String,System.String,System.String)">
+            <summary>
+            Endpoint used to Register new user to system
+            </summary>
+            <param name="login">Login used to identify user in system</param>
+            <param name="password">Password to identify user in DB presented as SHA1 hash</param>
+            <param name="mail">Email address to identify user in system</param>
+            <returns></returns>
+        </member>
         <member name="M:NSFWpics.Pages.ViewController.Delete(System.Int32,System.String)">
             <summary>
             Removes content with given ID and extension
@@ -98,6 +128,15 @@
             </summary>
             <param name="id">ID of content entry to remove</param>
             <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+        </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.Register(System.String,System.String,System.String)">
+            <summary>
+            Registers new user in system
+            </summary>
+            <param name="login">Login to identify user in system. There can be only one user in system with given Login</param>
+            <param name="password">SHA1 hash which reperesents password to identify user why loging to system</param>
+            <param name="mail">User's email address</param>
+            <returns>Registration proccess status success/failure</returns>
         </member>
         <member name="M:NSFWpics.DBEntities.DBEntity.GetUser(System.Nullable{System.Int32})">
             <summary>

@@ -14,9 +14,9 @@ namespace NSFWpics.Pages.API
 		/// </summary>
 		/// <returns>JSON with all users in DB</returns>
 		[HttpGet, Produces("application/json")]
-		public IEnumerable<User> Get()
+		public IEnumerable<List<User>> Get()
 		{
-			yield return DBEntities.DBEntity.Instance.GetUser(null);
+			 yield return DBEntities.DBEntity.Instance.GetUser(null);
 		}
 
 		/// <summary>
@@ -25,7 +25,7 @@ namespace NSFWpics.Pages.API
 		/// <param name="id">User identifeir in DB</param>
 		/// <returns>User data with given id</returns>
 		[HttpGet("{id}"), Produces("application/json")]
-		public User Get(int id)
+		public IEnumerable<User> Get(int id)
 		{
 			return DBEntities.DBEntity.Instance.GetUser(id);
 		}
@@ -37,9 +37,10 @@ namespace NSFWpics.Pages.API
 		/// <param name="password">SHA1 hash to identify user's identity in DB</param>
 		/// <returns></returns>
 		[HttpPost, Produces("application/json"), Route("login")]
-		public JsonResult Post([FromForm]string login, [FromForm]string password)
+		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			return Json($"Loged {login}");
+			
+			return Ok("https://nsfwpics.pw/api/users/ Success to create");
 		}
 
 		/// <summary>
@@ -50,10 +51,10 @@ namespace NSFWpics.Pages.API
 		/// <param name="mail">Email address to identify user in system</param>
 		/// <returns></returns>
 		[HttpPost, Produces("application/json"), Route("register")]
-		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
+		public IActionResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
 			var i = DBEntities.DBEntity.Instance.Register(login, password, mail);
-			return Json(i);
+			return Ok();
 		}
 
 		//Update

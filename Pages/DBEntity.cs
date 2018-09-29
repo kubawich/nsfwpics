@@ -381,7 +381,7 @@ namespace NSFWpics.DBEntities
 		/// </summary>
 		/// <param name="uid"></param>
 		/// <returns>User from DB with given id</returns>
-		public User GetUser(int? uid)
+		public List<User> GetUser(int? uid)
 		{
 			MySqlConnection conn = new MySqlConnection(connection.ToString());
 			MySqlCommand cmd;
@@ -391,11 +391,12 @@ namespace NSFWpics.DBEntities
 			{
 				cmd = new MySqlCommand($"SELECT * FROM users", conn);
 				conn.Open();
-				reader = cmd.ExecuteReader();				
+				reader = cmd.ExecuteReader();
+				var users = new List<User>();
 
 				while (reader.Read())
 				{
-					return new User
+					users.Add( new User
 					{
 						Guid = reader["guid"].ToString(),
 						Uid = reader["uid"].ToString(),
@@ -403,19 +404,21 @@ namespace NSFWpics.DBEntities
 						Password = reader["password"].ToString(),
 						Mail = reader["mail"].ToString(),
 						Uploads = int.Parse(reader["uploads"].ToString())
-					};
+					});
 				}
+				return users;
 				conn.Close();
 			}
 			else if(uid != null)
 			{
 				cmd = new MySqlCommand($"SELECT * FROM users WHERE uid = {uid}", conn);
 				conn.Open();
-				reader = cmd.ExecuteReader();				
+				reader = cmd.ExecuteReader();
+				var users = new List<User>();
 
 				while (reader.Read())
 				{
-					return new User
+					users.Add( new User
 					{
 						Guid = reader["guid"].ToString(),
 						Uid = reader["uid"].ToString(),
@@ -423,15 +426,16 @@ namespace NSFWpics.DBEntities
 						Password = reader["password"].ToString(),
 						Mail = reader["mail"].ToString(),
 						Uploads = int.Parse(reader["uploads"].ToString())
-					};
+					});
 				}
+				return users;
 				conn.Close();
 			}
 			else
 			{
-				return new User();
+				return new List<User>();
 			}
-			return new User();
+			return new List<User>();
 		}
 
 		/// <summary>
