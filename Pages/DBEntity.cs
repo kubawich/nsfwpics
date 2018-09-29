@@ -348,7 +348,6 @@ namespace NSFWpics.DBEntities
 				$"SELECT 1 " +
 				$"FROM users " +
 				$"WHERE login = '{login}' " +
-				$"OR mail = '{mail}' " +
 				$"LIMIT 1)", conn);
 			conn.Open();
 			var i = cmd.ExecuteScalar();

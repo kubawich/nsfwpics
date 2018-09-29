@@ -13,7 +13,7 @@ namespace NSFWpics.Pages.API
     public class AddController : Controller
     {
         [HttpPost, DisableRequestSizeLimit]
-		public async Task<IActionResult> Post()
+		public IActionResult Post()
         {
             try
             {

@@ -21,16 +21,16 @@
 	</form>
 
 	<!--Registration Form-->
-	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="https://nsfwpics.pw/api/user/register">
+	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="https://nsfwpics.pw/api/user">
 		<h1 class="center-align">Register</h1></br>
 
-		<input type="text" id="RegLogin" required/>
+		<input type="text" id="RegLogin" required name="login"/>
 		<label for="RegLogin">Login</label>
 
-		<input type="password" id="RegPassword" required/>
+		<input type="password" id="RegPassword" required name="password"/>
 		<label for="RegPassword">Password</label>
 
-		<input type="email" id="RegMail" required/>
+		<input type="email" id="RegMail" required name="mail"/>
 		<label for="RegMail">E-mail</label><br /><br />
 
 		<div class="btn  blue lighten-1 waves-effect waves-light col s12 m5" id="upload_button">

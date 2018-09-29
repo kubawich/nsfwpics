@@ -25,24 +25,15 @@ namespace NSFWpics.Pages.API
 			return new User();
 		}
 
-		//Login
-		[Produces("application/json")]
-		[ValidateAntiForgeryToken]
-		[ActionName("login")]
-		[HttpPost("/api/[controller]/login")]
-		public JsonResult Post([FromForm]string login, [FromForm]string password)
-		{
-			return Json("Loged");
-		}
+
 
 		//Register
 		[Produces("application/json")]
-		[ActionName("register")]
-		[HttpPost("/api/[controller]/register")]
+		[HttpPost]
 		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
-			var i =  DBEntities.DBEntity.Instance.Register(login, password, mail);
-			return Json(i.ToString());
+			var i = DBEntities.DBEntity.Instance.Register(login, password, mail);
+			return Json((i == 1) ? "User already exists" : "Successfully Registered user");
 		}
 
 		//Update
