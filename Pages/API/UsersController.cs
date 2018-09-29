@@ -42,7 +42,7 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("login")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			return RedirectToRoute("Login?q=Success");
+			return Redirect("https://nsfwpics.pw/Login?register=Success");
 		}
 
 		/// <summary>
