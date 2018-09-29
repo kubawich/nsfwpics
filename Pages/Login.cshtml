@@ -5,6 +5,13 @@
 }
 <div class="container row">
 	<!--Login Form-->
+	@{ 
+		 if (Response.StatusCode == 203)
+		 {
+			 Html.RenderPartial("_Success.cshtml");
+		 }
+	}
+	
 	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="https://nsfwpics.pw/api/user/login">
 		<h1 class="center-align">Login</h1></br>
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NSFWpics.Pages.API
@@ -39,8 +40,7 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("login")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			
-			return Ok("https://nsfwpics.pw/api/users/ Success to create");
+			return Accepted();
 		}
 
 		/// <summary>
