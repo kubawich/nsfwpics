@@ -28,12 +28,11 @@ namespace NSFWpics.Pages.API
 
 
 		//Register
-		[Produces("application/json")]
-		[HttpPost]
+		[HttpPost, Produces("application/json"), ValidateAntiForgeryToken]
 		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
 			var i = DBEntities.DBEntity.Instance.Register(login, password, mail);
-			return Json((i == 1) ? "User already exists" : "Successfully Registered user");
+			return Json(i);
 		}
 
 		//Update

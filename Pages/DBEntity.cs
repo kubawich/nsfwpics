@@ -339,7 +339,7 @@ namespace NSFWpics.DBEntities
 
 		}
 
-		public int Register(string login, string password, string mail)
+		public string Register(string login, string password, string mail)
 		{
 			MySqlConnection conn = new MySqlConnection(connection.ToString());
 			MySqlCommand cmd;
@@ -352,7 +352,9 @@ namespace NSFWpics.DBEntities
 			conn.Open();
 			var i = cmd.ExecuteScalar();
 			conn.Close();
-			return int.Parse(i.ToString());
+			var DoesUserAlreadyExist = ((int)i == 1) ? "User already exists" : "Successfully Registered user";
+
+			return DoesUserAlreadyExist;
 		}
 
 		/// <summary>
