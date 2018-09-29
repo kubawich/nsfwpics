@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -40,7 +42,7 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("login")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			return Accepted();
+			return RedirectToRoute("Login?q=Success");
 		}
 
 		/// <summary>
@@ -54,7 +56,7 @@ namespace NSFWpics.Pages.API
 		public IActionResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
 			var i = DBEntities.DBEntity.Instance.Register(login, password, mail);
-			return Ok();
+			return View("Login.cshtml");
 		}
 
 		//Update
