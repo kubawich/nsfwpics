@@ -40,9 +40,9 @@ namespace NSFWpics.Pages.API
 		/// <param name="password">SHA1 hash to identify user's identity in DB</param>
 		/// <returns></returns>
 		[HttpPost, Produces("application/json"), Route("login")]
-		public IActionResult Post([FromForm]string login, [FromForm]string password)
+		public JsonResult Post([FromForm]string login, [FromForm]string password)
 		{
-			return RedirectPermanentPreserveMethod("https://nsfwpics.pw/Login?register=Success");
+			return Json("Loged");
 		}
 
 		/// <summary>
@@ -53,10 +53,10 @@ namespace NSFWpics.Pages.API
 		/// <param name="mail">Email address to identify user in system</param>
 		/// <returns></returns>
 		[HttpPost, Produces("application/json"), Route("register")]
-		public IActionResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
+		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
 			var i = DBEntities.DBEntity.Instance.Register(login, password, mail);
-			return View("Login.cshtml");
+			return Json(i);
 		}
 
 		//Update
