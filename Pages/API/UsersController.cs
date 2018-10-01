@@ -42,7 +42,6 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("/api/users/login")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			var url = Url.Action("Login", "Users", new {id=0, loged = "true" }, protocol: Request.Scheme);
 			return Redirect("https://nsfwpics.pw/login?loged=true");
 		}
 
