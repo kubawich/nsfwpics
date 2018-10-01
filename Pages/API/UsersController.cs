@@ -40,9 +40,9 @@ namespace NSFWpics.Pages.API
 		/// <param name="password">SHA1 hash to identify user's identity in DB</param>
 		/// <returns></returns>
 		[HttpPost, Produces("application/json"), Route("login")]
-		public JsonResult Post([FromForm]string login, [FromForm]string password)
+		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			return Json("Loged");
+			return RedirectToRoute("login", "login=success");
 		}
 
 		/// <summary>

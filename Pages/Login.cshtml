@@ -5,7 +5,7 @@
 }
 <div class="container row">
 	<!--Login Form-->
-	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="/api/user/login">
+	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="/api/users/login" >
 		<h1 class="center-align">Login</h1></br>
 
 		<input type="text" asp-for="LoginLogin" id="Login" required name="login"/>

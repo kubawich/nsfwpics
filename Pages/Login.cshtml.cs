@@ -20,9 +20,16 @@ namespace NSFWpics.Pages
 		[BindProperty]
 		public string RegisterMail { get; set; }
 
-		public void OnGet()
+		[HttpPost, ActionName("login")]
+		public IActionResult Login()
         {
-
+			return RedirectToPage("Add.cshtml");
         }
-    }
+
+		[HttpPost, ActionName("register")]
+		public void Register()
+		{
+
+		}
+	}
 }
