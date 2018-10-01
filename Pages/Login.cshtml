@@ -3,6 +3,12 @@
 @{
 	 ViewData["Title"] = "Login";
 }
+<script>
+
+	if (this.window.location.search.substring(1) == "loged=true") {
+		alert("kurwa");
+	}
+</script>
 <div class="container row">
 	<!--Login Form-->
 	<form asp-antiforgery="true" method="post" class="col s12 m6" enctype="multipart/form-data" action="/api/users/login" >
@@ -40,23 +46,5 @@
 	</form>
 </div>
 
-<script defer>
-	function GetURLParameter(sParam)
-	{
-		var sPageURL = window.location.search.substring(1);
-		var sURLVariables = sPageURL.split('&');
-		for (var i = 0; i < sURLVariables.length; i++)
-		{
-			var sParameterName = sURLVariables[i].split('=');
-			if (sParameterName[0] == sParam)
-			{
-				return sParameterName[1];
-			}
-		}
-	}​
 
-	if (GetURLParameter('loged') == 'true') {
-		alert("kurwa");
-	}
-</script>
 
