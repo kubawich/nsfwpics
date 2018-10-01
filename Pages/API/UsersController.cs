@@ -39,11 +39,11 @@ namespace NSFWpics.Pages.API
 		/// <param name="login">Login used to identify user in system</param>
 		/// <param name="password">SHA1 hash to identify user's identity in DB</param>
 		/// <returns></returns>
-		[HttpPost, Produces("application/json"), Route("login")]
+		[HttpPost, Produces("application/json"), Route("/api/users/login")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			var url = Url.Action("Login", "Users", new { loged = "true" });
-			return Content(url);
+			var url = Url.Action("Login", "Users", new {id=0, loged = "true" }, protocol: Request.Scheme);
+			return Redirect("https://nsfwpics.pw/login?loged=true");
 		}
 
 		/// <summary>
