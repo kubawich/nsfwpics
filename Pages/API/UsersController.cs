@@ -59,10 +59,12 @@ namespace NSFWpics.Pages.API
 		/// <param name="mail">Email address to identify user in system</param>
 		/// <returns></returns>
 		[HttpPost, Produces("application/json"), Route("register")]
-		public JsonResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
+		public IActionResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
-			var i = DBEntities.DBEntity.Instance.Register(login, password, mail);
-			return Json(i);
+			if (DBEntities.DBEntity.Instance.Register(login, password, mail) == $"Successfully Registered user {login}")
+			{
+				return Redirect("https://nsfwpics.pw/login?reg=true");
+			} else return Redirect("https://nsfwpics.pw/login?reg=false");
 		}
 
 		/// <summary>

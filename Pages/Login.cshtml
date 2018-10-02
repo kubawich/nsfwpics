@@ -7,9 +7,11 @@
 
 	if (this.window.location.search.substring(1) == "loged=true") {
 		alert("Login succeeded");
-	} else if (this.window.location.search.substring(1) == "") {
-	}else
-		alert("Login failure");
+	}
+	else if (this.window.location.search.substring(1) == "") { }
+	else if (this.window.location.search.substring(1) == "reg=true") { alert("Register succeeded"); }
+	else if (this.window.location.search.substring(1) == "reg=false") { alert("User already exists"); }
+	else if (this.window.location.search.substring(1) == "loged=false") { alert("Login failure"); }
 </script>
 <div class="container row">
 	<!--Login Form-->
