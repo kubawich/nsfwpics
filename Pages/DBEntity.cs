@@ -475,6 +475,12 @@ namespace NSFWpics.DBEntities
 			MySqlConnection conn = new MySqlConnection(connection.ToString());
 			MySqlCommand cmd;
 
+			cmd = new MySqlCommand($"DELETE FROM users" +
+				$"WHERE uid = {uid}", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+
 			return $"User {uid} deleted";
 		}
 
@@ -482,13 +488,20 @@ namespace NSFWpics.DBEntities
 		/// Updates/changes user parameter with given id
 		/// </summary>
 		/// <param name="uid">User id to make update on</param>
-		/// <param name="changeType">Column name to update</param>
+		/// <param name="changeParam">Column name to update</param>
 		/// <param name="changeValue">New value for old resource at given column</param>
 		/// <returns>String status of operation Updated/Failed</returns>
-		public string UpdateUser(int uid, string changeType, string changeValue)
+		public string UpdateUser(int uid, string changeParam, string changeValue)
 		{
 			MySqlConnection conn = new MySqlConnection(connection.ToString());
 			MySqlCommand cmd;
+;
+			cmd = new MySqlCommand($"UPDATE users " +
+				$"SET {changeParam} = '{changeValue}' " +
+				$"WHERE uid = {uid};", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
 
 			return $"Updated user {uid}";
 		}		

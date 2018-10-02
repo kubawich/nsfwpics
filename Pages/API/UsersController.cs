@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace NSFWpics.Pages.API
 {
+	/// <summary>
+	/// API endpoint route for all actions connected to users in system i.e show/update/login/register/delete
+	/// </summary>
 	[Route("api/[controller]")]
 	public class UsersController : Controller
 	{
@@ -62,18 +65,30 @@ namespace NSFWpics.Pages.API
 			return Json(i);
 		}
 
-		//Update
+		/// <summary>
+		/// Updates user's params in DB (supports only string params atm.)
+		/// </summary>
+		/// <param name="uid">User to update</param>
+		/// <param name="param">name of parameter to change i.e. login/password/mail/uid/guid...</param>
+		/// <param name="value">New value for param field</param>
+		/// <returns>JSON with action status</returns>
 		[Produces("application/json")]
-		[HttpPut("{id}")]
-		public void Put(int uid, [FromQuery]string param,[FromQuery]string value)
+		[HttpPut("{uid}")]
+		public JsonResult Put(int uid, [FromQuery]string param,[FromQuery]string value)
 		{
+			return Json(DBEntities.DBEntity.Instance.UpdateUser(uid, param, value));
 		}
 
-		//Delete
+		/// <summary>
+		/// Deletes user with given uid
+		/// </summary>
+		/// <param name="uid">User's id to delete</param>
+		/// <returns>JSON result of delete action</returns>
 		[Produces("application/json")]
-		[HttpDelete("{id}")]
-		public void Delete(int uid)
+		[HttpDelete("{uid}")]
+		public JsonResult Delete(int uid)
 		{
+			return Json(DBEntities.DBEntity.Instance.DeleteUser(uid));
 		}
 	}
 }

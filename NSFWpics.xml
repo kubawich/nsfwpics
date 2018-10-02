@@ -4,6 +4,11 @@
         <name>NSFWpics</name>
     </assembly>
     <members>
+        <member name="T:NSFWpics.Pages.API.UsersController">
+            <summary>
+            API endpoint route for all actions connected to users in system i.e show/update/login/register/delete
+            </summary>
+        </member>
         <member name="M:NSFWpics.Pages.API.UsersController.Get">
             <summary>
             Get all users from DB
@@ -33,6 +38,22 @@
             <param name="password">Password to identify user in DB presented as SHA1 hash</param>
             <param name="mail">Email address to identify user in system</param>
             <returns></returns>
+        </member>
+        <member name="M:NSFWpics.Pages.API.UsersController.Put(System.Int32,System.String,System.String)">
+            <summary>
+            Updates user's params in DB (supports only string params atm.)
+            </summary>
+            <param name="uid">User to update</param>
+            <param name="param">name of parameter to change i.e. login/password/mail/uid/guid...</param>
+            <param name="value">New value for param field</param>
+            <returns>JSON with action status</returns>
+        </member>
+        <member name="M:NSFWpics.Pages.API.UsersController.Delete(System.Int32)">
+            <summary>
+            Deletes user with given uid
+            </summary>
+            <param name="uid">User's id to delete</param>
+            <returns>JSON result of delete action</returns>
         </member>
         <member name="M:NSFWpics.Pages.ViewController.Delete(System.Int32,System.String)">
             <summary>
@@ -165,7 +186,7 @@
             Updates/changes user parameter with given id
             </summary>
             <param name="uid">User id to make update on</param>
-            <param name="changeType">Column name to update</param>
+            <param name="changeParam">Column name to update</param>
             <param name="changeValue">New value for old resource at given column</param>
             <returns>String status of operation Updated/Failed</returns>
         </member>
