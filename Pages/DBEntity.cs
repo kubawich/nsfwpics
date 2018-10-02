@@ -333,9 +333,36 @@ namespace NSFWpics.DBEntities
 		
 		//User based tools
 
-		public void Login(string login, string password)
+		/// <summary>
+		/// Looks for given user in DB to login
+		/// </summary>
+		/// <param name="login">Identifer in DB</param>
+		/// <param name="password">User password</param>
+		/// <returns>String with login status success/failure</returns>
+		public string Login(string login, string password)
 		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
 
+			cmd = new MySqlCommand($"SELECT EXISTS(" +
+				$"SELECT 1 " +
+				$"FROM users " +
+				$"WHERE login = '{login}' AND password = SHA1('{password}')" +
+				$"LIMIT 1)", conn);
+			conn.Open();
+			var i = cmd.ExecuteScalar();
+			conn.Close();
+			
+
+			if (int.Parse(i.ToString()) == 1)
+			{
+				return "Login success";
+			}
+			else
+			{				
+				return $"Error, either login or password is incorrect";
+			}
+			return "Internal Error";
 		}
 
 		/// <summary>

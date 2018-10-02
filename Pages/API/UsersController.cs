@@ -42,7 +42,10 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("/api/users/login")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			return Redirect("https://nsfwpics.pw/login?loged=true");
+			if (DBEntities.DBEntity.Instance.Login(login,password) == "Login success")
+			{
+				return Redirect("https://nsfwpics.pw/login?loged=true");
+			} else return Redirect("https://nsfwpics.pw/login?loged=false");
 		}
 
 		/// <summary>
