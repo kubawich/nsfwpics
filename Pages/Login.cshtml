@@ -7,9 +7,9 @@
 
 	if (this.window.location.search.substring(1) == "loged=true") {
 		alert("Login succeeded");
-	} else {
+	} else if (this.window.location.search.substring(1) == "") {
+	}else
 		alert("Login failure");
-	}
 </script>
 <div class="container row">
 	<!--Login Form-->

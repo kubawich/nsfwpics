@@ -129,6 +129,14 @@
             <param name="id">ID of content entry to remove</param>
             <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
         </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.Login(System.String,System.String)">
+            <summary>
+            Looks for given user in DB to login
+            </summary>
+            <param name="login">Identifer in DB</param>
+            <param name="password">User password</param>
+            <returns>String with login status success/failure</returns>
+        </member>
         <member name="M:NSFWpics.DBEntities.DBEntity.Register(System.String,System.String,System.String)">
             <summary>
             Registers new user in system
