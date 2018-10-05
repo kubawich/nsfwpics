@@ -104,7 +104,7 @@
 					<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small" id="add_nav_small">Add</a>
 					<a asp-page="/Best" class="waves-effect waves-light red lighten-3 btn-small">Best</a>
 					<a asp-page="/Random" class="waves-effect waves-light red lighten-3 btn-small">Random</a>
-					<a asp-page="/Login" style="margin-left:3em;" class="waves-effect waves-light red lighten-3 btn-small z-depth-3" >Login</a>
+					<a asp-page="/Login" style="margin-left:3em;" class="waves-effect waves-light red lighten-3 btn-small z-depth-3">Login</a>
 				</div>
 			</div>
 		</nav>
@@ -157,6 +157,13 @@
 		<script type="text/javascript" src="https://nsfwpics.pw/js/materialize.min.js"></script>
 
 	</environment>
+	<script>
+		//blazy
+		; (function () {
+		var bLazy = new Blazy({offset: 500});
+		})();
+	</script>
+
 	@RenderSection("Scripts", required: false)
 </body>
 </html>

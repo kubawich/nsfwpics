@@ -56,10 +56,6 @@ function minus(img_id, callback) {
     xmlHttp.send(null); 
 }
 
-//blazy
-; (function () {
-    var bLazy = new Blazy({offset: 200});
-})();
 
 //Checks if cookie exists
 function getCookie(cname) {
