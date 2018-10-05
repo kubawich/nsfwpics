@@ -61,16 +61,16 @@ function minus(img_id, callback) {
     var bLazy = new Blazy({offset: 200});
 })();
 
-function isUserLogedIn() {
-	if (getCookie("user_loged_in") != "true") {
-		document.getElementById("add_nav_big").innerHTML = null;
-		document.getElementById("add_nav_small").innerHTML = null;
-	}
-	else if (getCookie("user_loged_in") === "true") {
-		document.getElementById("add_nav_big").innerHTML = `<a asp-page="/Add">Add</a>`;
-		document.getElementById("add_nav_small").innerHTML = `<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`;
-	}
+//Check if loged in cookie is set
+if (getCookie("user_loged_in") != "true") {
+	document.getElementById("add_nav_big").innerHTML = null;
+	document.getElementById("add_nav_small").innerHTML = null;
 }
+else if (getCookie("user_loged_in") === "true") {
+	document.getElementById("add_nav_big").innerHTML = `<a asp-page="/Add">Add</a>`;
+	document.getElementById("add_nav_small").innerHTML = `<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`;
+}
+
 
 function getCookie(cname) {
 	var name = cname + "=";
