@@ -78,6 +78,7 @@ function getCookie(cname) {
 	return "";
 }
 
+onlo
 //Check if loged in cookie is set
 if (getCookie("user_loged_in") == "true") {
 	document.getElementById("login_nav_big").innerText = getCookie("login");

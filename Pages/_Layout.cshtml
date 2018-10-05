@@ -6,6 +6,37 @@
 	<meta name="msvalidate.01" content="68B8B05C503391F05D66D1C53EDB7346" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<script src="https://nsfwpics.pw/js/site.js"></script>
+	<script>
+		//Checks if cookie exists
+		function getCookie(cname) {
+			var name = cname + "=";
+			var decodedCookie = decodeURIComponent(document.cookie);
+			var ca = decodedCookie.split(';');
+			for (var i = 0; i < ca.length; i++) {
+				var c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+
+		//Check if loged in cookie is set
+		if (getCookie("user_loged_in") == "true") {
+			document.getElementById("login_nav_big").innerText = getCookie("login");
+			document.getElementById("login_nav_small").innerText = getCookie("login");
+			document.getElementById("add_nav_big").innerHTML = `<a asp-page="/Add">Add</a>`;
+			document.getElementById("add_nav_small").innerHTML = `<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`;
+		}
+		else if (getCookie("user_loged_in") != "true") {
+			document.getElementById("add_nav_big").innerHTML = null;
+			document.getElementById("add_nav_small").innerHTML = null;
+		}
+
+	</script>
 	<link rel="publisher" href="http://www.linkedin.com/in/jakubwichlinski">
 	<link rel="me" href="http://www.linkedin.com/in/jakubwichlinski" type="text/html">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
