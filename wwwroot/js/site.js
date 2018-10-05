@@ -1,4 +1,5 @@
-﻿if (navigator.serviceWorker.controller) {
+﻿//Service worker
+if (navigator.serviceWorker.controller) {
 	console.log('[PWA Builder] active service worker found, no need to register')
 } else {
 	//Register the ServiceWorker
@@ -9,6 +10,7 @@
 	});
 }
 
+//Material photo box
 $(document).ready(function () {
     $('.materialboxed').materialbox();
     $('select').material_select();
@@ -54,7 +56,34 @@ function minus(img_id, callback) {
     xmlHttp.send(null); 
 }
 
+//blazy
 ; (function () {
     var bLazy = new Blazy({offset: 200});
 })();
 
+function isUserLogedIn() {
+	if (getCookie("user_loged_in") != "true") {
+		document.getElementById("add_nav_big").innerHTML = null;
+		document.getElementById("add_nav_small").innerHTML = null;
+	}
+	else if (getCookie("user_loged_in") === "true") {
+		document.getElementById("add_nav_big").innerHTML = `<a asp-page="/Add">Add</a>`;
+		document.getElementById("add_nav_small").innerHTML = `<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`;
+	}
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+}

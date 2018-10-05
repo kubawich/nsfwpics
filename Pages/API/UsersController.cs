@@ -48,7 +48,9 @@ namespace NSFWpics.Pages.API
 		{
 			if (DBEntities.DBEntity.Instance.Login(login,password) == "Login success")
 			{
-				Response.Cookies.Append("User loged in", "true");
+				Response.Cookies.Append("user_loged_in", "true");
+				Response.Cookies.Append("login", login);
+				Response.Cookies.Append("ip", Response.HttpContext.Connection.RemoteIpAddress.ToString());
 				return Redirect("https://nsfwpics.pw/login?loged=true");
 			} else return Redirect("https://nsfwpics.pw/login?loged=false");
 		}
