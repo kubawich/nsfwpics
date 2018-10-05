@@ -66,7 +66,9 @@ if (getCookie("user_loged_in") != "true") {
 	document.getElementById("add_nav_big").innerHTML = null;
 	document.getElementById("add_nav_small").innerHTML = null;
 }
-else if (getCookie("user_loged_in") === "true") {
+else if (getCookie("user_loged_in") == "true") {
+	document.getElementById("login_nav_big").innerText = getCookie("login");
+	document.getElementById("login_nav_small").innerText = getCookie("login");
 	document.getElementById("add_nav_big").innerHTML = `<a asp-page="/Add">Add</a>`;
 	document.getElementById("add_nav_small").innerHTML = `<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`;
 }
