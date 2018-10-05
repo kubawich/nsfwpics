@@ -61,19 +61,7 @@ function minus(img_id, callback) {
     var bLazy = new Blazy({offset: 200});
 })();
 
-//Check if loged in cookie is set
-if (getCookie("user_loged_in") != "true") {
-	document.getElementById("add_nav_big").innerHTML = null;
-	document.getElementById("add_nav_small").innerHTML = null;
-}
-else if (getCookie("user_loged_in") == "true") {
-	document.getElementById("login_nav_big").innerText = getCookie("login");
-	document.getElementById("login_nav_small").innerText = getCookie("login");
-	document.getElementById("add_nav_big").innerHTML = `<a asp-page="/Add">Add</a>`;
-	document.getElementById("add_nav_small").innerHTML = `<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`;
-}
-
-
+//Checks if cookie exists
 function getCookie(cname) {
 	var name = cname + "=";
 	var decodedCookie = decodeURIComponent(document.cookie);
@@ -88,4 +76,16 @@ function getCookie(cname) {
 		}
 	}
 	return "";
+}
+
+//Check if loged in cookie is set
+if (getCookie("user_loged_in") == "true") {
+	document.getElementById("login_nav_big").innerText = getCookie("login");
+	document.getElementById("login_nav_small").innerText = getCookie("login");
+	document.getElementById("add_nav_big").innerHTML = `<a asp-page="/Add">Add</a>`;
+	document.getElementById("add_nav_small").innerHTML = `<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`;
+}
+else if (getCookie("user_loged_in") != "true") {
+	document.getElementById("add_nav_big").innerHTML = null;
+	document.getElementById("add_nav_small").innerHTML = null;
 }
