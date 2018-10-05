@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,6 +48,7 @@ namespace NSFWpics.Pages.API
 		{
 			if (DBEntities.DBEntity.Instance.Login(login,password) == "Login success")
 			{
+				Response.Cookies.Append("User loged in", "true");
 				return Redirect("https://nsfwpics.pw/login?loged=true");
 			} else return Redirect("https://nsfwpics.pw/login?loged=false");
 		}

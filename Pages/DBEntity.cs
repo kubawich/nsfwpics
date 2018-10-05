@@ -9,6 +9,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Renci.SshNet.Sftp;
+using NSFWpics.Pages.API;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace NSFWpics.DBEntities
 {
@@ -17,10 +21,11 @@ namespace NSFWpics.DBEntities
 	/// </summary>
     public class DBEntity
     {
+		private IConfiguration _config;
 		/// <summary>
 		/// Static instance of Db entites class, use it wherever you want
 		/// </summary>
-        public static DBEntity Instance = new DBEntity();
+		public static DBEntity Instance = new DBEntity();
 
 		/// <summary>
 		/// DB connection string
@@ -330,7 +335,7 @@ namespace NSFWpics.DBEntities
             cmd.ExecuteNonQuery();
             conn.Close();
 		}
-		
+
 		//User based tools
 
 		/// <summary>
@@ -351,8 +356,7 @@ namespace NSFWpics.DBEntities
 				$"LIMIT 1)", conn);
 			conn.Open();
 			var i = cmd.ExecuteScalar();
-			conn.Close();
-			
+			conn.Close();			
 
 			if (int.Parse(i.ToString()) == 1)
 			{
