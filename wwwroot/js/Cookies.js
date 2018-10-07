@@ -25,7 +25,5 @@ if (getCookie("user_loged_in") == "true") {
 }
 else {
 	console.log(`user not loged in`);
-	document.getElementById("add_nav_small").innerHTML = null;
-	document.getElementById("add_nav_small").remove();
 }
 
