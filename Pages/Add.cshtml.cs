@@ -32,5 +32,15 @@ namespace NSFWpics.Pages
 			
             return  Redirect("/Add");
         }
-    }
+
+		string val = "true";
+		[HttpGet]
+		public IActionResult OnGet()
+		{
+			if (Request.Cookies["user_loged_in"] == "true")
+			{
+				return Page();
+			} else return Redirect("https://nsfwpics.pw/");
+		}
+	}
 }

@@ -51,8 +51,8 @@ namespace NSFWpics.Pages.API
 				Response.Cookies.Append("user_loged_in", "true");
 				Response.Cookies.Append("login", login);
 				Response.Cookies.Append("ip", Response.HttpContext.Connection.RemoteIpAddress.ToString());
-				return Redirect("https://nsfwpics.pw/login?loged=true");
-			} else return Redirect("https://nsfwpics.pw/login?loged=false");
+				return Redirect("https://nsfwpics.pw/Login?loged=true");
+			} else return Redirect("https://nsfwpics.pw/Login?loged=false");
 		}
 
 		/// <summary>
