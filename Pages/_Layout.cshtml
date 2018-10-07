@@ -50,6 +50,7 @@
 	<script defer src='https://www.google.com/recaptcha/api.js'></script>
 	<script src="https://nsfwpics.pw/js/blazy.js"></script>
 	<environment include="Development">
+
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114739201-1"></script>
 		<script>
@@ -92,19 +93,19 @@
 						<i class="large material-icons">menu</i>
 					</a>
 					<ul style="font-weight:bold; color:#ffffff;">
-						<li id="add_nav_big"><a asp-page="/Add">Add</a></li>
-						<li><a asp-page="/Best">Best</a></li>
-						<li><a asp-page="/Random">Random</a></li>
-						<li id="login_nav_big"><a asp-page="/Login">Login</a></li>
+						<li id="add_nav_big"><a asp-route="/Add">Add</a></li>
+						<li><a asp-route="/Best">Best</a></li>
+						<li><a asp-route="/Random">Random</a></li>
+						<li id="login_nav_big"><a asp-route="/Login">Login</a></li>
 					</ul>
 				</div>
 				<span class="col s-2"></span>
 				<a href="http://nsfwpics.pw" class="brand-logo col s-6 waves-effect waves-light">NSFWpics</a>
 				<div class="right hide-on-med-and-down ">
-					<a asp-page="/Add" class="waves-effect waves-light red lighten-3 btn-small" id="add_nav_small">Add</a>
-					<a asp-page="/Best" class="waves-effect waves-light red lighten-3 btn-small">Best</a>
-					<a asp-page="/Random" class="waves-effect waves-light red lighten-3 btn-small">Random</a>
-					<a asp-page="/Login" style="margin-left:3em;" class="waves-effect waves-light red lighten-3 btn-small z-depth-3">Login</a>
+					<a asp-route="/Add" class="waves-effect waves-light red lighten-3 btn-small" id="add_nav_small">Add</a>
+					<a asp-route="/Best" class="waves-effect waves-light red lighten-3 btn-small">Best</a>
+					<a asp-route="/Random" class="waves-effect waves-light red lighten-3 btn-small">Random</a>
+					<a asp-route="/Login" style="margin-left:3em;" class="waves-effect waves-light red lighten-3 btn-small z-depth-3">Login</a>
 				</div>
 			</div>
 		</nav>
@@ -142,7 +143,7 @@
 	</footer>
 	<script id="dsq-count-scr" src="https://nsfwpics.disqus.com/count.js" async></script>
 	<environment include="Development">
-
+		<script src="/js/Cookies.js"></script>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="https://nsfwpics.pw/js/materialize.min.js"></script>
 	</environment>
@@ -163,7 +164,6 @@
 		var bLazy = new Blazy({offset: 500});
 		})();
 	</script>
-
 	@RenderSection("Scripts", required: false)
 </body>
 </html>
