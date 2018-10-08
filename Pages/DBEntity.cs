@@ -108,7 +108,7 @@ namespace NSFWpics.DBEntities
         /// </summary>
         /// <param name="MaxIdPlusOne">Required to increment photo's id in DB</param>l        
         /// /// <param name="file">File to upload</param>
-        public void UploadImgToDb(int MaxIdPlusOne, IFormFile file)
+        public void UploadImgToDb(int MaxIdPlusOne, IFormFile file, string login)
         {
             using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
             {
@@ -129,7 +129,7 @@ namespace NSFWpics.DBEntities
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
             cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
-                $"VALUES('https://cdn.nsfwpics.pw/img/{MaxIdPlusOne}{Path.GetExtension(file.FileName)}','Anonymous',0)", conn);
+                $"VALUES('https://cdn.nsfwpics.pw/img/{MaxIdPlusOne}{Path.GetExtension(file.FileName)}','{login}',0)", conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
@@ -478,9 +478,9 @@ namespace NSFWpics.DBEntities
 		{
 			MySqlConnection conn = new MySqlConnection(connection.ToString());
 			MySqlCommand cmd;
-
-			cmd = new MySqlCommand($"DELETE FROM users" +
-				$"WHERE uid = {uid}", conn);
+			var id = Convert.ToInt32(uid);
+			cmd = new MySqlCommand($"DELETE FROM users " +
+				$"WHERE uid={id};", conn);
 			conn.Open();
 			cmd.ExecuteNonQuery();
 			conn.Close();

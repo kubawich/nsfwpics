@@ -3,6 +3,7 @@
 @{
 	ViewData["Title"] = "Home page";
 }
+
 <div id="app">
 	<br />
 	<!--PAGINATION-->
@@ -86,8 +87,7 @@
 					</span>
 					<span id="feed" class="col right s-8">
 						<span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
-						<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
-						<button onclick="minus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light red" id="button_minus_@Model.List()[i].Id"><i class="material-icons">thumb_down</i></button>
+						<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
 					</span>
 					<br /><br />
 					@{
@@ -109,7 +109,7 @@
 									alt="Video from link @Model.List()[i].Uri"
 									id="my-video"
 									class="b-lazy materialboxed col center-align s-12"
-									controls loop muted />
+									controls loop muted autoplay/>
 					}
 
 					}
@@ -147,8 +147,7 @@
 					</span>
 					<span id="feed" class="col right s-8">
 						<span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
-						<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
-						<button onclick="minus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light red" id="button_minus_@Model.List()[i].Id"><i class="material-icons">thumb_down</i></button>
+						<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
 					</span>
 					<br /><br />
 					@{
@@ -170,7 +169,7 @@
 									 alt="Video from link @Model.List()[i].Uri"
 									 id="my-video"
 									 class="b-lazy materialboxed col center-align s-12"
-									 controls loop muted />
+									 controls loop muted autoplay/>
 						}
 
 					}
@@ -278,6 +277,7 @@
 		<br /><br />
 	</div>
 </div>
+<script defer src="~/js/enableFeed.js"></script>
 <script>
     window.onload = paginationActiveSite(@Model.Id);
     function paginationActiveSite(id) {

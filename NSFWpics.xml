@@ -4,6 +4,11 @@
         <name>NSFWpics</name>
     </assembly>
     <members>
+        <member name="T:NSFWpics.Pages.API.AddController">
+            <summary>
+            API endpoint used to upload image/webm/gif to server and index it to db
+            </summary>
+        </member>
         <member name="T:NSFWpics.Pages.API.UsersController">
             <summary>
             API endpoint route for all actions connected to users in system i.e show/update/login/register/delete
@@ -98,7 +103,7 @@
             Returns highest ID from DB
             </returns>
         </member>
-        <member name="M:NSFWpics.DBEntities.DBEntity.UploadImgToDb(System.Int32,Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:NSFWpics.DBEntities.DBEntity.UploadImgToDb(System.Int32,Microsoft.AspNetCore.Http.IFormFile,System.String)">
             <summary>
             Adds cdn's uploaded photo to DB
             </summary>

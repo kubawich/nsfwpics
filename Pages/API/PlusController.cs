@@ -12,10 +12,10 @@ namespace NSFWpics.Pages
     {
 		[Produces("application/json")]
 		[HttpGet("{id:int}")]
-        public string Get(int id)
+        public JsonResult Get(int id)
         {
             NSFWpics.DBEntities.DBEntity.Instance.Plus(id);
-            return $"points updated +1 on {id}";
+            return Json($"points updated +1 on {id}");
         }
     }
 }

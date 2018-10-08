@@ -23,8 +23,7 @@
             </span>
             <span id="feed" class="col right s-8">
                 <span id="points_@Model.Image.Id" class="points">@Model.Image.Points</span>
-                <button onclick="plus(@Model.Image.Id)" class="btn-floating btn-large waves-effect waves-light light-green" id="button_plus_@Model.Image.Id"><i class="material-icons">thumb_up</i></button>
-                <button onclick="minus(@Model.Image.Id)" class="btn-floating btn-large waves-effect waves-light red" id="button_minus_@Model.Image.Id"><i class="material-icons">thumb_down</i></button>
+                <button onclick="plus(@Model.Image.Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@Model.Image.Id"><i class="material-icons">thumb_up</i></button>                
             </span>
             <br /><br />
             @{
@@ -77,5 +76,5 @@
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
 </br></br>
-
+<script defer src="~/js/enableFeed.js"></script>
 

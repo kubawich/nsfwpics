@@ -28,7 +28,7 @@ namespace NSFWpics.Pages
         {
             var MaxId = DBEntities.DBEntity.Instance.MaxId() + 1;
 
-			new DBEntities.DBEntity().UploadImgToDb(MaxId, Upload);
+			new DBEntities.DBEntity().UploadImgToDb(MaxId, Upload, Request.Cookies["login"]);
 			
             return  Redirect("/Add");
         }

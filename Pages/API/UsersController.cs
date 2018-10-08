@@ -94,7 +94,8 @@ namespace NSFWpics.Pages.API
 		[HttpDelete("{uid}")]
 		public JsonResult Delete(int uid)
 		{
-			return Json(DBEntities.DBEntity.Instance.DeleteUser(uid));
+			var res = DBEntities.DBEntity.Instance.DeleteUser(uid);
+			return Json(res);
 		}
 	}
 }
