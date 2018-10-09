@@ -11,9 +11,15 @@ namespace NSFWpics.Pages
         [HttpGet]
         public IActionResult OnGet()
         {
-			Image = DBEntities.DBEntity.Instance.Random(Image);
-            
-            return Page();
+			try
+			{
+				Image = DBEntities.DBEntity.Instance.Random(Image);            
+				return Page();
+			}
+			catch (System.Exception)
+			{
+				return Redirect("https://nsfwpics.pw/Random");
+			}
         }
     }
 }

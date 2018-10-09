@@ -51,7 +51,7 @@ namespace NSFWpics.Pages.API
 				Response.Cookies.Append("user_loged_in", "true");
 				Response.Cookies.Append("login", login);
 				Response.Cookies.Append("ip", Response.HttpContext.Connection.RemoteIpAddress.ToString());
-				return Redirect("https://nsfwpics.pw/Login?loged=true");
+				return Redirect("https://nsfwpics.pw/");
 			} else return Redirect("https://nsfwpics.pw/Login?loged=false");
 		}
 
@@ -67,7 +67,7 @@ namespace NSFWpics.Pages.API
 		{
 			if (DBEntities.DBEntity.Instance.Register(login, password, mail) == $"Successfully Registered user {login}")
 			{
-				return Redirect("https://nsfwpics.pw/login?reg=true");
+				return Redirect("https://nsfwpics.pw/");
 			} else return Redirect("https://nsfwpics.pw/login?reg=false");
 		}
 
