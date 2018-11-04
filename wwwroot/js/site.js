@@ -18,12 +18,23 @@ $(document).ready(function () {
 
 function plus(img_id, callback)
 {
-	let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
-	document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
-	fetch(`https://nsfwpics.pw/api/plus/${img_id}`)
-		.then(function (response) {
-			return response.json();
-		});
+	if (localStorage.getItem(`${img_id}`) == `true`) {
+		let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+		document.getElementById(`points_${img_id}`).innerHTML = pts - 1;
+		fetch(`https://nsfwpics.pw/api/minus/${img_id}`)
+			.then(function (response) {
+				return response.json();
+			});
+		localStorage.removeItem(`${img_id}`);
+	} else {
+		localStorage.setItem(`${img_id}`, `true`);
+		let pts = parseInt(document.getElementById(`points_${img_id}`).innerHTML);
+		document.getElementById(`points_${img_id}`).innerHTML = pts + 1;
+		fetch(`https://nsfwpics.pw/api/plus/${img_id}`)
+			.then(function (response) {
+				return response.json();
+			});
+	}
 }
 
 
