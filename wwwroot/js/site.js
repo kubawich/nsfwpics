@@ -9,13 +9,6 @@ if (navigator.serviceWorker.controller) {
 		console.log('Service worker has been registered for scope:' + reg.scope);
 	});
 }
-
-//Material photo box
-$(document).ready(function () {
-    $('.materialboxed').materialbox();
-    $('select').material_select();
-});
-
 function plus(img_id, callback)
 {
 	if (localStorage.getItem(`${img_id}`) == `true`) {

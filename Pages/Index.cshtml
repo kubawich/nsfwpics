@@ -1,7 +1,7 @@
 ﻿@page  "{id:int?}"
 @model IndexModel
 @{
-	ViewData["Title"] = "Home page";
+	ViewData["Title"] = "Main page";
 }
 
 <div id="app">
@@ -95,12 +95,15 @@
 						string extension = link.Substring(link.Length - 3);
 						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 						{
-							<img src="https://nsfwpics.pw/Loader.png"
-								  class="materialboxed col center-align s-12 b-lazy" 
-								  data-src="@Model.List()[i].Uri" 
-								  alt="Photo from link @Model.List()[i].Uri" 
-								  id="photo no @Model.List()[i].Id" 
-								  name="photo" />
+							<a href="/img/view/@Model.List()[i].Id"  class="center-align s-12">
+								<img src="https://nsfwpics.pw/Loader.png"
+									  class=" col center-align s-12 b-lazy"
+									  data-src="@Model.List()[i].Uri"
+									  alt="Photo from link @Model.List()[i].Uri"
+									  id="photo no @Model.List()[i].Id"
+									  name="photo" 
+									  style="float:none"/>
+							</a>
 						}
 						else if (extension == "mp4" || extension == "ebm")
 						{
@@ -108,7 +111,7 @@
 									data-src="@Model.List()[i].Uri"
 									alt="Video from link @Model.List()[i].Uri"
 									id="my-video"
-									class="b-lazy materialboxed col center-align s-12"
+									class="  col center-align s-12"
 									controls loop muted autoplay/>
 					}
 
@@ -155,12 +158,15 @@
 						string extension = link.Substring(link.Length - 3);
 						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 						{
+							<a href="/img/view/@Model.List()[i].Id"  class="center-align s-12">
 							<img src="https://nsfwpics.pw/Loader.png"
-								  class="materialboxed col center-align s-12 b-lazy " 
+								  class=" col center-align s-12 b-lazy " 
 								  data-src="@Model.List()[i].Uri" 
 								  alt="Photo from link @Model.List()[i].Uri" 
 								  id="Photo no @Model.List()[i].Id" 
-								  name="photo" />
+								  name="photo" 
+								  style="float:none"/>
+							</a>
 						}
 						else if (extension == "mp4" || extension == "ebm")
 						{
@@ -168,7 +174,7 @@
 									 data-src="@Model.List()[i].Uri"
 									 alt="Video from link @Model.List()[i].Uri"
 									 id="my-video"
-									 class="b-lazy materialboxed col center-align s-12"
+									 class="  col center-align s-12"
 									 controls loop muted autoplay/>
 						}
 
