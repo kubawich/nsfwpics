@@ -141,7 +141,7 @@
 		<script src="/js/Cookies.js"></script>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="https://nsfwpics.pw/js/materialize.min.js"></script>
-		<script src="/js/site.js"></script>
+
 	</environment>
 	<environment exclude="Development">
 		<script src="/js/Cookies.js"></script>
@@ -155,13 +155,14 @@
 		<script type="text/javascript" src="https://nsfwpics.pw/js/materialize.min.js"></script>
 
 	</environment>
+	<script src="/js/site.js"></script>
 	<script>
 		//blazy
 		; (function () {
 			var bLazy = new Blazy({ offset: 500 });
 		})();
 	</script>
-	
+
 	@RenderSection("Scripts", required: false)
 </body>
 </html>
