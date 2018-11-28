@@ -103,3 +103,15 @@ span {
     position: absolute;
     right: 0px;
 }
+
+#buttonsViewChange{
+	display: flex;
+	background-color: aqua;
+	text-align:center;
+}
+
+#buttonsViewChange>a{
+	border: deeppink 1px solid;
+	height: 20px;
+	width: 50px;
+}

@@ -29,7 +29,9 @@
 					 string extension = link.Substring(link.Length - 3);
 					 if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 					 {
-                    <img class="materialboxed col center-align s-12" src="@Model.Image.Uri" alt="Photo from link @Model.Image.Uri" id="photo_no_@Model.Image.Id" name="photo" />
+						  <a href="@Model.Image.Uri" class="center-align s-12">
+                    <img class="col center-align s-12" src="@Model.Image.Uri" alt="Photo from link @Model.Image.Uri" id="photo_no_@Model.Image.Id" name="photo" />
+						</a>
 					 }
 					 else if (extension == "mp4" || extension == "ebm")
 					 {

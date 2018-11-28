@@ -4,10 +4,53 @@
 	ViewData["Title"] = "Main page";
 }
 
+<style>
+	#buttonsViewChange {
+		text-align: center;
+		display: flex;
+		width: 90px;
+		position: absolute;
+		left: Calc(50% - 108px);	
+	}
+
+	#buttonsViewChange > div {
+		border: deeppink 2px solid;
+		height: 20px;
+		width: 300px;
+		margin: 0;
+		display:inline-table;
+	}
+	#buttonsViewChange > div:nth-child(1) {
+		border-top-left-radius: 5px;
+		border-bottom-left-radius: 5px;
+	}
+		#buttonsViewChange > div:nth-child(2) {
+			border-right-width: 0px;
+			border-left-width: 0px;
+		}
+	#buttonsViewChange > div:nth-child(3) {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
+	}
+	#buttonsViewChange > div > a{
+		padding: 4px 15px;
+		color: deeppink;
+		font-size: 16px;
+	}
+
+</style>
+
 <div id="app">
+	<br /><br />
+	<div id="buttonsViewChange" class="center-align">
+		<div id="changeView1" ><a href="#" onclick="setIndexViewType(1)">Images</a></div>
+		<div id="changeView2" ><a href="#" onclick="setIndexViewType(0)">All</a></div>
+		<div id="changeView3" ><a href="#" onclick="setIndexViewType(2)">Videos</a></div>
+	</div>
+	<br />
 	<br />
 	<!--PAGINATION-->
-	<div class="row ">
+	<div class="row">
 		@if (Model.Id == 0 || Model.Id == 1)
 		{
 			<ul class="pagination center-align ">
@@ -95,25 +138,25 @@
 						string extension = link.Substring(link.Length - 3);
 						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 						{
-							<a href="/img/view/@Model.List()[i].Id"  class="center-align s-12">
+							<a href="/img/view/@Model.List()[i].Id" class="center-align s-12">
 								<img src="https://nsfwpics.pw/Loader.png"
 									  class=" col center-align s-12 b-lazy"
 									  data-src="@Model.List()[i].Uri"
 									  alt="Photo from link @Model.List()[i].Uri"
 									  id="photo no @Model.List()[i].Id"
-									  name="photo" 
-									  style="float:none"/>
+									  name="photo"
+									  style="float:none" />
 							</a>
 						}
 						else if (extension == "mp4" || extension == "ebm")
 						{
-						<video src="https://nsfwpics.pw/Loader.png"
-									data-src="@Model.List()[i].Uri"
-									alt="Video from link @Model.List()[i].Uri"
-									id="my-video"
-									class="  col center-align s-12"
-									controls loop muted autoplay/>
-					}
+							<video src="@Model.List()[i].Uri"
+									 data-src="@Model.List()[i].Uri"
+									 alt="Video from link @Model.List()[i].Uri"
+									 id="my-video"
+									 class="  col center-align s-12"
+									 controls loop muted autoplay />
+						}
 
 					}
 					<br />
@@ -158,24 +201,24 @@
 						string extension = link.Substring(link.Length - 3);
 						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 						{
-							<a href="/img/view/@Model.List()[i].Id"  class="center-align s-12">
-							<img src="https://nsfwpics.pw/Loader.png"
-								  class=" col center-align s-12 b-lazy " 
-								  data-src="@Model.List()[i].Uri" 
-								  alt="Photo from link @Model.List()[i].Uri" 
-								  id="Photo no @Model.List()[i].Id" 
-								  name="photo" 
-								  style="float:none"/>
+							<a href="/img/view/@Model.List()[i].Id" class="center-align s-12">
+								<img src="https://nsfwpics.pw/Loader.png"
+									  class=" col center-align s-12 b-lazy "
+									  data-src="@Model.List()[i].Uri"
+									  alt="Photo from link @Model.List()[i].Uri"
+									  id="Photo no @Model.List()[i].Id"
+									  name="photo"
+									  style="float:none" />
 							</a>
 						}
 						else if (extension == "mp4" || extension == "ebm")
 						{
-							<video src="https://nsfwpics.pw/Loader.png"
+							<video src="@Model.List()[i].Uri"
 									 data-src="@Model.List()[i].Uri"
 									 alt="Video from link @Model.List()[i].Uri"
 									 id="my-video"
 									 class="  col center-align s-12"
-									 controls loop muted autoplay/>
+									 controls loop muted autoplay />
 						}
 
 					}

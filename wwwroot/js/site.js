@@ -30,4 +30,19 @@ function plus(img_id, callback)
 	}
 }
 
+function setIndexViewType(type) {
+	if (parseInt(type) == 0) {
+		delCookie("viewType");
+		location.reload();
+	}
+	else if (parseInt(type) == 1) {
+		setCookie("viewType", "images");
+		location.reload();
+	}
+	else {
+		setCookie("viewType", "videos");
+		location.reload();
+	}
+}
+
 

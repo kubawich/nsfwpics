@@ -304,6 +304,156 @@ namespace NSFWpics.DBEntities
         }
 
 		/// <summary>
+		/// Returns whole 'site' module, but only image formats. Each site has 10 view entries
+		/// </summary>
+		/// <param name="id">Which site's entries to get</param>
+		/// <param name="image">Returns class based on DB table architecture</param>
+		/// <returns>
+		/// List of 10 Image entities representing given id's site module
+		/// </returns>
+		public List<Image> SiteImgsOnly(int id, List<Image> image)
+		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
+			if (id == 0 || id == 1)
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM imgs " +
+					$"WHERE uri " +
+					$"LIKE '%.png' " +
+					$"OR uri LIKE '%.jpg' " +
+					$"OR uri LIKE '%.jpeg' " +
+					$"AND id " +
+					$"ORDER BY id DESC " +
+					$"LIMIT 10;", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					image.Add(new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					});
+				}
+
+				conn.Close();
+				return image;
+			}
+			else
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM imgs " +
+					$"WHERE uri " +
+					$"LIKE '%.png' " +
+					$"OR uri LIKE '%.jpg' " +
+					$"OR uri LIKE '%.jpeg' " +
+					$"AND id " +
+					$"ORDER BY id DESC " +
+					$"LIMIT 10 OFFSET {id * 10 - 10};", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					image.Add(new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					});
+				}
+
+				conn.Close();
+				return image;
+			}
+		}
+
+		/// <summary>
+		/// Returns whole 'site' module but animated formats only. Each site has 10 view entries
+		/// </summary>
+		/// <param name="id">Which site's entries to get</param>
+		/// <param name="image">Returns class based on DB table architecture</param>
+		/// <returns>
+		/// List of 10 videos entities representing given id's site module
+		/// </returns>
+		public List<Image> SiteVideosOnly(int id, List<Image> image)
+		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
+			if (id == 0 || id == 1)
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM imgs " +
+					$"WHERE uri " +
+					$"LIKE '%.webm' " +
+					$"OR uri LIKE '%.gif' " +
+					$"OR uri LIKE '%.mp4' " +
+					$"AND id " +
+					$"ORDER BY id DESC " +
+					$"LIMIT 10;", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					image.Add(new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					});
+				}
+
+				conn.Close();
+				return image;
+			}
+			else
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM imgs " +
+					$"WHERE uri " +
+					$"LIKE '%.webm' " +
+					$"OR uri LIKE '%.gif' " +
+					$"OR uri LIKE '%.mp4' " +
+					$"AND id " +
+					$"ORDER BY id DESC " +
+					$"LIMIT 10 OFFSET {id * 10 - 10};", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					image.Add(new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					});
+				}
+
+				conn.Close();
+				return image;
+			}
+		}
+
+		/// <summary>
 		/// Removes content with given ID and extension
 		/// </summary>
 		/// <param name="id">ID of content entry to remove</param>

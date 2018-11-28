@@ -148,6 +148,26 @@
             List of 10 Image entities representing given id's site module
             </returns>
         </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.SiteImgsOnly(System.Int32,System.Collections.Generic.List{NSFWpics.Pages.Image})">
+            <summary>
+            Returns whole 'site' module, but only image formats. Each site has 10 view entries
+            </summary>
+            <param name="id">Which site's entries to get</param>
+            <param name="image">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 Image entities representing given id's site module
+            </returns>
+        </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.SiteVideosOnly(System.Int32,System.Collections.Generic.List{NSFWpics.Pages.Image})">
+            <summary>
+            Returns whole 'site' module but animated formats only. Each site has 10 view entries
+            </summary>
+            <param name="id">Which site's entries to get</param>
+            <param name="image">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 videos entities representing given id's site module
+            </returns>
+        </member>
         <member name="M:NSFWpics.DBEntities.DBEntity.RemoveImg(System.Int32,System.String)">
             <summary>
             Removes content with given ID and extension

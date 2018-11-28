@@ -17,7 +17,6 @@ function getCookie(cname) {
 
 function removePlus() {
 	document.querySelectorAll("button").forEach(x => x.remove());
-	
 }
 
 if (getCookie("user_loged_in") != "true") {

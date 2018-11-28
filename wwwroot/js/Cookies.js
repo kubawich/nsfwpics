@@ -15,6 +15,20 @@ function getCookie(cname) {
 	return "";
 }
 
+//Sets a coookie
+function setCookie(cname, cvalue, exdays) {
+	var d = new Date();
+	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+	var expires = "expires=" + d.toUTCString();
+	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+//Delete a cookie
+function delCookie(cname) {
+	document.cookie = `${cname}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+	console.log(`Deleted cookie ${cname}`)
+}
+
 //Check if loged in cookie is set
 if (getCookie("user_loged_in") == "true") {
 	console.log("user_loged_in");
@@ -27,3 +41,18 @@ else {
 	console.log(`user not loged in`);
 }
 
+if (!getCookie("viewType")) {
+	document.getElementById("changeView2").style.backgroundColor = "crimson";
+	var d = document.getElementById("changeView2").firstChild;
+	d.style.color = "white";
+}
+else if (getCookie("viewType") == "images") {
+	document.getElementById("changeView1").style.backgroundColor = "crimson";
+	var d = document.getElementById("changeView1").firstChild;
+	d.style.color = "white";
+}
+else {
+	document.getElementById("changeView3").style.backgroundColor = "crimson";
+	var d = document.getElementById("changeView3").firstChild;
+	d.style.color = "white";
+}

@@ -21,35 +21,36 @@ namespace NSFWpics.Pages
         [BindProperty]
         public Image Image { get; set; }
 
-        public IActionResult OnGet(int id)
-        {
-            if (id == 1)
-            {
-                return Redirect("/");
-            }
+		public IActionResult OnGet(int id)
+		{
+			if (id == 1)
+			{
+				return Redirect("/");
+			}
+			Id = id;
+			return Page();
+		}
+		public List<Image> List()
+		{
+			if (Request.Cookies["viewType"] == "images")
+			{
+				list =  DBEntities.DBEntity.Instance.SiteImgsOnly(Id, list);
+				return list;
+			}
+			else if(Request.Cookies["viewType"] == "videos")
+			{
+				list =  DBEntities.DBEntity.Instance.SiteVideosOnly(Id, list);
+				return list;
+			}
+			else
+			{
+				list = DBEntities.DBEntity.Instance.Site(Id, list);
+				return list;
+			}
+		}
+			
 
-            Id = id;
-            PageIncrement = ((id * 10) - 9) ;
-
-            using (MySqlConnection conn2 = new MySqlConnection(_DB.connection.ToString()))
-            using (MySqlCommand cmd2 = new MySqlCommand($"SELECT COUNT(*) FROM imgs;", conn2))
-            {
-
-                conn2.Open();
-                MySqlDataReader reader2 = cmd2.ExecuteReader();
-
-                while (reader2.Read())
-                {
-                    MaxId = Convert.ToInt16(value: int.Parse(reader2["COUNT(*)"].ToString()) / 10);
-                }
-
-                conn2.Close();
-            }
-
-            return Page();
-        }
-
-        public List<Image> List()
+       /* public List<Image> List()
         {
             MySqlConnection conn = new MySqlConnection(_DB.connection.ToString());
             MySqlCommand cmd;
@@ -104,7 +105,6 @@ namespace NSFWpics.Pages
             catch (Exception)
             {
                 throw;
-            }
-        }
+            }*/
     }
 }
