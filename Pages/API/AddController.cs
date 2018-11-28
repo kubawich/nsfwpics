@@ -25,8 +25,8 @@ namespace NSFWpics.Pages.API
                 if (file == null || file.Length == 0)
                     return Content("Select file to upload");
             
-                DBEntity.Instance.UploadImgToDb(DBEntity.Instance.MaxId() + 1, file, "API user");
-                return Json($"Upload Successful to cdn.nsfwpics.pw/img/{DBEntity.Instance.MaxId() }{Path.GetExtension(file.FileName)}");
+                DBEntity.Instance.UploadImgToDb(DBEntity.Instance.MaxId(0) + 1, file, "API user");
+                return Json($"Upload Successful to cdn.nsfwpics.pw/img/{DBEntity.Instance.MaxId(0) }{Path.GetExtension(file.FileName)}");
             }
             catch(Exception e)
             {

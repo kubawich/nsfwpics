@@ -27,7 +27,7 @@ namespace NSFWpics.Pages
 			{
 				return Redirect("/");
 			}
-			MaxId = _DB.MaxId();
+			
 			Id = id;
 			return Page();
 		}
@@ -36,76 +36,21 @@ namespace NSFWpics.Pages
 			if (Request.Cookies["viewType"] == "images")
 			{
 				list =  DBEntities.DBEntity.Instance.SiteImgsOnly(Id, list);
+				MaxId = _DB.MaxId(1) / 10;
 				return list;
 			}
 			else if(Request.Cookies["viewType"] == "videos")
 			{
 				list =  DBEntities.DBEntity.Instance.SiteVideosOnly(Id, list);
+				MaxId = _DB.MaxId(2) / 10;
 				return list;
 			}
 			else
 			{
 				list = DBEntities.DBEntity.Instance.Site(Id, list);
+				MaxId = _DB.MaxId(0) / 10;
 				return list;
 			}
 		}
-			
-
-       /* public List<Image> List()
-        {
-            MySqlConnection conn = new MySqlConnection(_DB.connection.ToString());
-            MySqlCommand cmd;
-            
-            try
-            {
-                if (Id == 0 || Id == 1)
-                {
-                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id ORDER BY id DESC LIMIT 10;", conn);
-                    
-                    conn.Open();
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        list.Add(new Image
-                        {
-                            Id = int.Parse(reader["id"].ToString()),
-                            Uri = reader["uri"].ToString(),
-                            Author = reader["author"].ToString(),
-                            Points = int.Parse(reader["points"].ToString()),
-                            Date = reader["date"].ToString()
-                        });
-                    }
-
-                    conn.Close();
-                    return list;
-                }
-                else
-                {
-                    cmd = new MySqlCommand($"SELECT * FROM imgs WHERE id ORDER BY id DESC LIMIT 10 OFFSET {Id*10-10};", conn);
-
-                    conn.Open();
-                    MySqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        list.Add(new Image
-                        {
-                            Id = int.Parse(reader["id"].ToString()),
-                            Uri = reader["uri"].ToString(),
-                            Author = reader["author"].ToString(),
-                            Points = int.Parse(reader["points"].ToString()),
-                            Date = reader["date"].ToString()
-                        });
-                    }
-
-                    conn.Close();
-                    return list;
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }*/
     }
 }

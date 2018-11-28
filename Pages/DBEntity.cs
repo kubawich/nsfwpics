@@ -82,25 +82,60 @@ namespace NSFWpics.DBEntities
         /// <returns>
         /// Returns highest ID from DB
         /// </returns>
-        public int MaxId()
+        public int MaxId(int siteType)
         {
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;
             var Id = 1;
-            cmd = new MySqlCommand($"SELECT MAX(id) " +
-                $"FROM imgs;", conn);
+			if (siteType == 0)
+			{
+				cmd = new MySqlCommand($"SELECT MAX(id) " +
+					$"FROM imgs;", conn);
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
 
-            conn.Open();
-            MySqlDataReader reader = cmd.ExecuteReader();
+				while (reader.Read())
+				{
+					Id = int.Parse(reader["max(id)"].ToString());
+				}
+				int MaxId = Id;
 
-            while (reader.Read())
-            {
-                Id = int.Parse(reader["max(id)"].ToString());
-            }
-            int MaxId = Id;
+				conn.Close();
+				return MaxId;
+			}
+			else if (siteType == 1)
+			{
+				cmd = new MySqlCommand($"SELECT MAX(id) " +
+					$"FROM imgs WHERE uri LIKE '%.png' OR uri LIKE '%.jpg' OR uri LIKE '%.jpeg';", conn);
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
 
-            conn.Close();
-            return MaxId;
+				while (reader.Read())
+				{
+					Id = int.Parse(reader["max(id)"].ToString());
+				}
+				int MaxId = Id;
+
+				conn.Close();
+				return MaxId;
+			}
+			else if (siteType == 2)
+			{
+				cmd = new MySqlCommand($"SELECT MAX(id) " +
+					$"FROM imgs WHERE uri LIKE '%.webm' OR uri LIKE '%.gif' OR uri LIKE '%.mp4';", conn);
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					Id = int.Parse(reader["max(id)"].ToString());
+				}
+				int MaxId = Id;
+
+				conn.Close();
+				return MaxId;
+			}
+			return 10;
         }
 
         /// <summary>
@@ -212,7 +247,7 @@ namespace NSFWpics.DBEntities
         public Image Random(Image image)
         {
             Random rand = new Random();
-			int MaxId = this.MaxId();
+			int MaxId = this.MaxId(0);
             int i = rand.Next(9, MaxId+1);
 
             MySqlConnection conn2 = new MySqlConnection(connection.ToString());
@@ -478,7 +513,7 @@ namespace NSFWpics.DBEntities
             cmd.ExecuteNonQuery();
             conn.Close();
 
-			int MaxId = this.MaxId();
+			int MaxId = this.MaxId(0);
 			cmd = new MySqlCommand($"ALTER TABLE imgs " +
 				$"AUTO_INCREMENT = {MaxId}", conn);
             conn.Open();

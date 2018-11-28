@@ -95,7 +95,7 @@
             </summary>
             <param name="ID">Number for identifying image in DB</param>
         </member>
-        <member name="M:NSFWpics.DBEntities.DBEntity.MaxId">
+        <member name="M:NSFWpics.DBEntities.DBEntity.MaxId(System.Int32)">
             <summary>
             Gets last ID entrance from DB
             </summary>
