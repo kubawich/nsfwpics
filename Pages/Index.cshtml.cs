@@ -27,6 +27,7 @@ namespace NSFWpics.Pages
 			{
 				return Redirect("/");
 			}
+			MaxId = _DB.MaxId();
 			Id = id;
 			return Page();
 		}
