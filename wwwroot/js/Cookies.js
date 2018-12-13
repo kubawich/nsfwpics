@@ -29,18 +29,20 @@ function delCookie(cname) {
 	console.log(`Deleted cookie ${cname}`)
 }
 
-//Check if loged in cookie is set
+//Check if loged in cookie is set and modify nav
 if (getCookie("user_loged_in") == "true") {
 	console.log("user_loged_in");
 	var logins = document.getElementsByClassName("login_nav_big");
 	for (var i = 0; i < logins.length; i++) { logins[i].innerText = getCookie("login"); }
 	document.getElementById("add_nav_big").insertAdjacentHTML('afterbegin',`<a href="/Add" class="waves-effect waves-light red lighten-3 btn-small">Add</a>`);
 	document.getElementById("add_nav_small").insertAdjacentHTML('afterbegin', `<li ><a href="/Add">Add</a></li>`);
+	document.getElementById("LoginPage").setAttribute("href", "/user/14")
 }
 else {
 	console.log(`user not loged in`);
 }
 
+//Img/vid/all cattegories changer
 if (!getCookie("viewType")) {
 	document.getElementById("changeView2").style.backgroundColor = "crimson";
 	var d = document.getElementById("changeView2").firstChild;

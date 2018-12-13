@@ -170,15 +170,47 @@ namespace NSFWpics.DBEntities
             conn.Close();
         }
 
-        /// <summary>
-        /// Returns image with given id
-        /// </summary>
-        /// <param name="ID">Number for identifying image in DB</param>
-        /// <param name="image">Returns class based on DB table architecture</param>
-        /// <returns>
-        /// Returns Image module from DB with given Image's id
-        /// </returns>
-        public Image View(int ID, Image image)
+		/// <summary>
+		/// Adds cdn's uploaded photo to page's queue
+		/// </summary>
+		/// <param name="MaxIdPlusOne">Required to increment photo's id in DB</param>       
+		/// <param name="file">File to upload</param>
+		public void UploadImgToQueue(int MaxIdPlusOne, IFormFile file, string login)
+		{
+			using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+			{
+				if (file != null)
+				{
+					client.Connect();
+					client.ChangeDirectory("/var/www/html/img_queue");
+					using (FileStream fs = new FileStream(Path.GetFileName(file.FileName), FileMode.Create))
+					{
+						client.UploadFile(file.OpenReadStream(),
+							$"{MaxIdPlusOne}{Path.GetExtension(file.FileName)}");
+					}
+				}
+				client.Disconnect();
+				client.Dispose();
+			}
+
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+			cmd = new MySqlCommand($"INSERT INTO queue(uri,author,points) " +
+				$"VALUES('https://cdn.nsfwpics.pw/img_queue/{MaxIdPlusOne}{Path.GetExtension(file.FileName)}','{login}',0)", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+		}
+
+		/// <summary>
+		/// Returns image with given id
+		/// </summary>
+		/// <param name="ID">Number for identifying image in DB</param>
+		/// <param name="image">Returns class based on DB table architecture</param>
+		/// <returns>
+		/// Returns Image module from DB with given Image's id
+		/// </returns>
+		public Image View(int ID, Image image)
         {
             MySqlConnection conn = new MySqlConnection(connection.ToString());
             MySqlCommand cmd;

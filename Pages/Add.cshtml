@@ -4,13 +4,18 @@
 @{
     ViewData["Title"] = "Add";
 }
+<style>
+	.preview>ol>li>img{
+		width: 100%;
+	}
+</style>
 <div class="container file_add" id="app2">
    <h1 class="center-align">Add</h1>
 	</br>
     <form method="post" enctype="multipart/form-data">
 		 <div class="container">
 			 <div class="file-field input-field row">
-			 	<div class="btn blue lighten-1 waves-effect waves-light  col s12 m5">
+			 	<div class="btn blue lighten-1 waves-effect waves-light  col s12 m5" id="file_button">
 			 		<i class="material-icons left">cloud</i>
 			 		<span>File</span>
 			 		<input type="file" asp-for="Upload">
@@ -26,7 +31,7 @@
 			 	<br />
 			 	<br />
 			 	<br />
-			 	<div id="img_load">
+			 	<div id="img_load col s12">
 			 		<!--Here comes js genereted preloader =))-->
 			 	</div>
 			 </div>
@@ -59,13 +64,18 @@
             for (var i = 0; i < curFiles.length; i++) {
                 var listItem = document.createElement('li');
                 var para1 = document.createElement('p');
-                if (validFileType(curFiles[i])) {
+					if (validFileType(curFiles[i])) {
                     para1.textContent = 'File name ' + curFiles[i].name + ', file size ' + returnFileSize(curFiles[i].size) + '.';
-                    var image = document.createElement('img');
+						var image = document.createElement('img');
+						var video = document.createElement('video');
                     image.src = window.URL.createObjectURL(curFiles[i]);
                     listItem.appendChild(image);
-                    listItem.appendChild(para1);
-                } else {
+						listItem.appendChild(para1);
+						video.src = window.URL.createObjectURL(curFiles[i]);
+						listItem.appendChild(video);
+						listItem.appendChild(para1);
+					}
+					else {
                     para.textContent = 'File name ' + curFiles[i].name + ': Not a valid file type. Update your selection.';
                     listItem.appendChild(para1);
                 }
@@ -101,11 +111,11 @@
 </script>
 <script>
     function showUpload() {
-        let img_upload = document.getElementById("img_load");
-        var upload_node = '<blockquote id="waitquote" style="font-weight:bold; color:black;">Wait until file\'s uploaded, it may take some time, dependent on your bandwith</blockquote><div class="progress" style="border-radius:10px; margin:1.5rem 0 1rem 0; height:7px;" id="preloader"><br/><br/><div class="indeterminate" id="preloader_bar" style="background-color:#42a5f5;"></div>';
-        img_upload.innerHTML = upload_node;
-		  let upload_button = document.getElementById("upload_button");
-		  upload_button.classList.add("disabled");
-			setTimeout(function () { upload_button.parentNode.removeChild(upload_button); }, 200);
+       let img_upload = document.getElementById("img_load");
+       var upload_node = '<blockquote id="waitquote" style="font-weight:bold; color:black;">Wait until file\'s uploaded, it may take some time, dependent on your bandwith</blockquote><div class="progress" style="border-radius:10px; margin:1.5rem 0 1rem 0; height:7px;" id="preloader"><br/><br/><div class="indeterminate" id="preloader_bar" style="background-color:#42a5f5;"></div>';
+       img_upload.innerHTML = upload_node;
+		 let upload_button = document.getElementById("upload_button");
+		 let file_button = document.getElementById("file_button");
+		 setTimeout(function () { upload_button.remove(); file_button.remove(); }, 200);
     }
 </script>

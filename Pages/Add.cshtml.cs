@@ -19,6 +19,7 @@ namespace NSFWpics.Pages
 {
     public class AddModel : PageModel
     {
+		DBEntities.DBEntity _DB = new DBEntities.DBEntity();
         [BindProperty]
         public IFormFile Upload { get; set; }
 
@@ -28,7 +29,7 @@ namespace NSFWpics.Pages
         {
             var MaxId = DBEntities.DBEntity.Instance.MaxId(0) + 1;
 
-			new DBEntities.DBEntity().UploadImgToDb(MaxId, Upload, Request.Cookies["login"]);
+			_DB.UploadImgToQueue(MaxId, Upload, Request.Cookies["login"]);
 			
             return  Redirect("/Add");
         }

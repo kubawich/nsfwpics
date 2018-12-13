@@ -110,6 +110,13 @@
             <param name="MaxIdPlusOne">Required to increment photo's id in DB</param>l        
             /// <param name="file">File to upload</param>
         </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.UploadImgToQueue(System.Int32,Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            Adds cdn's uploaded photo to page's queue
+            </summary>
+            <param name="MaxIdPlusOne">Required to increment photo's id in DB</param>       
+            <param name="file">File to upload</param>
+        </member>
         <member name="M:NSFWpics.DBEntities.DBEntity.View(System.Int32,NSFWpics.Pages.Image)">
             <summary>
             Returns image with given id
