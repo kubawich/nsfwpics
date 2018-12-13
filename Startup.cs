@@ -55,7 +55,7 @@ namespace NSFWpics
 
 			app.UseCors(builder => builder.WithOrigins("https://nsfwpics.pw").AllowAnyHeader());
 
-			//app.UseStaticFiles();
+			app.UseStaticFiles();
 
             app.UseMvc();                     
         }
