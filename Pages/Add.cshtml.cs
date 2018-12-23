@@ -27,7 +27,7 @@ namespace NSFWpics.Pages
         [RequestSizeLimit(40000000)]
 		public IActionResult OnPostAsync(IFormFile files)
         {
-            var MaxId = DBEntities.DBEntity.Instance.MaxId(0) + 1;
+            var MaxId = DBEntities.DBEntity.Instance.MaxId(3) + 1;
 
 			_DB.UploadImgToQueue(MaxId, Upload, Request.Cookies["login"]);
 			

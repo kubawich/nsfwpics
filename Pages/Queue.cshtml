@@ -1,0 +1,298 @@
+﻿@page  "{id:int?}"
+@model QueueModel
+@{
+	ViewData["Title"] = "Main page";
+}
+
+<div id="app">
+	<br /><br />
+	<div id="buttonsViewChange" class="center-align">
+		<div id="changeView1" ><a href="#" onclick="setIndexViewType(1)">Images</a></div>
+		<div id="changeView2" ><a href="#" onclick="setIndexViewType(0)">All</a></div>
+		<div id="changeView3" ><a href="#" onclick="setIndexViewType(2)">Videos</a></div>
+	</div>
+	<br />
+	<br />
+	<!--PAGINATION-->
+	<div class="row">
+		@if (Model.Id == 0 || Model.Id == 1)
+		{
+			<ul class="pagination center-align ">
+				@for (int i = 1; i <= 7; i++)
+				{
+					<li class="waves-effect" id="@Model.Id"><a href="./@i">@i</a></li>
+				}
+				<li>...</li>
+				<li class="waves-effect" id="@Model.Id"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+		else if (Model.Id == Model.MaxId)
+		{
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect" id="@Model.Id"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+			</ul>
+		}
+		else if (Model.Id == Model.MaxId - 1 || Model.Id == Model.MaxId - 2 || Model.Id == Model.MaxId - 3 || Model.Id == Model.MaxId - 4)
+		{
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				<li>...</li>
+				<li class="waves-effect" id="@(Model.Id-2)"><a href="./@(Model.Id-2)">@(Model.Id - 2)</a></li>
+				<li class="waves-effect" id="@(Model.Id-1)"><a href="./@(Model.Id-1)">@(Model.Id - 1)</a></li>
+				<li class="waves-effect" id="@Model.Id"><a href="./@Model.Id">@Model.Id</a></li>
+				<li>...</li>
+				<li class="waves-effect"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+		else if (Model.Id >= 3)
+		{
+
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				<li>...</li>
+				<li class="waves-effect"><a href="./@(Model.Id - 1)">@(Model.Id - 1)</a></li>
+				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				{
+					<li class="waves-effect" id="@Model.Id"><a href="./@i">@i</a></li>
+				}
+				<li>...</li>
+				<li class="waves-effect"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+		else
+		{
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				{
+					<li class="waves-effect" id="@Model.Id"><a href="./@i">@i</a></li>
+				}
+				<li>...</li>
+				<li class="waves-effect"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+	</div>
+	<!--PAGINATION END-->
+	<br />
+	<!--CONTENT FOR MAIN PAGE-->
+	<div class="container center-align">
+		@if (Model.Id == 1 || Model.Id == 0)
+		{
+			@for (int i = (Model.Id); i < (Model.Id + 10); i++)
+			{
+				<div class="row z-depth-5" id="content_element">
+					<span id="h" class="col left ">
+						<a href="/img/view/@Model.List()[i].Id" id="img_index">#@Model.List()[i].Id </a>
+					</span>
+					<span id="feed" class="col right s-8">
+						<span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
+						<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
+					</span>
+					<br /><br />
+					@{
+						string link = Model.List()[i].Uri.ToString();
+						string extension = link.Substring(link.Length - 3);
+						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
+						{
+							<a href="/img/view/@Model.List()[i].Id" class="center-align s-12">
+								<img src="https://nsfwpics.pw/Loader.png"
+									  class=" col center-align s-12 b-lazy"
+									  data-src=""
+									  name="photo"
+									  style="float:none" />
+							</a>
+						}
+						else if (extension == "mp4" || extension == "ebm")
+						{
+							<video src="@Model.List()[i].Uri"
+									 data-src=""
+									 class="  col center-align s-12"
+									 controls loop muted autoplay />
+						}
+
+					}
+					<br />
+					<span id="img_tags">
+						By @Model.List()[i].Author at @Model.List()[i].Date
+					</span>
+					<br />
+				</div>
+				<br /><br />
+				<!--Exo network ads-->
+				@if (i % 2 == 0)
+				{
+					<p id="img_tags" class="center-align">Advertisement</p>
+					<script type="text/javascript">
+						var ad_idzone = "2935168",
+							ad_width = "300",
+							ad_height = "250";
+					</script>
+					<script type="text/javascript" src="https://ads.exosrv.com/ads.js"></script>
+					<noscript><a href="https://main.exosrv.com/img-click.php?idzone=2935168" target="_blank"><img src="https://syndication.exosrv.com/ads-iframe-display.php?idzone=2935168&output=img&type=300x250" width="300" height="250"></a></noscript>
+					<br /><br /><br />
+				}
+			}
+		}
+		else
+		{
+			<!--CONTENT FOR NEXT PAGES AFTER FIRST ONE-->
+			@for (int i = 0; i < 10; i++)
+			{
+
+				<div class="row z-depth-5" id="content_element">
+					<span id="h" class="col left ">
+						<a href="/img/view/@Model.List()[i].Id">#@Model.List()[i].Id</a>
+					</span>
+					<span id="feed" class="col right s-8">
+						<span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
+						<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>
+					</span>
+					<br /><br />
+					@{
+						string link = Model.List()[i].Uri.ToString();
+						string extension = link.Substring(link.Length - 3);
+						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
+						{
+							<a href="/img/view/@Model.List()[i].Id" class="center-align s-12">
+								<img src="https://nsfwpics.pw/Loader.png"
+									  class=" col center-align s-12 b-lazy "
+									  data-src="@Model.List()[i].Uri"
+									  alt="Photo from link @Model.List()[i].Uri"
+									  id="Photo no @Model.List()[i].Id"
+									  name="photo"
+									  style="float:none" />
+							</a>
+						}
+						else if (extension == "mp4" || extension == "ebm")
+						{
+							<video src="@Model.List()[i].Uri"
+									 data-src="@Model.List()[i].Uri"
+									 alt="Video from link @Model.List()[i].Uri"
+									 id="my-video"
+									 class="  col center-align s-12"
+									 controls loop muted autoplay />
+						}
+
+					}
+					<br />
+					<span id="img_tags">
+						By @Model.List()[i].Author at @Model.List()[i].Date
+					</span>
+					<br />
+				</div>
+				<br /><br />
+				@if (i % 2 == 0)
+				{
+					<p id="img_tags" class="center-align">Advertisement</p>
+					<script type="text/javascript">
+						var ad_idzone = "2935168",
+							ad_width = "300",
+							ad_height = "250";
+					</script>
+					<script type="text/javascript" src="https://ads.exosrv.com/ads.js"></script>
+					<noscript><a href="https://main.exosrv.com/img-click.php?idzone=2935168" target="_blank"><img src="https://syndication.exosrv.com/ads-iframe-display.php?idzone=2935168&output=img&type=300x250" width="300" height="250"></a></noscript>
+					<br /><br /><br />
+				}
+			}
+		}
+	</div>
+	<!--CONTETNT END-->
+	<!--PAGINATION-->
+	<div class="row ">
+		@if (Model.Id == 0 || Model.Id == 1)
+		{
+			<ul class="pagination center-align ">
+				@for (int i = 1; i <= 7; i++)
+				{
+					<li class="waves-effect" id="Down_@Model.Id"><a href="./@i">@i</a></li>
+				}
+				<li>...</li>
+				<li class="waves-effect" id="Down_@Model.Id"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+		else if (Model.Id == Model.MaxId)
+		{
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect" id="Down_@Model.Id"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+			</ul>
+		}
+		else if (Model.Id == Model.MaxId - 1 || Model.Id == Model.MaxId - 2 || Model.Id == Model.MaxId - 3 || Model.Id == Model.MaxId - 4)
+		{
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				<li>...</li>
+				<li class="waves-effect" id="@(Model.Id-2)"><a href="./@(Model.Id-2)">@(Model.Id - 2)</a></li>
+				<li class="waves-effect" id="@(Model.Id-1)"><a href="./@(Model.Id-1)">@(Model.Id - 1)</a></li>
+				<li class="waves-effect" id="Down_@Model.Id"><a href="./@Model.Id">@Model.Id</a></li>
+				<li>...</li>
+				<li class="waves-effect"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+		else if (Model.Id >= 3)
+		{
+
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				<li>...</li>
+				<li class="waves-effect"><a href="./@(Model.Id - 1)">@(Model.Id - 1)</a></li>
+				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				{
+					<li class="waves-effect" id="Down_@Model.Id"><a href="./@i">@i</a></li>
+				}
+				<li>...</li>
+				<li class="waves-effect"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+		else
+		{
+			<ul class="pagination center-align ">
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				{
+					<li class="waves-effect" id="Down_@Model.Id"><a href="./@i">@i</a></li>
+				}
+				<li>...</li>
+				<li class="waves-effect"><a href="./@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+			</ul>
+		}
+	</div>
+	<!--PAGINATION END-->
+	<br />
+	<div class="center-align">
+		<p id="img_tags" class="center-align">Advertisement</p>
+		<!--Exo network ads-->
+		<script type="text/javascript">
+			var ad_idzone = "2935150",
+				ad_width = "300",
+				ad_height = "50";
+		</script>
+		<script type="text/javascript" src="https://ads.exosrv.com/ads.js"></script>
+		<noscript><a href="https://main.exosrv.com/img-click.php?idzone=2935150" target="_blank"><img src="https://syndication.exosrv.com/ads-iframe-display.php?idzone=2935150&output=img&type=300x50" width="300" height="50"></a></noscript>
+		<br /><br />
+	</div>
+</div>
+<script src="~/js/queueEntreis.js"></script>
+<script src="~/js/enableFeed.js"></script>
+<script>
+    window.onload = paginationActiveSite(@Model.Id);
+    function paginationActiveSite(id) {
+        document.getElementById(id).classList.add("active");
+        document.getElementById(`Down_${id}`).classList.add("active");
+    }
+</script>

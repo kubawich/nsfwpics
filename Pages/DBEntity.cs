@@ -135,6 +135,22 @@ namespace NSFWpics.DBEntities
 				conn.Close();
 				return MaxId;
 			}
+			else if (siteType == 3)
+			{
+				cmd = new MySqlCommand($"SELECT MAX(id)  " +
+					$"FROM queue;", conn);
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					Id = int.Parse(reader["max(id)"].ToString());
+				}
+				int MaxId = Id;
+
+				conn.Close();
+				return MaxId;
+			}
 			return 10;
         }
 
@@ -497,6 +513,73 @@ namespace NSFWpics.DBEntities
 					$"OR uri LIKE '%.gif' " +
 					$"OR uri LIKE '%.mp4' " +
 					$"AND id " +
+					$"ORDER BY id DESC " +
+					$"LIMIT 10 OFFSET {id * 10 - 10};", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					image.Add(new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					});
+				}
+
+				conn.Close();
+				return image;
+			}
+		}
+
+		/// <summary>
+		/// Returns whole 'queue' module. Each queue site has 10 view entries
+		/// </summary>
+		/// <param name="id">Which queue site's entries to get</param>
+		/// <param name="image">Returns class based on DB table architecture</param>
+		/// <returns>
+		/// List of 10 Image entities representing given id's queue site module
+		/// </returns>
+		public List<Image> Queue(int id, List<Image> image)
+		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
+			if (id == 0 || id == 1)
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM queue " +
+					$"WHERE id " +
+					$"ORDER BY id DESC " +
+					$"LIMIT 10;", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+
+				while (reader.Read())
+				{
+					image.Add(new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					});
+				}
+
+				conn.Close();
+				return image;
+			}
+			else
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM queue " +
+					$"WHERE id " +
 					$"ORDER BY id DESC " +
 					$"LIMIT 10 OFFSET {id * 10 - 10};", conn);
 

@@ -175,6 +175,16 @@
             List of 10 videos entities representing given id's site module
             </returns>
         </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.Queue(System.Int32,System.Collections.Generic.List{NSFWpics.Pages.Image})">
+            <summary>
+            Returns whole 'queue' module. Each queue site has 10 view entries
+            </summary>
+            <param name="id">Which queue site's entries to get</param>
+            <param name="image">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 Image entities representing given id's queue site module
+            </returns>
+        </member>
         <member name="M:NSFWpics.DBEntities.DBEntity.RemoveImg(System.Int32,System.String)">
             <summary>
             Removes content with given ID and extension
