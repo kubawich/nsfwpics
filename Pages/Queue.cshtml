@@ -105,7 +105,9 @@
 							<a href="/img/view/@Model.List()[i].Id" class="center-align s-12">
 								<img src="https://nsfwpics.pw/Loader.png"
 									  class=" col center-align s-12 b-lazy"
-									  data-src=""
+									  data-src="@Model.List()[i].Uri"
+									  alt="Photo from link @Model.List()[i].Uri"
+									  id="photo no @Model.List()[i].Id"
 									  name="photo"
 									  style="float:none" />
 							</a>
@@ -113,7 +115,9 @@
 						else if (extension == "mp4" || extension == "ebm")
 						{
 							<video src="@Model.List()[i].Uri"
-									 data-src=""
+									 data-src="@Model.List()[i].Uri"
+									 alt="Video from link @Model.List()[i].Uri"
+									 id="my-video"
 									 class="  col center-align s-12"
 									 controls loop muted autoplay />
 						}
@@ -287,7 +291,6 @@
 		<br /><br />
 	</div>
 </div>
-<script src="~/js/queueEntreis.js"></script>
 <script src="~/js/enableFeed.js"></script>
 <script>
     window.onload = paginationActiveSite(@Model.Id);

@@ -25,7 +25,7 @@ namespace NSFWpics.Pages
 		{
 			if (id == 1)
 			{
-				return Redirect("/");
+				return Redirect("/queue");
 			}
 			
 			Id = id;
@@ -35,19 +35,19 @@ namespace NSFWpics.Pages
 		{
 			if (Request.Cookies["viewType"] == "images")
 			{
-				list =  DBEntities.DBEntity.Instance.SiteImgsOnly(Id, list);
+				list =  DBEntities.DBEntity.Instance.QueueImgsOnly(Id, list);
 				MaxId = _DB.MaxId(1) / 10;
 				return list;
 			}
 			else if(Request.Cookies["viewType"] == "videos")
 			{
-				list =  DBEntities.DBEntity.Instance.SiteVideosOnly(Id, list);
+				list =  DBEntities.DBEntity.Instance.QueueVideosOnly(Id, list);
 				MaxId = _DB.MaxId(2) / 10;
 				return list;
 			}
 			else
 			{
-				list = DBEntities.DBEntity.Instance.Site(Id, list);
+				list = DBEntities.DBEntity.Instance.Queue(Id, list);
 				MaxId = _DB.MaxId(0) / 10;
 				return list;
 			}
