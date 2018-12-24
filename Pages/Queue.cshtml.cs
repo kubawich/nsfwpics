@@ -36,19 +36,19 @@ namespace NSFWpics.Pages
 			if (Request.Cookies["viewType"] == "images")
 			{
 				list =  DBEntities.DBEntity.Instance.QueueImgsOnly(Id, list);
-				MaxId = _DB.MaxId(1) / 10;
+				MaxId = _DB.MaxId(3) / 10;
 				return list;
 			}
 			else if(Request.Cookies["viewType"] == "videos")
 			{
 				list =  DBEntities.DBEntity.Instance.QueueVideosOnly(Id, list);
-				MaxId = _DB.MaxId(2) / 10;
+				MaxId = _DB.MaxId(3) / 10;
 				return list;
 			}
 			else
 			{
 				list = DBEntities.DBEntity.Instance.Queue(Id, list);
-				MaxId = _DB.MaxId(0) / 10;
+				MaxId = _DB.MaxId(3) / 10;
 				return list;
 			}
 		}

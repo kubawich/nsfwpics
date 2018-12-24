@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
 	var instances = M.Modal.init(elems, {
 		preventScrolling: true,
 		dismissible: true,
-		startingTop: '30%',
+		startingTop: '50%',
 	});
 });
 
