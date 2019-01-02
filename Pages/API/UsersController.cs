@@ -50,15 +50,11 @@ namespace NSFWpics.Pages.API
 			{
 				Response.Cookies.Append("user_loged_in", "true", new CookieOptions
 				{
-					Domain = "https://nsfwpics.pw",
-					Expires = DateTimeOffset.Now.AddDays(50d),
-					Secure = true
+					Expires = DateTimeOffset.Now.AddDays(50d)
 				});
 				Response.Cookies.Append("login", login , new CookieOptions
 				{
-					Domain = "https://nsfwpics.pw",
-					Expires = DateTimeOffset.Now.AddDays(50d),
-					Secure = true
+					Expires = DateTimeOffset.Now.AddDays(50d)
 				});
 				Response.Cookies.Append("ip", Response.HttpContext.Connection.RemoteIpAddress.ToString());
 				return Redirect("https://nsfwpics.pw/");
