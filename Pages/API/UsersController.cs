@@ -48,8 +48,18 @@ namespace NSFWpics.Pages.API
 		{
 			if (DBEntities.DBEntity.Instance.Login(login,password) == "Login success")
 			{
-				Response.Cookies.Append("user_loged_in", "true");
-				Response.Cookies.Append("login", login);
+				Response.Cookies.Append("user_loged_in", "true", new CookieOptions
+				{
+					Domain = "https://nsfwpics.pw",
+					Expires = DateTimeOffset.Now.AddDays(50d),
+					Secure = true
+				});
+				Response.Cookies.Append("login", login , new CookieOptions
+				{
+					Domain = "https://nsfwpics.pw",
+					Expires = DateTimeOffset.Now.AddDays(50d),
+					Secure = true
+				});
 				Response.Cookies.Append("ip", Response.HttpContext.Connection.RemoteIpAddress.ToString());
 				return Redirect("https://nsfwpics.pw/");
 			} else return Redirect("https://nsfwpics.pw/Login?loged=false");

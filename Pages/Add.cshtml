@@ -18,7 +18,7 @@
 			 	<div class="btn blue lighten-1 waves-effect waves-light  col s12 m5" id="file_button">
 			 		<i class="material-icons left">cloud</i>
 			 		<span>File</span>
-			 		<input type="file" asp-for="Upload">
+			 		<input type="file" asp-for="Upload" class="input">
 			 	</div>
 			 	<div class="col m1"></div>
 			 	<div>
@@ -46,7 +46,7 @@
 <br /><br />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script>
-    var input = document.querySelector('input');
+    var input = document.querySelector('.input');
     var preview = document.querySelector('.preview');
     input.addEventListener('change', updateImageDisplay);
     function updateImageDisplay() {

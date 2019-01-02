@@ -82,6 +82,8 @@ if (getCookie("site") == "main" || getCookie("site") == null) {
 	navButtonBig.innerText = "Main";
 	var radio = document.getElementById('siteMain');
 	radio.checked = true;
+	var radioBig = document.getElementById('siteMainBig');
+	radioBig.checked = true;
 }
 else if (getCookie("site") == "queue") {
 	var navButton = document.getElementById('siteName');
@@ -90,6 +92,8 @@ else if (getCookie("site") == "queue") {
 	navButtonBig.innerText = "Waiting";
 	var radio = document.getElementById('siteQueue');
 	radio.checked = true;
+	var radioBig = document.getElementById('siteQueueBig');
+	radioBig.checked = true;
 }
 
 

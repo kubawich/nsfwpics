@@ -27,14 +27,24 @@ namespace NSFWpics.Pages
 		/// Removes content with given ID and extension
 		/// </summary>
 		/// <param name="id">ID of content entry to remove</param>
+		/// <param name="type">What site it's related to? Main or queue (0/1)</param>
 		/// <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
 		/// <returns>Json with sucedeed status</returns>
 		[Produces("application/json")]
-		[HttpDelete("{id}")]
-        public JsonResult Delete([FromRoute]int id, [FromQuery] string extension)
+		[HttpDelete("{id}/{type}")]
+        public JsonResult Delete([FromRoute]int id, [FromRoute]int type, [FromQuery] string extension)
         {
-            DBEntities.DBEntity.Instance.RemoveImg(id, extension);
-			return Json($"Removed entity at id: {id}");
+			if (type == 0)
+			{
+				DBEntities.DBEntity.Instance.RemoveImg(id, extension);
+				return Json($"Removed main site entity at id: {id}");
+			}
+			else if (type == 1)
+			{
+				DBEntities.DBEntity.Instance.RemoveQueueImg(id, extension);
+				return Json($"Removed queue entity at id: {id}");
+			}
+			else return null;
         }
     }
 }

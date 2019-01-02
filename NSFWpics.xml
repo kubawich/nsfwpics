@@ -60,11 +60,12 @@
             <param name="uid">User's id to delete</param>
             <returns>JSON result of delete action</returns>
         </member>
-        <member name="M:NSFWpics.Pages.ViewController.Delete(System.Int32,System.String)">
+        <member name="M:NSFWpics.Pages.ViewController.Delete(System.Int32,System.Int32,System.String)">
             <summary>
             Removes content with given ID and extension
             </summary>
             <param name="id">ID of content entry to remove</param>
+            <param name="type">What site it's related to? Main or queue (0/1)</param>
             <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
             <returns>Json with sucedeed status</returns>
         </member>
@@ -208,6 +209,13 @@
         <member name="M:NSFWpics.DBEntities.DBEntity.RemoveImg(System.Int32,System.String)">
             <summary>
             Removes content with given ID and extension
+            </summary>
+            <param name="id">ID of content entry to remove</param>
+            <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+        </member>
+        <member name="M:NSFWpics.DBEntities.DBEntity.RemoveQueueImg(System.Int32,System.String)">
+            <summary>
+            Removes content with given ID and extension from queue
             </summary>
             <param name="id">ID of content entry to remove</param>
             <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>

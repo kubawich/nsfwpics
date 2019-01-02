@@ -786,6 +786,39 @@ namespace NSFWpics.DBEntities
             conn.Close();
 		}
 
+		/// <summary>
+		/// Removes content with given ID and extension from queue
+		/// </summary>
+		/// <param name="id">ID of content entry to remove</param>
+		/// <param name="extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+		public void RemoveQueueImg(int id, string extension)
+		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
+			using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+			{
+				client.Connect();
+				client.ChangeDirectory($"/var/www/html/img_queue");
+				client.DeleteFile($"{id}.{extension}");
+				client.Disconnect();
+				client.Dispose();
+			}
+
+			cmd = new MySqlCommand($"DELETE FROM queue " +
+				$"WHERE id = {id};", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+
+			int MaxId = this.MaxId(3);
+			cmd = new MySqlCommand($"ALTER TABLE queue " +
+				$"AUTO_INCREMENT = {MaxId}", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+		}
+
 		//User based tools
 
 		/// <summary>
