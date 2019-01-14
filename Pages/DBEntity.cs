@@ -819,6 +819,102 @@ namespace NSFWpics.DBEntities
 			conn.Close();
 		}
 
+		public void PromoteImage(int? id)
+		{
+			MySqlConnection conn = new MySqlConnection(connection.ToString());
+			MySqlCommand cmd;
+
+			if (id == null)
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM queue " +
+					$"WHERE id = {MaxId(3)}", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+				Image promotedImg = null;
+
+				while (reader.Read())
+				{
+					promotedImg = new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					};
+				}
+				conn.Close();
+
+				using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+				{
+					client.Connect();
+					client.ChangeDirectory($"/var/www/html/img_queue");
+					client.Get($"{MaxId(3)}{Path.GetExtension(promotedImg.Uri)}").MoveTo($"/var/www/html/img/{MaxId(0) + 1}{Path.GetExtension(promotedImg.Uri)}");
+					client.Disconnect();
+					client.Dispose();
+				}
+
+				cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
+					$"VALUES('https://cdn.nsfwpics.pw/img/{(MaxId(0) + 1)}{Path.GetExtension(promotedImg.Uri)}','{promotedImg.Author}',{promotedImg.Points})", conn);
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				cmd = new MySqlCommand($"DELETE FROM queue " +
+					$"WHERE id = {promotedImg.Id};", conn);
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+			}
+			else
+			{
+				cmd = new MySqlCommand($"SELECT * " +
+					$"FROM queue " +
+					$"WHERE id = {id}", conn);
+
+				conn.Open();
+				MySqlDataReader reader = cmd.ExecuteReader();
+				Image promotedImg = null;
+
+				while (reader.Read())
+				{
+					promotedImg = new Image
+					{
+						Id = int.Parse(reader["id"].ToString()),
+						Uri = reader["uri"].ToString(),
+						Author = reader["author"].ToString(),
+						Points = int.Parse(reader["points"].ToString()),
+						Date = reader["date"].ToString()
+					};
+				}
+				conn.Close();
+
+				using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+				{
+					client.Connect();
+					client.ChangeDirectory($"/var/www/html/img_queue");
+					client.Get($"{promotedImg.Id}{Path.GetExtension(promotedImg.Uri)}").MoveTo($"/var/www/html/img/{MaxId(0) + 1}{Path.GetExtension(promotedImg.Uri)}");
+					client.Disconnect();
+					client.Dispose();
+				}
+
+				cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
+					$"VALUES('https://cdn.nsfwpics.pw/img/{(MaxId(0) + 1)}{Path.GetExtension(promotedImg.Uri)}','{promotedImg.Author}',{promotedImg.Points})", conn);
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				cmd = new MySqlCommand($"DELETE FROM queue " +
+					$"WHERE id = {promotedImg.Id};", conn);
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+			}
+		}
+
+
 		//User based tools
 
 		/// <summary>

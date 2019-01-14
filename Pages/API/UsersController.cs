@@ -56,6 +56,7 @@ namespace NSFWpics.Pages.API
 				{
 					Expires = DateTimeOffset.Now.AddDays(50d)
 				});
+
 				Response.Cookies.Append("ip", Response.HttpContext.Connection.RemoteIpAddress.ToString());
 				return Redirect("https://nsfwpics.pw/");
 			} else return Redirect("https://nsfwpics.pw/Login?loged=false");
