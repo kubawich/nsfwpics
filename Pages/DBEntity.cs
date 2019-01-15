@@ -867,6 +867,12 @@ namespace NSFWpics.DBEntities
 				conn.Open();
 				cmd.ExecuteNonQuery();
 				conn.Close();
+
+				cmd = new MySqlCommand($"ALTER TABLE queue " +
+				$"AUTO_INCREMENT = {MaxId(3)}", conn);
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
 			}
 			else
 			{
@@ -908,6 +914,12 @@ namespace NSFWpics.DBEntities
 
 				cmd = new MySqlCommand($"DELETE FROM queue " +
 					$"WHERE id = {promotedImg.Id};", conn);
+				conn.Open();
+				cmd.ExecuteNonQuery();
+				conn.Close();
+
+				cmd = new MySqlCommand($"ALTER TABLE queue " +
+				$"AUTO_INCREMENT = {MaxId(3)}", conn);
 				conn.Open();
 				cmd.ExecuteNonQuery();
 				conn.Close();
