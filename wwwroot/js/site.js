@@ -62,20 +62,28 @@ function ChangeSite(type) {
 		var radioBig = document.getElementById('siteMainBig');
 		radio.checked = true;
 		radioBig.checked = true;
-		setCookie("site", "main", 1);
-		window.location.replace("https://nsfwpics.pw/");		
+		setCookie("site", "main", 0);
+		window.location.replace("https://nsfwpics.pw/");
 	}
 	else if (type == 'queue') {
 		var radio = document.getElementById('siteQueue');
 		var radioBig = document.getElementById('siteQueueBig');
 		radio.checked = true;
 		radioBig.checked = true;
-		setCookie("site", "queue", 1);
-		window.location.replace("https://nsfwpics.pw/queue");		
+		setCookie("site", "queue", 0);
+		window.location.replace("https://nsfwpics.pw/queue");
+	}
+	else {
+		var radio = document.getElementById('siteMain');
+		var radioBig = document.getElementById('siteMainBig');
+		radio.checked = true;
+		radioBig.checked = true;
+		setCookie("site", "main", 0);
+		window.location.replace("https://nsfwpics.pw/");
 	}
 }
 
-if (getCookie("site") == "main" || getCookie("site") == null) {
+if (getCookie("site") == "main" || getCookie("site") == null || window.location.pathname == '/') {
 	var navButton = document.getElementById('siteName');
 	var navButtonBig = document.getElementById('siteNameBig');
 	navButton.innerText = "Main";
@@ -85,7 +93,7 @@ if (getCookie("site") == "main" || getCookie("site") == null) {
 	var radioBig = document.getElementById('siteMainBig');
 	radioBig.checked = true;
 }
-else if (getCookie("site") == "queue") {
+else if (getCookie("site") == "queue" || window.location.pathname == '/queue') {
 	var navButton = document.getElementById('siteName');
 	var navButtonBig = document.getElementById('siteNameBig');
 	navButton.innerText = "Waiting";
