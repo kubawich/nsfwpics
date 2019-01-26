@@ -12,11 +12,11 @@ namespace NSFWpics.Pages
 {
     public class IndexModel : PageModel
     {
-        readonly DBEntities.DBEntity _DB = new DBEntities.DBEntity();
+        static DBEntities.DBEntity _DB = new DBEntities.DBEntity();
         public List<Image> list = new List<Image>();
         public int Id { get; set; }
         public int PageIncrement { get; set; }
-        public int MaxId { get; set; } 
+		public int MaxId { get; set; } = _DB.MaxId(0) / 10;
 
         [BindProperty]
         public Image Image { get; set; }

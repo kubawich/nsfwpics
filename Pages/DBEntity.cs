@@ -77,7 +77,7 @@ namespace NSFWpics.DBEntities
         }
 
         /// <summary>
-        /// Gets last ID entrance from DB
+        /// Gets last ID entrance from DB (0 = mine, 1 = mine images, 2 = mine videos, 3 = queue)
         /// </summary>
         /// <returns>
         /// Returns highest ID from DB

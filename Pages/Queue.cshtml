@@ -1,82 +1,88 @@
 ﻿@page  "{id:int?}"
 @model QueueModel
 @{
-	ViewData["Title"] = "Waiting";
+	 ViewData["Title"] = "Waiting";
+	 var ID = Model.Id;
+	 var MAX_ID = Model.MaxId;
+	 var CONTENT = Model.List();
 }
 
 <div id="app">
 	<br /><br />
 	<div id="buttonsViewChange" class="center-align">
-		<div id="changeView1" ><a href="#" onclick="setIndexViewType(1)">Images</a></div>
-		<div id="changeView2" ><a href="#" onclick="setIndexViewType(0)">All</a></div>
-		<div id="changeView3" ><a href="#" onclick="setIndexViewType(2)">Videos</a></div>
+		<div id="changeView1" ><a href="/queue" onclick="setIndexViewType(1)">Images</a></div>
+		<div id="changeView2" ><a href="/queue" onclick="setIndexViewType(0)">All</a></div>
+		<div id="changeView3" ><a href="/queue" onclick="setIndexViewType(2)">Videos</a></div>
 	</div>
 	<br />
 	<br />
 	<!--PAGINATION-->
 	<div class="row">
-		@if (Model.Id == 0 || Model.Id == 1)
+		@if (ID == 0 || ID == 1)
 		{
 			<ul class="pagination center-align ">
 				@for (int i = 1; i <= 7; i++)
 				{
-					<li class="waves-effect" id="@Model.Id"><a href="./queue/@i">@i</a></li>
+					<li class="waves-effect" id="@ID"><a href="/queue/@i">@i</a></li>
 				}
 				<li>...</li>
-				<li class="waves-effect" id="@Model.Id"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect" id="@ID"><a href="/queue/@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="https://nsfwpics.pw/queue/@(ID+2)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
-		else if (Model.Id == Model.MaxId)
+		else if (ID == MAX_ID)
 		{
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect" id="@Model.Id"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="https://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect" id="@ID"><a href="./@MAX_ID">@MAX_ID</a></li>
 			</ul>
 		}
-		else if (Model.Id == Model.MaxId - 1 || Model.Id == Model.MaxId - 2 || Model.Id == Model.MaxId - 3 || Model.Id == Model.MaxId - 4)
+		else if (ID == MAX_ID - 1 || ID == MAX_ID - 2 || ID == MAX_ID - 3 || ID == MAX_ID - 4)
 		{
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect"><a href="./queue/1">1</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
 				<li>...</li>
-				<li class="waves-effect" id="@(Model.Id-2)"><a href="./queue/@(Model.Id-2)">@(Model.Id - 2)</a></li>
-				<li class="waves-effect" id="@(Model.Id-1)"><a href="./queue/@(Model.Id-1)">@(Model.Id - 1)</a></li>
-				<li class="waves-effect" id="@Model.Id"><a href="./queue/@Model.Id">@Model.Id</a></li>
+				<li class="waves-effect" id="@(ID-2)"><a href="./@(ID-2)">@(ID - 2)</a></li>
+				<li class="waves-effect" id="@(ID-1)"><a href="./@(ID-1)">@(ID - 1)</a></li>
+				<li class="waves-effect" id="@ID"><a href="./@ID">@ID</a></li>
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID+1)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
-		else if (Model.Id >= 3)
+		else if (ID >= 3)
 		{
 
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect"><a href="./queue/1">1</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@(Model.Id - 1)">@(Model.Id - 1)</a></li>
-				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				<li class="waves-effect"><a href="./@(ID - 1)">@(ID - 1)</a></li>
+				@if (ID >= 7)
 				{
-					<li class="waves-effect" id="@Model.Id"><a href="./queue/@i">@i</a></li>
+					@for (int i = ID; i <= (ID + 4); i++)
+					{
+						<li class="waves-effect" id="@ID"><a href="./@i">@i</a></li>
+					}
 				}
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID+1)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
 		else
 		{
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect"><a href="./queue/1">1</a></li>
-				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				@for (int i = ID; i <= (ID + 4); i++)
 				{
-					<li class="waves-effect" id="@Model.Id"><a href="./queue/@i">@i</a></li>
+					<li class="waves-effect" id="@ID"><a href="./@i">@i</a></li>
 				}
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID+1)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
 	</div>
@@ -84,39 +90,39 @@
 	<br />
 	<!--CONTENT FOR MAIN PAGE-->
 	<div class="container center-align">
-		@if (Model.Id == 1 || Model.Id == 0)
+		@if (ID == 1 || ID == 0)
 		{
-			@for (int i = (Model.Id); i < (Model.Id + 10); i++)
+			@for (int i = (ID); i < (ID + 10); i++)
 			{
 				<div class="row z-depth-5" id="content_element">
 					<span id="h" class="col left ">
-						<a>#@Model.List()[i].Id </a>
+						<a>#@CONTENT[i].Id </a>
 					</span>
 					<span id="feed" class="col right s-8">
-						<span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
-						<!--<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>-->
+						<span id="points_@CONTENT[i].Id" class="points">@CONTENT[i].Points</span>
+						<!--<button onclick="plus(@CONTENT[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@CONTENT[i].Id"><i class="material-icons">thumb_up</i></button>-->
 					</span>
 					<br /><br />
 					@{
-						string link = Model.List()[i].Uri.ToString();
+						string link = CONTENT[i].Uri.ToString();
 						string extension = link.Substring(link.Length - 3);
 						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 						{
 							  <a class="center-align s-12">
 								<img src="https://nsfwpics.pw/Loader.png"
 									  class=" col center-align s-12 b-lazy"
-									  data-src="@Model.List()[i].Uri"
-									  alt="Photo from link @Model.List()[i].Uri"
-									  id="photo no @Model.List()[i].Id"
+									  data-src="@CONTENT[i].Uri"
+									  alt="Photo from link @CONTENT[i].Uri"
+									  id="photo no @CONTENT[i].Id"
 									  name="photo"
 									  style="float:none" />
 								  </a>
 						}
 						else if (extension == "mp4" || extension == "ebm")
 						{
-							<video src="@Model.List()[i].Uri"
-									 data-src="@Model.List()[i].Uri"
-									 alt="Video from link @Model.List()[i].Uri"
+							<video src="@CONTENT[i].Uri"
+									 data-src="@CONTENT[i].Uri"
+									 alt="Video from link @CONTENT[i].Uri"
 									 id="my-video"
 									 class="  col center-align s-12"
 									 controls loop muted preload="metadata" poster="./video_fallback.webp" />
@@ -124,7 +130,7 @@
 					}
 					<br />
 					<span id="img_tags">
-						By @Model.List()[i].Author at @Model.List()[i].Date
+						By @CONTENT[i].Author at @CONTENT[i].Date
 					</span>
 					<br />
 				</div>
@@ -151,33 +157,33 @@
 			{
 				<div class="row z-depth-5" id="content_element">
 					<span id="h" class="col left ">
-						<a>#@Model.List()[i].Id</a>
+						<a>#@CONTENT[i].Id</a>
 					</span>
 					<span id="feed" class="col right s-8">
-						<span id="points_@Model.List()[i].Id" class="points">@Model.List()[i].Points</span>
-						<!--<button onclick="plus(@Model.List()[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@Model.List()[i].Id"><i class="material-icons">thumb_up</i></button>-->
+						<span id="points_@CONTENT[i].Id" class="points">@CONTENT[i].Points</span>
+						<!--<button onclick="plus(@CONTENT[i].Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@CONTENT[i].Id"><i class="material-icons">thumb_up</i></button>-->
 					</span>
 					<br /><br />
 					@{
-						string link = Model.List()[i].Uri.ToString();
+						string link = CONTENT[i].Uri.ToString();
 						string extension = link.Substring(link.Length - 3);
 						if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
 						{
-							<a href="/img/view/@Model.List()[i].Id" class="center-align s-12">
+							<a href="/img/view/@CONTENT[i].Id" class="center-align s-12">
 								<img src="https://nsfwpics.pw/Loader.png"
 									  class=" col center-align s-12 b-lazy "
-									  data-src="@Model.List()[i].Uri"
-									  alt="Photo from link @Model.List()[i].Uri"
-									  id="Photo no @Model.List()[i].Id"
+									  data-src="@CONTENT[i].Uri"
+									  alt="Photo from link @CONTENT[i].Uri"
+									  id="Photo no @CONTENT[i].Id"
 									  name="photo"
 									  style="float:none" />
 							</a>
 						}
 						else if (extension == "mp4" || extension == "ebm")
 						{
-							<video src="@Model.List()[i].Uri"
-									 data-src="@Model.List()[i].Uri"
-									 alt="Video from link @Model.List()[i].Uri"
+							<video src="@CONTENT[i].Uri"
+									 data-src="@CONTENT[i].Uri"
+									 alt="Video from link @CONTENT[i].Uri"
 									 id="my-video"
 									 class="  col center-align s-12"
 									 controls loop muted preload="metadata" poster="./video_fallback.webp" />
@@ -185,7 +191,7 @@
 					}
 					<br />
 					<span id="img_tags">
-						By @Model.List()[i].Author at @Model.List()[i].Date
+						By @CONTENT[i].Author at @CONTENT[i].Date
 					</span>
 					<br />
 				</div>
@@ -208,68 +214,68 @@
 	<!--CONTETNT END-->
 	<!--PAGINATION-->
 	<div class="row ">
-		@if (Model.Id == 0 || Model.Id == 1)
+		@if (ID == 0 || ID == 1)
 		{
 			<ul class="pagination center-align ">
 				@for (int i = 1; i <= 7; i++)
 				{
-					<li class="waves-effect" id="Down_@Model.Id"><a href="./queue/@i">@i</a></li>
+					<li class="waves-effect" id="Down_@ID"><a href="./@i">@i</a></li>
 				}
 				<li>...</li>
-				<li class="waves-effect" id="Down_@Model.Id"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+2)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect" id="Down_@ID"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID+2)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
-		else if (Model.Id == Model.MaxId)
+		else if (ID == MAX_ID)
 		{
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect" id="Down_@Model.Id"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect" id="Down_@ID"><a href="./@MAX_ID">@MAX_ID</a></li>
 			</ul>
 		}
-		else if (Model.Id == Model.MaxId - 1 || Model.Id == Model.MaxId - 2 || Model.Id == Model.MaxId - 3 || Model.Id == Model.MaxId - 4)
+		else if (ID == MAX_ID - 1 || ID == MAX_ID - 2 || ID == MAX_ID - 3 || ID == MAX_ID - 4)
 		{
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect"><a href="./queue/1">1</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
 				<li>...</li>
-				<li class="waves-effect" id="@(Model.Id-2)"><a href="./queue/@(Model.Id-2)">@(Model.Id - 2)</a></li>
-				<li class="waves-effect" id="@(Model.Id-1)"><a href="./queue/@(Model.Id-1)">@(Model.Id - 1)</a></li>
-				<li class="waves-effect" id="Down_@Model.Id"><a href="./queue/@Model.Id">@Model.Id</a></li>
+				<li class="waves-effect" id="@(ID-2)"><a href="./@(ID-2)">@(ID - 2)</a></li>
+				<li class="waves-effect" id="@(ID-1)"><a href="./@(ID-1)">@(ID - 1)</a></li>
+				<li class="waves-effect" id="Down_@ID"><a href="./@ID">@ID</a></li>
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID+1)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
-		else if (Model.Id >= 3)
+		else if (ID >= 3)
 		{
 
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect"><a href="./queue/1">1</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@(Model.Id - 1)">@(Model.Id - 1)</a></li>
-				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				<li class="waves-effect"><a href="./@(ID - 1)">@(ID - 1)</a></li>
+				@for (int i = ID; i <= (ID + 4); i++)
 				{
-					<li class="waves-effect" id="Down_@Model.Id"><a href="./queue/@i">@i</a></li>
+					<li class="waves-effect" id="Down_@ID"><a href="./@i">@i</a></li>
 				}
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID+1)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
 		else
 		{
 			<ul class="pagination center-align ">
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id-1)"><i class="material-icons">chevron_left</i></a></li>
-				<li class="waves-effect"><a href="./queue/1">1</a></li>
-				@for (int i = Model.Id; i <= (Model.Id + 4); i++)
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID-1)"><i class="material-icons">chevron_left</i></a></li>
+				<li class="waves-effect"><a href="./1">1</a></li>
+				@for (int i = ID; i <= (ID + 4); i++)
 				{
-					<li class="waves-effect" id="Down_@Model.Id"><a href="./queue/@i">@i</a></li>
+					<li class="waves-effect" id="Down_@ID"><a href="./@i">@i</a></li>
 				}
 				<li>...</li>
-				<li class="waves-effect"><a href="./queue/@Model.MaxId">@Model.MaxId</a></li>
-				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(Model.Id+1)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled"><a href="http://nsfwpics.pw/queue/@(ID+1)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
 	</div>
@@ -290,7 +296,7 @@
 </div>
 <script src="~/js/enableFeed.js"></script>
 <script>
-    window.onload = paginationActiveSite(@Model.Id);
+    window.onload = paginationActiveSite(@ID);
     function paginationActiveSite(id) {
         document.getElementById(id).classList.add("active");
         document.getElementById(`Down_${id}`).classList.add("active");

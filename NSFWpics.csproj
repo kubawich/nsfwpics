@@ -39,4 +39,7 @@
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\Backend\" />
+  </ItemGroup>
 </Project>
