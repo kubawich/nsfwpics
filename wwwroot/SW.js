@@ -1,13 +1,11 @@
 ﻿var CACHE = 'pwabuilder-precache';
 var precacheFiles = [
-	'enableFeed.js',
-	'blazy.js',
-	'materialize.js',
-	'Cookies.js',
-	'Index.html',
-	'Login.shtml',
-	'Best.html',
-	'Queue.html'
+	'/js/enableFeed.js',
+	'/js/blazy.js',
+	'/js/materialize.js',
+	'/js/Cookies.js',
+	'/css/site.css',
+	'/video_fallback.webp'
 ];
 
 //Install stage sets up the offline page in the cache and opens a new cache
