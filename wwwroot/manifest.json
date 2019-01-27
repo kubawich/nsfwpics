@@ -3,32 +3,62 @@
   "theme_color": "#EE6E73",
   "background_color": "#EE6E73",
   "short_name": "NSFWpics",
-  "name": "NSFWpics adults imageboard",
-  "icons": [
-    {
-      "src": "ico_48.png",
-      "type": "image/png",
-      "sizes": "48x48"
-    },
-    {
-      "src": "ico_96.png",
-      "type": "image/png",
-      "sizes": "96x96"
-    },
-    {
-      "src": "ico_192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "ico_192.png",
-      "type": "image/png",
-      "sizes": "512x512"
-    }
-  ],
+  "name": "NSFWpics imageboard",
+	"icons": [
+		{
+			"src": "ico_48.png",
+			"type": "image/png",
+			"sizes": "48x48"
+		},
+		{
+			"src": "ico_72.png",
+			"type": "image/png",
+			"sizes": "72x72"
+		},
+		{
+			"src": "ico_96.png",
+			"type": "image/png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "ico_120.png",
+			"type": "image/png",
+			"sizes": "120x120"
+		},
+		{
+			"src": "ico_144.png",
+			"type": "image/png",
+			"sizes": "144x144"
+		},
+		{
+			"src": "ico_152.png",
+			"type": "image/png",
+			"sizes": "152x152"
+		},
+		{
+			"src": "ico_180.png",
+			"type": "image/png",
+			"sizes": "180x180"
+		},
+		{
+			"src": "ico_192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "ico_512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "ico_1024.png",
+			"type": "image/png",
+			"sizes": "1024x1024"
+		}
+	],
   "start_url": ".",
-  "orientation": "portrait-primary",
-  "lang": "eng",
+  "orientation": "natural",
+  "lang": "English",
   "serviceworker": {
     "src": "./sw.js",
     "scope": ".",

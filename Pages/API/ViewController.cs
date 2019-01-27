@@ -11,7 +11,7 @@ namespace NSFWpics.Pages
     public class ViewController : Controller
     {
         Image image = new Image();
-		[Produces("application/json")]
+		[Produces("application/json")]		
 		[HttpGet("{id:int}")]
         public IEnumerable<string> Get(int id)
         {

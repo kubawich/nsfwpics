@@ -24,8 +24,7 @@ namespace NSFWpics.Pages
         public IFormFile Upload { get; set; }
 
         [HttpPost]
-        [RequestSizeLimit(40000000)]
-		public IActionResult OnPostAsync(IFormFile files)
+		public IActionResult OnPost(IFormFile files)
         {
             var MaxId = DBEntities.DBEntity.Instance.MaxId(3) + 1;
 

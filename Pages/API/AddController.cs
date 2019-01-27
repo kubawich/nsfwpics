@@ -17,13 +17,14 @@ namespace NSFWpics.Pages.API
     public class AddController : Controller
     {
 		DBEntity DB = new DBEntity();
-        [HttpPost]
+		IFormFile file;
+		[HttpPost]
 		public IActionResult Post()
         {
             try
             {
-                IFormFile file = Request.Form.Files[0];
-
+                file = Request.Form.Files[0];
+				
                 if (file == null || file.Length == 0)
                     return Content("Select file to upload");
 
