@@ -123,8 +123,9 @@
 							<video src="@CONTENT[i].Uri"
 									 data-src="@CONTENT[i].Uri"
 									 alt="Video from link @CONTENT[i].Uri"
-									 id="my-video"
+									 id="@CONTENT[i].Id"
 									 class="  col center-align s-12"
+									 onclick="autoplayVideo(@CONTENT[i].Id)"
 									 controls loop muted preload="none" poster="./video_fallback.webp" />
 						}
 					}
@@ -184,8 +185,9 @@
 							<video src="@CONTENT[i].Uri"
 									 data-src="@CONTENT[i].Uri"
 									 alt="Video from link @CONTENT[i].Uri"
-									 id="my-video"
+									 id="@CONTENT[i].Id"
 									 class="  col center-align s-12"
+									 onclick="autoplayVideo(@CONTENT[i].Id)"
 									 controls loop muted preload="none" poster="./video_fallback.webp" />
 						}
 					}

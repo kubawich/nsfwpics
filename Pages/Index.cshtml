@@ -1,18 +1,18 @@
 ﻿@page  "{id:int?}"
 @model IndexModel
 @{
-	 ViewData["Title"] = "Main page";
-	 var ID = Model.Id;
-	 var MAX_ID = Model.MaxId;
-	 var CONTENT = Model.List();
+	ViewData["Title"] = "Main page";
+	var ID = Model.Id;
+	var MAX_ID = Model.MaxId;
+	var CONTENT = Model.List();
 }
 
 <div id="app">
 	<br /><br />
 	<div id="buttonsViewChange" class="center-align">
-		<div id="changeView1" ><a href="#" onclick="setIndexViewType(1)">Images</a></div>
-		<div id="changeView2" ><a href="#" onclick="setIndexViewType(0)">All</a></div>
-		<div id="changeView3" ><a href="#" onclick="setIndexViewType(2)">Videos</a></div>
+		<div id="changeView1"><a href="#" onclick="setIndexViewType(1)">Images</a></div>
+		<div id="changeView2"><a href="#" onclick="setIndexViewType(0)">All</a></div>
+		<div id="changeView3"><a href="#" onclick="setIndexViewType(2)">Videos</a></div>
 	</div>
 	<br />
 	<br />
@@ -23,11 +23,11 @@
 			<ul class="pagination center-align ">
 				@for (int i = 1; i <= 7; i++)
 				{
-					<li class="waves-effect "  id="@ID" ><a href="./@i">@i</a></li>
+					<li class="waves-effect " id="@ID"><a href="./@i">@i</a></li>
 				}
 				<li>...</li>
-				<li class="waves-effect "  id="@ID" ><a href="./@MAX_ID">@MAX_ID</a></li>
-				<li class="disabled "  id="@ID" ><a href="http://nsfwpics.pw/@(ID+2)"><i class="material-icons">chevron_right</i></a></li>
+				<li class="waves-effect " id="@ID"><a href="./@MAX_ID">@MAX_ID</a></li>
+				<li class="disabled " id="@ID"><a href="http://nsfwpics.pw/@(ID+2)"><i class="material-icons">chevron_right</i></a></li>
 			</ul>
 		}
 		else if (ID == MAX_ID)
@@ -120,11 +120,10 @@
 							<video src="@CONTENT[i].Uri"
 									 data-src="@CONTENT[i].Uri"
 									 alt="Video from link @CONTENT[i].Uri"
-									 id="my-video_@CONTENT[i]"
+									 id="@CONTENT[i].Id"
 									 class="  col center-align s-12"
-									 onclick="autoplay(`my-video_@CONTENT[i].Id`)"
-									 controls loop muted preload="none" poster="./video_fallback.webp" >
-							</video>
+									 onclick="autoplayVideo(@CONTENT[i].Id)"
+									 controls loop muted preload="none" poster="./video_fallback.webp"></video>
 						}
 
 					}
@@ -185,11 +184,10 @@
 							<video src="@CONTENT[i].Uri"
 									 data-src="@CONTENT[i].Uri"
 									 alt="Video from link @CONTENT[i].Uri"
-									 id="my-video_@CONTENT[i]"
+									 id="@CONTENT[i].Id"
 									 class="  col center-align s-12"
-									 onclick="autoplay(`my-video_@CONTENT[i].Id`)"
-									 controls loop muted preload="none" poster="./video_fallback.webp" >
-							</video>
+									 onclick="autoplayVideo(@CONTENT[i].Id)"
+									 controls loop muted preload="none" poster="./video_fallback.webp"></video>
 						}
 
 					}

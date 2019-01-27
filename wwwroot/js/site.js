@@ -104,12 +104,8 @@ else if (getCookie("site") == "queue" || window.location.pathname == '/queue') {
 	radioBig.checked = true;
 }
 
-function autoplay(id) {
-	var video = document.getElementById(`${id}`)
-	video.addEventListener('click',
-		function () {
-			document.getElementById(`${id}`).play()
-		})
+function autoplayVideo(id) {
+	document.getElementById(`${id}`).play()
 }
 
 
