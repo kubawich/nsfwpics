@@ -10,18 +10,21 @@ namespace NSFWpics.Pages
     [Route("api/[controller]")]
     public class ViewController : Controller
     {
-        Image image = new Image();
+        NSFWpics.Models.Image image = new NSFWpics.Models.Image();
+		NSFWpics.Models.View view = new NSFWpics.Models.View();
+
 		[Produces("application/json")]		
 		[HttpGet("{id:int}")]
-        public IEnumerable<string> Get(int id)
+        public Dictionary<string, string> Get(int id)
         {
-            image.Author = DBEntities.DBEntity.Instance.View(id, image).Author;
-            image.Date = DBEntities.DBEntity.Instance.View(id, image).Date;
-            image.Id = DBEntities.DBEntity.Instance.View(id, image).Id;
-            image.Points = DBEntities.DBEntity.Instance.View(id, image).Points;
-            image.Uri = DBEntities.DBEntity.Instance.View(id, image).Uri;
-            return new string[] { image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString() };
-        }
+			return new Dictionary<string, string> {
+				{"ID", view.GetEntry(id, image).Id.ToString() },
+				{"Points", view.GetEntry(id, image).Points.ToString() },
+				{"Author", view.GetEntry(id, image).Author },
+				{"Date uploaded", view.GetEntry(id, image).Date },
+				{"Link", view.GetEntry(id, image).Uri }
+			};
+		}
 
 		/// <summary>
 		/// Removes content with given ID and extension
@@ -36,12 +39,12 @@ namespace NSFWpics.Pages
         {
 			if (type == 0)
 			{
-				DBEntities.DBEntity.Instance.RemoveImg(id, extension);
+				new NSFWpics.Models.Main().Remove(id, extension);
 				return Json($"Removed main site entity at id: {id}");
 			}
 			else if (type == 1)
 			{
-				DBEntities.DBEntity.Instance.RemoveQueueImg(id, extension);
+				new NSFWpics.Models.Queue().Remove(id, extension);
 				return Json($"Removed queue entity at id: {id}");
 			}
 			else return null;

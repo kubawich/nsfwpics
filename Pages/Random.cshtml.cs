@@ -6,14 +6,14 @@ namespace NSFWpics.Pages
     public class RandomModel : PageModel
     {
         [BindProperty]
-        public Image Image { get; set; }
+        public NSFWpics.Models.Image Image { get; set; }
 
         [HttpGet]
         public IActionResult OnGet()
         {
 			try
 			{
-				Image = DBEntities.DBEntity.Instance.Random(Image);            
+				Image = new NSFWpics.Models.Random().GetEntry(null, Image);            
 				return Page();
 			}
 			catch (System.Exception)

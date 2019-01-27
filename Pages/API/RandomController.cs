@@ -1,27 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using NSFWpics.Models;
 
 namespace NSFWpics.Pages
 {
     [Route("api/[controller]")]
     public class RandomController : Controller
     {
-        Image image = new Image();
+		NSFWpics.Models.Image image = new NSFWpics.Models.Image();
+		NSFWpics.Models.Random random = new NSFWpics.Models.Random();
+
 		[Produces("application/json")]
 		[HttpGet]
-        public IEnumerable<string> Get()
+        public Dictionary<string, string> Get()
         {
             try
             {
-				image = DBEntities.DBEntity.Instance.Random(image);            
-                return new string[] { image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString() };
+				image = random.GetEntry(null, image);            
+                return new Dictionary<string, string>
+				{
+					{"ID", image.Id.ToString() },
+					{"Points", image.Points.ToString() },
+					{"Author", image.Author },
+					{"Date uploaded", image.Date },
+					{"Link", image.Uri }
+				};
             }
             catch (Exception)
             {
                 Get();
-                return new string[] {image.Author.ToString(), image.Date.ToString(), image.Id.ToString(), image.Points.ToString(), image.Uri.ToString(), "No entry, returning other"};
-            }
+				return new Dictionary<string, string>
+				{
+					{"ID", image.Id.ToString() },
+					{"Points", image.Points.ToString() },
+					{"Author", image.Author },
+					{"Date uploaded", image.Date },
+					{"Link", image.Uri }
+				};
+			}
         }
     }
 }

@@ -4,20 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace NSFWpics.Pages.API
 {
 	[Route("api/[controller]")]
 	public class SiteVideosController : Controller
 	{
-		List<Image> imgList = new List<Image>();
-		Image image = new Image();
+		List<NSFWpics.Models.Image> imgList = new List<NSFWpics.Models.Image>();
+		NSFWpics.Models.Image image = new NSFWpics.Models.Image();
+
 		[Produces("application/json")]
 		[HttpGet("{id:int=1}")]
-		public IEnumerable<List<Image>> Get(int id)
+		public IEnumerable<List<NSFWpics.Models.Image>> Get(int id)
 		{
-			yield return DBEntities.DBEntity.Instance.SiteVideosOnly(id, imgList);
+			yield return new NSFWpics.Models.Main().GetVideos(id, imgList);
 		}
 	}
 }

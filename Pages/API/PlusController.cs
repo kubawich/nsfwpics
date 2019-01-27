@@ -14,8 +14,8 @@ namespace NSFWpics.Pages
 		[HttpGet("{id:int}")]
         public JsonResult Get(int id)
         {
-            NSFWpics.DBEntities.DBEntity.Instance.Plus(id);
-            return Json($"points updated +1 on {id}");
+			new NSFWpics.Models.Tools().Plus(id);
+			return Json($"points updated +1 on {id}");
         }
     }
 }

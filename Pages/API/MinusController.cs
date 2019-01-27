@@ -14,7 +14,7 @@ namespace NSFWpics.Pages
 		[Produces("application/json")]
 		public string Get(int id)
         {
-            NSFWpics.DBEntities.DBEntity.Instance.Minus(id);
+            new NSFWpics.Models.Tools().Minus(id);
             return $"points updated -1 on {id}";
         }
     }

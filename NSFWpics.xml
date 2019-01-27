@@ -4,6 +4,144 @@
         <name>NSFWpics</name>
     </assembly>
     <members>
+        <member name="M:NSFWpics.Models.Best.GetEntry(System.Nullable{System.Int32},NSFWpics.Models.Image)">
+            <summary>
+            Picks image with highest point rating
+            </summary>
+            <param name="image">Returns class based on DB table architecture</param>
+            <returns>
+            Returns Image module from DB where id's highest
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Main.GetAll(System.Int32,System.Collections.Generic.List{NSFWpics.Models.Image})">
+            <summary>
+            Returns whole 'site' module. Each site has 10 view entries
+            </summary>
+            <param name="_id">Which site's entries to get</param>
+            <param name="_images">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 Image entities representing given id's site module
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Main.GetImages(System.Int32,System.Collections.Generic.List{NSFWpics.Models.Image})">
+            <summary>
+            Returns whole 'site' module, but only image formats. Each site has 10 view entries
+            </summary>
+            <param name="_id">Which site's entries to get</param>
+            <param name="_images">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 Image entities representing given id's site module
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Main.GetVideos(System.Int32,System.Collections.Generic.List{NSFWpics.Models.Image})">
+            <summary>
+            Returns whole 'site' module but animated formats only. Each site has 10 view entries
+            </summary>
+            <param name="_id">Which site's entries to get</param>
+            <param name="_images">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 videos entities representing given id's site module
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Main.Remove(System.Int32,System.String)">
+            <summary>
+            Removes content with given ID and extension
+            </summary>
+            <param name="_id">ID of content entry to remove</param>
+            <param name="_extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+        </member>
+        <member name="M:NSFWpics.Models.Queue.GetAll(System.Int32,System.Collections.Generic.List{NSFWpics.Models.Image})">
+            <summary>
+            Returns whole 'queue' module. Each queue site has 10 view entries
+            </summary>
+            <param name="_id">Which queue site's entries to get</param>
+            <param name="_images">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 Image entities representing given id's queue site module
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Queue.GetImages(System.Int32,System.Collections.Generic.List{NSFWpics.Models.Image})">
+            <summary>
+            Returns whole queue 'site' module, but only image formats. Each site has 10 view entries
+            </summary>
+            <param name="_id">Which queue site's entries to get</param>
+            <param name="_images">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 Image entities representing given id's queue site module
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Queue.GetVideos(System.Int32,System.Collections.Generic.List{NSFWpics.Models.Image})">
+            <summary>
+            Returns whole queue 'site' module but animated formats only. Each site has 10 view entries
+            </summary>
+            <param name="_id">Which queue site's entries to get</param>
+            <param name="_images">Returns class based on DB table architecture</param>
+            <returns>
+            List of 10 videos entities representing given id's queue site module
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Queue.Remove(System.Int32,System.String)">
+            <summary>
+            Removes content with given ID and extension from queue
+            </summary>
+            <param name="_id">ID of content entry to remove</param>
+            <param name="_extension">Content's file extension in ?extension=png/jpeg/webm... format </param>
+        </member>
+        <member name="M:NSFWpics.Models.Random.GetEntry(System.Nullable{System.Int32},NSFWpics.Models.Image)">
+            <summary>
+            Picks number of indicies in database, and next pick random photo from first to maximum.
+            </summary>
+            <param name="image">Returns class based on DB table architecture</param>
+            <returns>
+            Image class represtantion filled with random DB entry
+            </returns>
+        </member>
+        <member name="T:NSFWpics.Models.Tools">
+            <summary>
+            Database tools class, constains: maxId, plus, minus and image promotion
+            </summary>
+        </member>
+        <member name="M:NSFWpics.Models.Tools.MaxId(System.Int32)">
+            <summary>
+            Gets last ID entrance from DB (0 = mine, 1 = mine images, 2 = mine videos, 3 = queue)
+            </summary>
+            <returns>
+            Returns highest ID from DB
+            </returns>
+        </member>
+        <member name="M:NSFWpics.Models.Tools.Minus(System.Int32)">
+            <summary>
+            Decrement image's point rating by one
+            </summary>
+            <param name="_id">Number for identifying image in DB</param>
+        </member>
+        <member name="M:NSFWpics.Models.Tools.Plus(System.Int32)">
+            <summary>
+            Increment image's point rating by one
+            </summary>
+            <param name="_id">Number for identifying image in DB</param>
+        </member>
+        <member name="M:NSFWpics.Models.Tools.PromoteImage(System.Nullable{System.Int32})">
+            <summary>
+            Promotes image from queue to main page
+            </summary>
+            <param name="_id">Id of promoted image in queue, may be null for max value</param>
+        </member>
+        <member name="T:NSFWpics.Models.View">
+            <summary>
+            Returns image with given id
+            </summary>
+        </member>
+        <member name="M:NSFWpics.Models.View.GetEntry(System.Nullable{System.Int32},NSFWpics.Models.Image)">
+            <summary>
+            Returns image with given id
+            </summary>
+            <param name="_id">Number for identifying image in DB</param>
+            <param name="_image">Returns class based on DB table architecture</param>
+            <returns>
+            Returns Image module from DB with given Image's id
+            </returns>
+        </member>
         <member name="T:NSFWpics.Pages.API.AddController">
             <summary>
             API endpoint used to upload image/webm/gif to server and index it to db

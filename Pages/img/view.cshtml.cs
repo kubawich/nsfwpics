@@ -9,17 +9,16 @@ using MySql.Data.MySqlClient;
 namespace NSFWpics.Pages.NewFolder
 {
     public class viewModel : PageModel
-    {        
-        public string Con { get; set; }
-        public int Id { get; set; }
-        [BindProperty]
-        public Image Image { get; set; }
+    {
+		NSFWpics.Models.View view = new Models.View();
+		[BindProperty]
+        public NSFWpics.Models.Image Image { get; set; }
 
         [HttpGet]
         public IActionResult OnGet(int id)
         {
             if (id == 0) return Redirect("/");
-            else Image = NSFWpics.DBEntities.DBEntity.Instance.View(id, Image);
+            else Image = view.GetEntry(id, Image);
             return Page();
         }
     }

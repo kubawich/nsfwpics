@@ -9,13 +9,16 @@ namespace NSFWpics.Pages
     [Route("api/[controller]")]
     public class QueueController : Controller
     {
-        List<Image> imgList = new List<Image>();
-        Image image = new Image();
+		readonly List<NSFWpics.Models.Image> imgList
+			= new List<NSFWpics.Models.Image>();
+		readonly NSFWpics.Models.Image image
+			= new NSFWpics.Models.Image();
+
 		[Produces("application/json")]
 		[HttpGet("{id:int=1}")]
-        public IEnumerable<List<Image>> Get(int id)
-        {
-            yield return DBEntities.DBEntity.Instance.Queue(id, imgList);
-        }
-    }
+		public IEnumerable<List<NSFWpics.Models.Image>> Get(int id)
+		{
+			yield return new NSFWpics.Models.Queue().GetAll(id, imgList);
+		}
+	}
 }

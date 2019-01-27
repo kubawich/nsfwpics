@@ -9,12 +9,11 @@ namespace NSFWpics.Pages.API
 	[Route("api/[controller]")]
 	public class PromoteImgController : Controller
 	{
-		// POST api/<controller>
 		[Produces("application/json")]
 		[HttpPost("{_id:int?}")]
 		public JsonResult Post([FromRoute]int? _id)
 		{
-			DBEntities.DBEntity.Instance.PromoteImage(_id);
+			new NSFWpics.Models.Tools().PromoteImage(_id);
 			return new JsonResult($"{_id} promoted sucessfuly");
 		}
 	}

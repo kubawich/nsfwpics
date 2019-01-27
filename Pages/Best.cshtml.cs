@@ -4,22 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MySql.Data.MySqlClient;
+using NSFWpics.Models;
 
 namespace NSFWpics.Pages
 {
     public class BestModel : PageModel
     {
-        public int Id { get;  set; }
-        public string Con { get;  set; }
-        public int Points { get; set; }
         [BindProperty]
-        public Image Image { get; set; }
+		public NSFWpics.Models.Image Image { get; set; }
+		Best best = new Models.Best();
 
         [HttpGet]
         public IActionResult OnGet()
         {
-            Image = NSFWpics.DBEntities.DBEntity.Instance.Best(Image);
+			Image = best.GetEntry(null, Image);
             return Page();
         }
     }
