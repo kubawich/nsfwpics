@@ -18,7 +18,7 @@ namespace NSFWpics.Pages
 		public int MaxId { get; set; } = tools.MaxId(3) / 10;
 
         [BindProperty]
-        public Image Image { get; set; }
+        public NSFWpics.Models.Image Image { get; set; }
 
 		public IActionResult OnGet(int id)
 		{
@@ -26,7 +26,6 @@ namespace NSFWpics.Pages
 			{
 				return Redirect("/queue");
 			}
-			
 			Id = id;
 			return Page();
 		}

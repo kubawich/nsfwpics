@@ -25,7 +25,6 @@ namespace NSFWpics.Pages
 			{
 				return Redirect("/");
 			}
-			
 			Id = id;
 			return Page();
 		}
@@ -39,13 +38,13 @@ namespace NSFWpics.Pages
 			}
 			else if(Request.Cookies["viewType"] == "videos")
 			{
-				list = main.GetImages(Id, list);
+				list = main.GetVideos(Id, list);
 				MaxId = tools.MaxId(2) / 10;
 				return list;
 			}
 			else
 			{
-				list = main.GetImages(Id, list);
+				list = main.GetAll(Id, list);
 				MaxId = tools.MaxId(0) / 10;
 				return list;
 			}
