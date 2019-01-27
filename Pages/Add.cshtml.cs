@@ -33,7 +33,6 @@ namespace NSFWpics.Pages
             return  Redirect("/Add");
         }
 
-		string val = "true";
 		[HttpGet]
 		public IActionResult OnGet()
 		{

@@ -21,7 +21,6 @@ namespace NSFWpics.DBEntities
 	/// </summary>
     public class DBEntity
     {
-		private IConfiguration _config;
 		/// <summary>
 		/// Static instance of Db entites class, use it wherever you want
 		/// </summary>
@@ -1028,8 +1027,8 @@ namespace NSFWpics.DBEntities
 						Uploads = int.Parse(reader["uploads"].ToString())
 					});
 				}
-				return users;
 				conn.Close();
+				return users;
 			}
 			else if(uid != null)
 			{
@@ -1050,8 +1049,8 @@ namespace NSFWpics.DBEntities
 						Uploads = int.Parse(reader["uploads"].ToString())
 					});
 				}
-				return users;
 				conn.Close();
+				return users;
 			}
 			else
 			{
