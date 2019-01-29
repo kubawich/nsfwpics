@@ -1,34 +1,22 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
-using Renci.SshNet;
 
 namespace NSFWpics.Pages
 {
     public class AddModel : PageModel
     {
-		DBEntities.DBEntity _DB = new DBEntities.DBEntity();
+		Models.Upload upload = new Models.Upload();
         [BindProperty]
         public IFormFile Upload { get; set; }
 
         [HttpPost]
 		public IActionResult OnPost(IFormFile files)
         {
-            var MaxId = DBEntities.DBEntity.Instance.MaxId(3) + 1;
+            var MaxId = new Models.Tools().MaxId(3) + 1;
 
-			_DB.UploadImgToQueue(MaxId, Upload, Request.Cookies["login"]);
+			upload.UploadToQueue(MaxId, Upload, Request.Cookies["login"]);
 			
             return  Redirect("/Add");
         }

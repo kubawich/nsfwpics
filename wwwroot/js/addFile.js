@@ -45,8 +45,6 @@ var fileTypes = [
 	'image/jpeg',
 	'image/pjpeg',
 	'image/png',
-	'image/gif',
-
 ];
 var videoTypes = [
 	'video/mp4',
@@ -88,26 +86,32 @@ function showUpload(_data) {
 		let file_button = document.getElementById("file_button");
 		setTimeout(function () { upload_button.style.display = "none"; file_button.style.display = "none"; }, 130);
 
-		//uploadAsync("http://localhost:53271/api/add")
+		//upload()	
 			
 	} else {
 		alert("File's too big, max upload size is 10MBs")
 	}
 }
 
-function uploadAsync(url) {
-	const formData = new FormData()
-	const fileField = document.querySelector(".input")
+const upload = () => {
 
+	var fileField = document.querySelector(".input")
+	var formData = new FormData()
 	formData.append('', fileField.files[0])
 
-	return fetch("http://localhost:53271/api/add", {
+	return fetch('https://nsfwpics.pw/api/add', {
 		method: 'POST', 
+		headers: {
+			"Content-Type": "application/x-www-form-urlencoded"
+		},
 		body: formData  
-	}).then(function (data) {
-		
-	})
-		.then(resp => alert(resp))
-		.catch(error => console.error(error))
-
+	}).then(
+		response => response.json()
+	).then(
+		resp => alert(resp)
+	).then(
+		success => console.log(success) 
+	).catch(
+		error => console.log(error) 
+	);
 }

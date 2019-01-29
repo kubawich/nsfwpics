@@ -40,6 +40,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\Backend\" />
+    <Folder Include="API\" />
   </ItemGroup>
 </Project>

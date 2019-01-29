@@ -15,38 +15,38 @@
 	<form method="post" enctype="multipart/form-data">
 		<div class="container">
 			<div class="file-field input-field row">
-			  <div class="btn blue lighten-1 waves-effect waves-light  col s12 m5" id="file_button">
-				  <i class="material-icons left">cloud</i>
-				  <span>File</span>
-				  <input type="file" asp-for="Upload" class="input">
-			  </div>
-			  <div class="col m1"></div>
-			  <div>
-			  </div>
-			  <div class="btn light-green darken-1 waves-effect waves-light col s12 m5" id="upload_button">
-				  <i class="material-icons left">cloud_upload</i>
-				  <span>Upload</span>
-				  <input type="submit" id="btnUpload" value="" onclick="showUpload()" style="min-width: 100%; min-block-size: -webkit-fill-available; min-height: 100%; position: absolute; right: 0px;">
-			  </div>
-			  <br />
-			  <br />
-			  <br />
-			  <div id="img_load" class="col s12">
+				<div class="btn blue lighten-1 waves-effect waves-light  col s12 m5" id="file_button">
+					<i class="material-icons left">cloud</i>
+					<span>File</span>
+					<input type="file" asp-for="Upload" class="input" accept=".png, .jpg, .jpeg, .webm, .mp4">
+				</div>
+				<div class="col m1"></div>
+				<div>
+				</div>
+				<div class="btn light-green darken-1 waves-effect waves-light col s12 m5" id="upload_button">
+					<i class="material-icons left">cloud_upload</i>
+					<span>Upload</span>
+					<input type="submit" id="btnUpload" value="" onclick="showUpload()" style="min-width: 100%; min-block-size: -webkit-fill-available; min-height: 100%; position: absolute; right: 0px;">
+				</div>
+				<br />
+				<br />
+				<br />
+				<div id="img_load" class="col s12">
 
-			  </div>
+				</div>
 			</div>
-		  <div class="preview">
-		  </div>
-		  <br />
+			<div class="preview">
+			</div>
+			<br />
 		</div>
 	</form>
-	<!--<form >
+	<!--<form>
 		<div class="container">
 			<div class="file-field input-field row">
 				<div class="btn blue lighten-1 waves-effect waves-light  col s12 m5" id="file_button">
 					<i class="material-icons left">cloud</i>
 					<span>File</span>
-					<input type="file"  class="input">
+					<input type="file"  class="input" accept=".png, .jpg, .jpeg, .webm, .mp4">
 				</div>
 				<div class="col m1"></div>
 				<div>

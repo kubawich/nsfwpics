@@ -6,8 +6,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace NSFWpics.Interfaces
 {
-	interface IUpload
+	interface IUploads
 	{
-		void Upload(ITools _maxIdPlusOne, IFormFile _file, IUser _login);
+		void UploadToMain(int _maxIdPlusOne, IFormFile _file, string _login);
+		void UploadToQueue(int _maxIdPlusOne, IFormFile _file, string _login);
 	}
 }

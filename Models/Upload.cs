@@ -1,0 +1,92 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using Microsoft.AspNetCore.Http;
+using MySql.Data.MySqlClient;
+using NSFWpics.Interfaces;
+using Renci.SshNet;
+
+namespace NSFWpics.Models
+{
+	 internal class Upload : Credentials, IUploads
+	{
+		/// <summary>
+		/// Adds cdn's uploaded photo to DB
+		/// </summary>
+		/// <param name="_maxIdPlusOne">Required to increment photo's id in DB</param>l        
+		/// <param name="_file">File to upload</param>
+		/// <param name="_login">File to upload</param>
+		public void UploadToMain(int _maxIdPlusOne, IFormFile _file, string _login)
+		{
+			using (var client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+			{
+				if (_file != null)
+				{
+					client.Connect();
+					client.ChangeDirectory("/var/www/html/img");
+					using (var fs = new FileStream(Path.GetFileName(_file.FileName), FileMode.Create))
+					{
+						client.UploadFile(_file.OpenReadStream(),
+							$"{_maxIdPlusOne}{Path.GetExtension(_file.FileName)}");
+					}
+				}
+				client.Disconnect();
+				client.Dispose();
+			}
+			var conn = new MySqlConnection(Connection.ToString());
+			MySqlCommand cmd;
+			cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
+				$"VALUES('https://cdn.nsfwpics.pw/img/{_maxIdPlusOne}{Path.GetExtension(_file.FileName)}','{_login}',0)", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+			cmd = new MySqlCommand($"UPDATE users " +
+				$"SET uploads = uploads + 1  " +
+				$"WHERE login = '{_login}'", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+		}
+
+		/// <summary>
+		/// Adds cdn's uploaded photo to page's queue
+		/// </summary>
+		/// <param name="_maxIdPlusOne">Required to increment photo's id in DB</param>       
+		/// <param name="_file">File to upload</param>
+		/// <param name="_login">User who becomes owner of this picture</param>
+		public void UploadToQueue(int _maxIdPlusOne, IFormFile _file, string _login)
+		{
+			using (var client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+			{
+				if (_file != null)
+				{
+					client.Connect();
+					client.ChangeDirectory("/var/www/html/img_queue");
+					using (var fs = new FileStream(Path.GetFileName(_file.FileName), FileMode.Create))
+					{
+						client.UploadFile(_file.OpenReadStream(),
+							$"{_maxIdPlusOne}{Path.GetExtension(_file.FileName)}");
+					}
+				}
+				client.Disconnect();
+				client.Dispose();
+			}
+			var conn = new MySqlConnection(Connection.ToString());
+			MySqlCommand cmd;
+			cmd = new MySqlCommand($"INSERT INTO queue(uri,author,points) " +
+				$"VALUES('https://cdn.nsfwpics.pw/img_queue/{_maxIdPlusOne}{Path.GetExtension(_file.FileName)}','{_login}',0)", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+			conn.Dispose();
+			cmd = new MySqlCommand($"UPDATE users " +
+				$"SET uploads = uploads + 1  " +
+				$"WHERE login = '{_login}'", conn);
+			conn.Open();
+			cmd.ExecuteNonQuery();
+			conn.Close();
+			conn.Dispose();
+			_file = null;
+		}
+	}
+}
