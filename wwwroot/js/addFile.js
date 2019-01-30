@@ -93,7 +93,7 @@ function showUpload(_data) {
 	}
 }
 
-async function upload() {
+/*async function upload() {
 
 	var fileField = document.querySelector(".input")
 	var formData = new FormData()
@@ -106,7 +106,7 @@ async function upload() {
 				body: formData,
 				headers: {
 					'Accept': 'application/json',
-					"Content-Type":"application/x-www-form-urlencoded"
+					"Content-Type": "application/x-www-form-urlencoded"
 				}
 			}
 		);
@@ -116,4 +116,4 @@ async function upload() {
 	} catch (e) {
 		throw Error(e);
 	}
-}
+}*/
