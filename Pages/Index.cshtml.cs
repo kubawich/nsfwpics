@@ -25,7 +25,7 @@ namespace NSFWpics.Pages
 			{
 				return Redirect("/");
 			}
-			Id = id;
+			Id = id; 
 			return Page();
 		}
 		public List<NSFWpics.Models.Image> List()

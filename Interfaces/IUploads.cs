@@ -8,7 +8,7 @@ namespace NSFWpics.Interfaces
 {
 	interface IUploads
 	{
-		void UploadToMain(int _maxIdPlusOne, IFormFile _file, string _login);
-		void UploadToQueue(int _maxIdPlusOne, IFormFile _file, string _login);
+		int UploadToMain(int _maxIdPlusOne, IFormFile _file, string _login);
+		int UploadToQueue(int _maxIdPlusOne, IFormFile _file, string _login);
 	}
 }

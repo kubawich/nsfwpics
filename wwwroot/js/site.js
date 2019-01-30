@@ -41,6 +41,7 @@ function plus(img_id, callback)
 	}
 }
 
+
 function setIndexViewType(type) {
 	if (parseInt(type) == 0) {
 		delCookie("viewType");

@@ -86,32 +86,34 @@ function showUpload(_data) {
 		let file_button = document.getElementById("file_button");
 		setTimeout(function () { upload_button.style.display = "none"; file_button.style.display = "none"; }, 130);
 
-		//upload()	
+		upload()	
 			
 	} else {
 		alert("File's too big, max upload size is 10MBs")
 	}
 }
 
-const upload = () => {
+async function upload() {
 
 	var fileField = document.querySelector(".input")
 	var formData = new FormData()
-	formData.append('', fileField.files[0])
-
-	return fetch('https://nsfwpics.pw/api/add', {
-		method: 'POST', 
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded"
-		},
-		body: formData  
-	}).then(
-		response => response.json()
-	).then(
-		resp => alert(resp)
-	).then(
-		success => console.log(success) 
-	).catch(
-		error => console.log(error) 
-	);
+	formData.append('', fileField.files[0], 'img')
+	const URL = 'http://localhost:53271/';
+	try {
+		const fetchResult = fetch(
+			URL, {
+				method: 'POST',
+				body: formData,
+				headers: {
+					'Accept': 'application/json',
+					"Content-Type":"application/x-www-form-urlencoded"
+				}
+			}
+		);
+		const response = await fetchResult;
+		const jsonData = await response.json();
+		console.log(jsonData);
+	} catch (e) {
+		throw Error(e);
+	}
 }

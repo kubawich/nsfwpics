@@ -1,32 +1,41 @@
-﻿//Install stage sets up the offline page in the cache and opens a new cache
+﻿//Install stage sets up the index page (home page) in the cache and opens a new cache
 self.addEventListener('install', function (event) {
-	var offlinePage = new Request('login');
+	var indexPage = new Request('');
 	event.waitUntil(
-		fetch(offlinePage).then(function (response) {
-			return caches.open('pwabuilder-offline').then(function (cache) {
-				console.log('[PWA Builder] Cached offline page during Install' + response.url);
-				return cache.put(offlinePage, response);
+		fetch(indexPage).then(function (response) {
+			return caches.open('MyApp-offline').then(function (cache) {
+				console.log('[MyApp] Cached index page during Install' + response.url);
+				return cache.put(indexPage, response);
 			});
 		}));
 });
 
-//If any fetch fails, it will show the offline page.
-//Maybe this should be limited to HTML documents?
+//If any fetch fails, it will look for the request in the cache and serve it from there first
 self.addEventListener('fetch', function (event) {
+	var updateCache = function (request) {
+		return caches.open('MyApp-offline').then(function (cache) {
+			return fetch(request).then(function (response) {
+				console.log('[MyApp] add page to offline' + response.url)
+				return cache.put(request, response);
+			});
+		});
+	};
+
+	event.waitUntil(updateCache(event.request));
+
 	event.respondWith(
 		fetch(event.request).catch(function (error) {
-			console.error('[PWA Builder] Network request Failed. Serving offline page ' + error);
-			return caches.open('pwabuilder-offline').then(function (cache) {
-				return cache.match('login');
-			});
-		}
-		));
-});
+			console.log('[MyApp] Network request Failed. Serving content from cache: ' + error);
 
-//This is a event that can be fired from your page to tell the SW to update the offline page
-self.addEventListener('refreshOffline', function (response) {
-	return caches.open('pwabuilder-offline').then(function (cache) {
-		console.log('[PWA Builder] Offline page updated from refreshOffline event: ' + response.url);
-		return cache.put(offlinePage, response);
-	});
-});
+			//Check to see if you have it in the cache
+			//Return response
+			//If not in the cache, then return error page
+			return caches.open('MyApp-offline').then(function (cache) {
+				return cache.match(event.request).then(function (matching) {
+					var report = !matching || matching.status == 404 ? Promise.reject('no-match') : matching;
+					return report
+				});
+			});
+		})
+	);
+})
