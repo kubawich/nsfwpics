@@ -86,12 +86,32 @@ function showUpload(_data) {
 		let file_button = document.getElementById("file_button");
 		setTimeout(function () { upload_button.style.display = "none"; file_button.style.display = "none"; }, 130);
 
-		upload()	
+		//upload()	
 			
 	} else {
 		alert("File's too big, max upload size is 10MBs")
 	}
 }
+
+
+function drop(event) {
+        evt.stopPropagation();
+        evt.preventDefault();
+
+        var fileList = event.dataTransfer.files;
+    updateImageDisplay();
+     }
+
+    function dragOver(evt) {
+        evt.stopPropagation();
+        evt.preventDefault();
+        evt.dataTransfer.dropEffect = 'copy';
+    }
+
+    var dropZone = document.getElementById("app2");
+    dropZone.addEventListener("dragover", dragOver, false);
+    dropZone.addEventListener("drop"    , drop    , false);
+
 
 /*async function upload() {
 

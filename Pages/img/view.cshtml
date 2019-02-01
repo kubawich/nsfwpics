@@ -6,56 +6,54 @@
 }
 <br />
 <div id="app">
-    <div class="container center-align">
-        <!--Exo network ads-->
-        <p id="img_tags" class="center-align">Advertisement</p>
-        <script type="text/javascript">
-            var ad_idzone = "2935176",
-                ad_width = "300",
-                ad_height = "50";
-        </script>
-        <script type="text/javascript" src="https://ads.exosrv.com/ads.js"></script>
-        <noscript><a href="https://main.exosrv.com/img-click.php?idzone=2935176" target="_blank"><img src="https://syndication.exosrv.com/ads-iframe-display.php?idzone=2935176&output=img&type=300x50" width="300" height="50"></a></noscript>
-        <div class="row z-depth-5" id="content_element">
-            <span id="h" class="col left ">
-                <a href="@CONTENT.Uri">#@CONTENT.Id</a>
-            </span>
-            <span id="feed" class="col right s-8">
-                <span id="points_@CONTENT.Id" class="points">@CONTENT.Points</span>
-                <button onclick="plus(@CONTENT.Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@CONTENT.Id"><i class="material-icons">thumb_up</i></button>                
-            </span>
-            <br /><br />
-            @{
-					 string link = CONTENT.Uri.ToString();
-					 string extension = link.Substring(link.Length - 3);
-					 if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
-					 {
-						  <a href="@CONTENT.Uri" class="center-align s-12">
-                    <img class="col center-align s-12" src="@CONTENT.Uri" alt="Photo from link @CONTENT.Uri" id="photo_no_@CONTENT.Id" name="photo" />
-							</a>
-				   }
-					 else if (extension == "mp4" || extension == "ebm")
-					 {
-                    <video src="@CONTENT.Uri" alt="Video from link @CONTENT.Uri" id="my-video"  controls loop autoplay muted/>
-                }
-            }
-            <br />
-            <span id="img_tags">
-                By @CONTENT.Author at @CONTENT.Date
-            </span>
-            <br />
-        </div>
-        <br /><br />
-        <!--Exo network ads-->
-        <p id="img_tags" class="center-align">Advertisement</p>
-        <script type="text/javascript">
-            var ad_idzone = "2935150",
-                ad_width = "300",
-                ad_height = "50";
-        </script>
-        <script type="text/javascript" src="https://ads.exosrv.com/ads.js"></script>
-        <noscript><a href="https://main.exosrv.com/img-click.php?idzone=2935150" target="_blank"><img src="https://syndication.exosrv.com/ads-iframe-display.php?idzone=2935150&output=img&type=300x50" width="300" height="50"></a></noscript>
-    </div>
+	<div class="container center-align">
+		<!--Exo network ads-->
+		<p id="img_tags" class="center-align">Advertisement</p>
+		<script type="text/javascript">
+			var ad_idzone = "2935176",
+				ad_width = "300",
+				ad_height = "50";
+		</script>
+		<script type="text/javascript" src="https://ads.exosrv.com/ads.js"></script>
+		<noscript><a href="https://main.exosrv.com/img-click.php?idzone=2935176" target="_blank"><img src="https://syndication.exosrv.com/ads-iframe-display.php?idzone=2935176&output=img&type=300x50" width="300" height="50"></a></noscript>
+		<div class="row z-depth-5" id="content_element">
+			<span id="h" class="col left ">
+				<a href="@CONTENT.Uri">#@CONTENT.Id</a>
+			</span>
+			<span id="feed" class="col right s-8">
+				<span id="points_@CONTENT.Id" class="points">@CONTENT.Points</span>
+				<button onclick="plus(@CONTENT.Id)" class="btn-floating btn-large waves-effect waves-light light-green plus" id="button_plus_@CONTENT.Id"><i class="material-icons">thumb_up</i></button>
+			</span>
+			<br /><br />
+			@{
+				string link = CONTENT.Uri.ToString();
+				string extension = link.Substring(link.Length - 3);
+				if (extension == "png" || extension == "peg" || extension == "jpg" || extension == "gif")
+				{
+					<a href="@CONTENT.Uri" class="center-align s-12">
+						<img class="col center-align s-12" src="@CONTENT.Uri" alt="Photo from link @CONTENT.Uri" id="photo_no_@CONTENT.Id" name="photo" />
+					</a>
+				}
+				else if (extension == "mp4" || extension == "ebm")
+				{
+					<video src="@CONTENT.Uri" alt="Video from link @CONTENT.Uri" id="my-video" controls loop autoplay muted />
+				}
+			}
+			<br />
+			<span id="img_tags">
+				By @CONTENT.Author at @CONTENT.Date
+			</span>
+			<br />
+		</div>
+		<br /><br />
+		<!--Exo network ads-->
+		<p id="img_tags" class="center-align">Advertisement</p>
+		<script type="text/javascript">
+			var ad_idzone = "2960676",
+				ad_frequency_period = 0;
+		</script>
+		<script type="text/javascript" src="https://ads.exosrv.com/billboard.js"></script>
+	</div>
     <!--DISQUS-->
     <div id="disqus_thread" class="container"></div>
     <script>

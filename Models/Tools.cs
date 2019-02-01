@@ -137,7 +137,7 @@ namespace NSFWpics.Models
 			{
 				cmd = new MySqlCommand($"SELECT * " +
 					$"FROM queue " +
-					$"WHERE id = {MaxId(3)}", conn);
+					$"WHERE id = {this.MaxId(3)}", conn);
 
 				conn.Open();
 				MySqlDataReader reader = cmd.ExecuteReader();
@@ -156,13 +156,21 @@ namespace NSFWpics.Models
 				}
 				conn.Close();
 
-				using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+				try
 				{
-					client.Connect();
-					client.ChangeDirectory($"/var/www/html/img_queue");
-					client.Get($"{MaxId(3)}{Path.GetExtension(promotedImg.Uri)}").MoveTo($"/var/www/html/img/{MaxId(0) + 1}{Path.GetExtension(promotedImg.Uri)}");
-					client.Disconnect();
-					client.Dispose();
+					using (var client = SftpConnection)
+					{
+						client.Connect();
+						client.ChangeDirectory($"/var/www/html/img_queue");
+						var f = client.Get($"{MaxId(3)}{Path.GetExtension(promotedImg.Uri)}");
+						f.MoveTo($"/var/www/html/img/{MaxId(0) + 1}{Path.GetExtension(promotedImg.Uri)}");
+						client.Disconnect();
+						client.Dispose();
+					}
+				}
+				catch (Exception ex)
+				{
+					throw new Exception($"Failed to move. File:  {promotedImg.Author} {promotedImg.Id} {promotedImg.Uri} MaxID {MaxId(3)} {ex}");
 				}
 
 				cmd = new MySqlCommand($"INSERT INTO imgs(uri,author,points) " +
@@ -206,7 +214,7 @@ namespace NSFWpics.Models
 				}
 				conn.Close();
 
-				using (SftpClient client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+				using (var client = SftpConnection)
 				{
 					client.Connect();
 					client.ChangeDirectory($"/var/www/html/img_queue");

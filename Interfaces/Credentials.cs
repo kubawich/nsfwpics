@@ -1,14 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using Renci.SshNet;
 
 namespace NSFWpics.Interfaces
 {
 	public abstract class Credentials
 	{
-		protected MySqlConnectionStringBuilder Connection { get; } =
+		/// <summary>
+		/// Used to connect to MySQL DB
+		/// </summary>
+		 public MySqlConnectionStringBuilder Connection { get; protected set; } =
 			new MySqlConnectionStringBuilder()
 			{
 				Server = "185.28.102.194",
@@ -18,5 +19,11 @@ namespace NSFWpics.Interfaces
 				SslMode = MySqlSslMode.None,
 				AllowUserVariables = true
 			};
+
+		/// <summary>
+		/// Used to connect to SFTP server
+		/// </summary>
+		public SftpClient SftpConnection { get; protected set; } =
+			new SftpClient("185.28.102.194", 22, "root", "Kubawich1");
 	}
 }

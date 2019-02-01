@@ -179,7 +179,7 @@ namespace NSFWpics.Models
 			var conn = new MySqlConnection(Connection.ToString());
 			MySqlCommand cmd;
 
-			using (var client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+			using (var client = SftpConnection)
 			{
 				client.Connect();
 				client.ChangeDirectory($"/var/www/html/img_queue");

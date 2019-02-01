@@ -18,8 +18,6 @@ namespace NSFWpics.Pages.NewFolder
         [HttpGet]
         public IActionResult OnGet(int id)
         {
-            if (id == 0) return Redirect("/");
-            else Image = NSFWpics.DBEntities.DBEntity.Instance.View(id, Image);
             return Page();
         }
     }

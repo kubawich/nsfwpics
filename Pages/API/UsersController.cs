@@ -21,9 +21,9 @@ namespace NSFWpics.Pages.API
 		/// </summary>
 		/// <returns>JSON with all users in DB</returns>
 		[HttpGet, Produces("application/json")]
-		public IEnumerable<List<User>> Get()
+		public List<Dictionary<string, string>> Get()
 		{
-			 yield return DBEntities.DBEntity.Instance.GetUser(null);
+			  return new Models.User().GetUsers();
 		}
 
 		/// <summary>
@@ -32,9 +32,9 @@ namespace NSFWpics.Pages.API
 		/// <param name="id">User identifeir in DB</param>
 		/// <returns>User data with given id</returns>
 		[HttpGet("{id}"), Produces("application/json")]
-		public IEnumerable<User> Get(int id)
+		public Dictionary<string,string> Get(int id)
 		{
-			return DBEntities.DBEntity.Instance.GetUser(id);
+			return new Models.User().GetUser(id);
 		}
 
 		/// <summary>
@@ -46,7 +46,7 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("/api/users/login")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password)
 		{
-			if (DBEntities.DBEntity.Instance.Login(login,password) == "Login success")
+			if (new Models.User().LoginUser(login,password) == "Login success")
 			{
 				Response.Cookies.Append("user_loged_in", "true", new CookieOptions
 				{
@@ -56,8 +56,6 @@ namespace NSFWpics.Pages.API
 				{
 					Expires = DateTimeOffset.Now.AddDays(150d)
 				});
-
-				Response.Cookies.Append("ip", Response.HttpContext.Connection.RemoteIpAddress.ToString());
 				return Redirect("https://nsfwpics.pw/");
 			} else return Redirect("https://nsfwpics.pw/Login?loged=false");
 		}
@@ -72,8 +70,16 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("register")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
-			if (DBEntities.DBEntity.Instance.Register(login, password, mail) == $"Successfully Registered user {login}")
+			if (new Models.User().RegisterUser(login, password, mail, Response.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString()) == $"Successfully Registered user {login}")
 			{
+				Response.Cookies.Append("user_loged_in", "true", new CookieOptions
+				{
+					Expires = DateTimeOffset.Now.AddDays(150d)
+				});
+				Response.Cookies.Append("login", login, new CookieOptions
+				{
+					Expires = DateTimeOffset.Now.AddDays(150d)
+				});
 				return Redirect("https://nsfwpics.pw/");
 			} else return Redirect("https://nsfwpics.pw/login?reg=false");
 		}
@@ -89,7 +95,7 @@ namespace NSFWpics.Pages.API
 		[HttpPut("{uid}")]
 		public JsonResult Put(int uid, [FromQuery]string param,[FromQuery]string value)
 		{
-			return Json(DBEntities.DBEntity.Instance.UpdateUser(uid, param, value));
+			return Json(new Models.User().UpdateUser(uid, param, value));
 		}
 
 		/// <summary>
@@ -101,8 +107,7 @@ namespace NSFWpics.Pages.API
 		[HttpDelete("{uid}")]
 		public JsonResult Delete(int uid)
 		{
-			var res = DBEntities.DBEntity.Instance.DeleteUser(uid);
-			return Json(res);
+			return Json(new Models.User().DeleteUser(uid));
 		}
 	}
 }

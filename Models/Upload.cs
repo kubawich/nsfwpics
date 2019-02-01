@@ -19,7 +19,7 @@ namespace NSFWpics.Models
 		/// <param name="_login">File to upload</param>
 		public int UploadToMain(int _maxIdPlusOne, IFormFile _file, string _login)
 		{
-			using (var client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+			using (var client = SftpConnection)
 			{
 				if (_file != null)
 				{
@@ -58,7 +58,7 @@ namespace NSFWpics.Models
 		/// <param name="_login">User who becomes owner of this picture</param>
 		public int UploadToQueue(int _maxIdPlusOne, IFormFile _file, string _login)
 		{
-			using (var client = new SftpClient("185.28.102.194", 22, "root", "Kubawich1"))
+			using (var client = SftpConnection)
 			{
 				if (_file != null)
 				{

@@ -10,9 +10,9 @@ namespace NSFWpics.Interfaces
 	{
 		string UpdateUser(int _uid, string _changeParam, string _changeValue);
 		string DeleteUser(int _uid);
-		List<User> GetUsers();
-		User GetUser(int _uid);
-		string RegisterUser(string _login, string _password, string _mail);
+		List<Dictionary<string, string>> GetUsers();
+		Dictionary<string,string> GetUser(int _uid);
+		string RegisterUser(string _login, string _password, string _mail, string _ip);
 		string LoginUser(string _login, string _password);
 	}
 }

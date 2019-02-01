@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NSFWpics.DBEntities;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -11,7 +10,7 @@ namespace NSFWpics.Pages.API
 	/// <summary>
 	/// API endpoint used to upload image/webm/gif to server and index it to db
 	/// </summary>
-    //No header!! Body as form-data, without key and desc, only value as file
+    ///No header!! Body as form-data, without key and desc, only value as file
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class AddController : Controller
