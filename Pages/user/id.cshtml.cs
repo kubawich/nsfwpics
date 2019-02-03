@@ -12,8 +12,6 @@ namespace NSFWpics.Pages.NewFolder
     {        
         public string Con { get; set; }
         public int Id { get; set; }
-        [BindProperty]
-        public Image Image { get; set; }
 
         [HttpGet]
         public IActionResult OnGet(int id)

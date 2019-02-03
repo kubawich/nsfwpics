@@ -23,73 +23,49 @@ namespace NSFWpics.Models
 		public int MaxId(int _siteType)
 		{
 			var conn = new MySqlConnection(Connection.ToString());
-			MySqlCommand cmd;
+			MySqlCommand cmd = null ;
 			var Id = 0;
 			if (_siteType == 0)
 			{
 				cmd = new MySqlCommand($"SELECT MAX(id) " +
-					$"FROM imgs;", conn);
-				conn.Open();
-				MySqlDataReader reader = cmd.ExecuteReader();
-
-				while (reader.Read())
-				{
-					Id = int.Parse(reader["max(id)"].ToString());
-				}
-				int MaxId = Id;
-
-				conn.Close();
-				return MaxId;
+					$"FROM imgs;", conn);				
 			}
 			else if (_siteType == 1)
 			{
 				cmd = new MySqlCommand($"SELECT MAX(id) " +
-					$"FROM imgs WHERE uri LIKE '%.png' OR uri LIKE '%.jpg' OR uri LIKE '%.jpeg';", conn);
-				conn.Open();
-				MySqlDataReader reader = cmd.ExecuteReader();
-
-				while (reader.Read())
-				{
-					Id = int.Parse(reader["max(id)"].ToString());
-				}
-				int MaxId = Id;
-
-				conn.Close();
-				return MaxId;
+					$"FROM imgs WHERE uri LIKE '%.png' OR uri LIKE '%.jpg' OR uri LIKE '%.jpeg';", conn);				
 			}
 			else if (_siteType == 2)
 			{
 				cmd = new MySqlCommand($"SELECT MAX(id) " +
-					$"FROM imgs WHERE uri LIKE '%.webm' OR uri LIKE '%.gif' OR uri LIKE '%.mp4';", conn);
-				conn.Open();
-				MySqlDataReader reader = cmd.ExecuteReader();
-
-				while (reader.Read())
-				{
-					Id = int.Parse(reader["max(id)"].ToString());
-				}
-				int MaxId = Id;
-
-				conn.Close();
-				return MaxId;
+					$"FROM imgs WHERE uri LIKE '%.webm' OR uri LIKE '%.gif' OR uri LIKE '%.mp4';", conn);				
 			}
 			else if (_siteType == 3)
 			{
 				cmd = new MySqlCommand($"SELECT MAX(id)  " +
 					$"FROM queue;", conn);
-				conn.Open();
-				MySqlDataReader reader = cmd.ExecuteReader();
-
-				while (reader.Read())
-				{
-					Id = int.Parse(reader["max(id)"].ToString());
-				}
-				int MaxId = Id;
-
-				conn.Close();
-				return MaxId;
 			}
-			return 0;
+			else if (_siteType == 4)
+			{
+				cmd = new MySqlCommand($"SELECT MAX(id)  " +
+					$"FROM queue WHERE uri LIKE '%.png' OR uri LIKE '%.jpg' OR uri LIKE '%.jpeg';", conn);
+			}
+			else if (_siteType == 5)
+			{
+				cmd = new MySqlCommand($"SELECT MAX(id)  " +
+					$"FROM queue WHERE uri LIKE '%.webm' OR uri LIKE '%.gif' OR uri LIKE '%.mp4';", conn);
+			}
+			conn.Open();
+			MySqlDataReader reader = cmd.ExecuteReader();
+
+			while (reader.Read())
+			{
+				Id = int.Parse(reader["max(id)"].ToString());
+			}
+			int MaxId = Id;
+
+			conn.Close();
+			return MaxId;
 		}
 
 		/// <summary>
