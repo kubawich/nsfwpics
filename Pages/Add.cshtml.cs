@@ -16,7 +16,7 @@ namespace NSFWpics.Pages
         {
             var MaxId = new Models.Tools().MaxId(0) + 1;
 
-			Models.Upload.instance.UploadToMain(MaxId, Upload, Request.Cookies["login"]);
+			Models.Upload.instance.UploadToQueue(MaxId, Upload, Request.Cookies["login"]);
 			
             return  Redirect("/Add");
         }
