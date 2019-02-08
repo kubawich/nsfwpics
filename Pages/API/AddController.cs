@@ -15,8 +15,6 @@ namespace NSFWpics.Pages.API
     [Route("api/[controller]")]
     public class AddController : Controller
     {
-		Models.Upload upload = new Models.Upload();
-
 		[BindProperty]
 		IFormFile file { get; set; }
 
@@ -30,7 +28,7 @@ namespace NSFWpics.Pages.API
                 if (file == null || file.Length == 0)
                     return Content("Select file to upload");
 
-				upload.UploadToQueue((new Models.Tools().MaxId(3) + 1), file, "API");
+				new Models.Upload().UploadToQueue((new Models.Tools().MaxId(3) + 1), file, "API");
 				
                 return Json($"Upload Successful to cdn.nsfwpics.pw/img_queue/{new Models.Tools().MaxId(3)}{Path.GetExtension(file.FileName)}");
             }

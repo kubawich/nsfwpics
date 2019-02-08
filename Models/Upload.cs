@@ -8,7 +8,7 @@ using Renci.SshNet;
 
 namespace NSFWpics.Models
 {
-	 internal class Upload : Credentials, IUploads
+	 public  class Upload : Credentials, IUploads
 	{
 		public static Upload instance = new Upload();
 		/// <summary>
@@ -80,15 +80,15 @@ namespace NSFWpics.Models
 			conn.Open();
 			cmd.ExecuteNonQuery();
 			conn.Close();
-			conn.Dispose();
 			cmd = new MySqlCommand($"UPDATE users " +
 				$"SET uploads = uploads + 1  " +
 				$"WHERE login = '{_login}'", conn);
 			conn.Open();
 			cmd.ExecuteNonQuery();
 			conn.Close();
-			conn.Dispose();
+			File.Delete(Directory.GetFiles(Directory.GetCurrentDirectory(), _file.FileName)[0]);
 			_file = null;
+
 			return 1;
 		}
 	}

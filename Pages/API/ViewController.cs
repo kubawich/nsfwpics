@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,7 @@ namespace NSFWpics.Pages
     [Route("api/[controller]")]
     public class ViewController : Controller
     {
-        NSFWpics.Models.Image image = new NSFWpics.Models.Image();
+		NSFWpics.Models.Image image = new NSFWpics.Models.Image();
 		NSFWpics.Models.View view = new NSFWpics.Models.View();
 
 		[Produces("application/json")]		
@@ -22,7 +23,10 @@ namespace NSFWpics.Pages
 				{"Points", view.GetEntry(id, image).Points.ToString() },
 				{"Author", view.GetEntry(id, image).Author },
 				{"Date uploaded", view.GetEntry(id, image).Date },
-				{"Link", view.GetEntry(id, image).Uri }
+				{"Link", view.GetEntry(id, image).Uri },
+				{"Max site id", new Models.Tools().MaxId(0).ToString()},
+				{"Dir", Directory.GetCurrentDirectory()},
+				{"Max queue id", new Models.Tools().MaxId(3).ToString()}
 			};
 		}
 

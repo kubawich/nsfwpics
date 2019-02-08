@@ -29,6 +29,7 @@ function updateImageDisplay() {
 				var video = document.createElement('video');
 				size = curFiles[i].size;
 				video.setAttribute("autoplay", true);
+				video.setAttribute("loop", true);
 				video.src = window.URL.createObjectURL(curFiles[i]);
 				listItem.appendChild(video);
 				listItem.appendChild(para1);

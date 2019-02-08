@@ -7,16 +7,15 @@ namespace NSFWpics.Pages
 {
     public class AddModel : PageModel
     {
-		//Models.Upload upload = new Models.Upload();
         [BindProperty]
         public IFormFile Upload { get; set; }
 
         [HttpPost]
 		public IActionResult OnPost(IFormFile files)
         {
-            var MaxId = new Models.Tools().MaxId(0) + 1;
+            var MaxId = new Models.Tools().MaxId(3) + 1;
 
-			Models.Upload.instance.UploadToQueue(MaxId, Upload, Request.Cookies["login"]);
+			new Models.Upload().UploadToQueue(MaxId, Upload, Request.Cookies["login"]);
 			
             return  Redirect("/Add");
         }
