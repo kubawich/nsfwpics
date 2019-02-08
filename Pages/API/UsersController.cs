@@ -70,7 +70,7 @@ namespace NSFWpics.Pages.API
 		[HttpPost, Produces("application/json"), Route("register")]
 		public IActionResult Post([FromForm]string login, [FromForm]string password, [FromForm]string mail)
 		{
-			if (new Models.User().RegisterUser(login, password, mail, Response.HttpContext.Connection.RemoteIpAddress.MapToIPv4().ToString()) == $"Successfully Registered user {login}")
+			if (new Models.User().RegisterUser(login, password, mail, Response.HttpContext.Connection.RemoteIpAddress.ToString()) == $"Successfully Registered user {login}")
 			{
 				Response.Cookies.Append("user_loged_in", "true", new CookieOptions
 				{
