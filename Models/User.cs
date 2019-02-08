@@ -142,7 +142,7 @@ namespace NSFWpics.Models
 			else
 			{
 				cmd = new MySqlCommand($"INSERT INTO users (guid, login, password, mail, ip)" +
-					$"VALUES (1, '{_login}', SHA1('{_password}'), '{_mail}', {_ip})", conn);
+					$"VALUES (1, '{_login}', SHA1('{_password}'), '{_mail}', '{_ip}')", conn);
 				conn.Open();
 				cmd.ExecuteNonQuery();
 				conn.Close();
