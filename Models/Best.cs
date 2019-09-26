@@ -7,8 +7,13 @@ using NSFWpics.Interfaces;
 
 namespace NSFWpics.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Best'
 	public class Best :  Credentials, ISingleImage
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Best'
 	{
+#pragma warning disable CS1572 // XML comment has a param tag for 'image', but there is no parameter by that name
+#pragma warning disable CS1573 // Parameter '_id' has no matching param tag in the XML comment for 'Best.GetEntry(int?, Image)' (but other parameters do)
+#pragma warning disable CS1573 // Parameter '_image' has no matching param tag in the XML comment for 'Best.GetEntry(int?, Image)' (but other parameters do)
 		/// <summary>
 		/// Picks image with highest point rating
 		/// </summary>
@@ -17,6 +22,9 @@ namespace NSFWpics.Models
 		/// Returns Image module from DB where id's highest
 		/// </returns>
 		public Image GetEntry(int? _id, Image _image)
+#pragma warning restore CS1573 // Parameter '_image' has no matching param tag in the XML comment for 'Best.GetEntry(int?, Image)' (but other parameters do)
+#pragma warning restore CS1573 // Parameter '_id' has no matching param tag in the XML comment for 'Best.GetEntry(int?, Image)' (but other parameters do)
+#pragma warning restore CS1572 // XML comment has a param tag for 'image', but there is no parameter by that name
 		{
 			var conn = new MySqlConnection(base.Connection.ToString());
 			MySqlCommand cmd;

@@ -8,7 +8,9 @@ using Renci.SshNet;
 
 namespace NSFWpics.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Queue'
 	public class Queue : Credentials, IQueue
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Queue'
 	{
 		/// <summary>
 		/// Returns whole 'queue' module. Each queue site has 10 view entries

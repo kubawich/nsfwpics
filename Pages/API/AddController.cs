@@ -4,22 +4,27 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore;
 
 namespace NSFWpics.Pages.API
 {
-	/// <summary>
-	/// API endpoint used to upload image/webm/gif to server and index it to db
-	/// </summary>
+    /// <summary>
+    /// API endpoint used to upload image/webm/gif to server and index it to db
+    /// </summary>
     ///No header!! Body as form-data, without key and desc, only value as file
     [Produces("application/json")]
     [Route("api/[controller]")]
     public class AddController : Controller
     {
-		[BindProperty]
-		IFormFile file { get; set; }
+        [BindProperty]
+        IFormFile file { get; set; }
 
-		[HttpPost]
+        [HttpPost]
+        [ProducesResponseType(200)]
+        [RequireHttps]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'AddController.Post()'
 		public IActionResult Post()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'AddController.Post()'
         {
             try
             {

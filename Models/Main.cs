@@ -8,7 +8,9 @@ using Renci.SshNet;
 
 namespace NSFWpics.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Main'
 	public class Main : Credentials, IMain
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Main'
 	{
 		/// <summary>
 		/// Returns whole 'site' module. Each site has 10 view entries

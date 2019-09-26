@@ -117,6 +117,12 @@
             </summary>
             <returns>
             Returns highest ID from DB
+            0 = main
+            1 = main images
+            2 = main videos
+            3 = queue
+            5 = queue images
+            5 = queue videos
             </returns>
         </member>
         <member name="M:NSFWpics.Models.Tools.Minus(System.Int32)">

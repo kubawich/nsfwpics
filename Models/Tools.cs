@@ -19,6 +19,12 @@ namespace NSFWpics.Models
 		/// </summary>
 		/// <returns>
 		/// Returns highest ID from DB
+		/// 0 = main
+		/// 1 = main images
+		/// 2 = main videos
+		/// 3 = queue
+		/// 5 = queue images
+		/// 5 = queue videos
 		/// </returns>
 		public int MaxId(int _siteType)
 		{
@@ -80,7 +86,7 @@ namespace NSFWpics.Models
 				$"SET points = points - 1 " +
 				$"WHERE id = {_id};", conn);
 			conn.Open();
-			cmd.ExecuteNonQuery();
+            var result = cmd.ExecuteNonQuery();
 			conn.Close();
 		}
 

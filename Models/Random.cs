@@ -7,8 +7,13 @@ using NSFWpics.Interfaces;
 
 namespace NSFWpics.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Random'
 	public class Random : Credentials, ISingleImage
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Random'
 	{
+#pragma warning disable CS1572 // XML comment has a param tag for 'image', but there is no parameter by that name
+#pragma warning disable CS1573 // Parameter '_id' has no matching param tag in the XML comment for 'Random.GetEntry(int?, Image)' (but other parameters do)
+#pragma warning disable CS1573 // Parameter '_image' has no matching param tag in the XML comment for 'Random.GetEntry(int?, Image)' (but other parameters do)
 		/// <summary>
 		/// Picks number of indicies in database, and next pick random photo from first to maximum.
 		/// </summary>
@@ -17,6 +22,9 @@ namespace NSFWpics.Models
 		/// Image class represtantion filled with random DB entry
 		/// </returns>
 		public Image GetEntry(int? _id, Image _image)
+#pragma warning restore CS1573 // Parameter '_image' has no matching param tag in the XML comment for 'Random.GetEntry(int?, Image)' (but other parameters do)
+#pragma warning restore CS1573 // Parameter '_id' has no matching param tag in the XML comment for 'Random.GetEntry(int?, Image)' (but other parameters do)
+#pragma warning restore CS1572 // XML comment has a param tag for 'image', but there is no parameter by that name
 		{
 			var rand = new System.Random();
 			int MaxId = new Tools().MaxId(0);

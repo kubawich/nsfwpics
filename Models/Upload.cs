@@ -8,9 +8,13 @@ using Renci.SshNet;
 
 namespace NSFWpics.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Upload'
 	 public  class Upload : Credentials, IUploads
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Upload'
 	{
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Upload.instance'
 		public static Upload instance = new Upload();
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Upload.instance'
 		/// <summary>
 		/// Adds cdn's uploaded photo to DB
 		/// </summary>

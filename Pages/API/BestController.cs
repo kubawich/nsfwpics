@@ -8,14 +8,18 @@ using NSFWpics.Models;
 namespace NSFWpics.Pages
 {
     [Route("api/[controller]")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'BestController'
     public class BestController : Controller
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'BestController'
     {
 		NSFWpics.Models.Image image = new NSFWpics.Models.Image();
 		Best best = new Best();
 
 		[Produces("application/json")]
 		[HttpGet]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'BestController.Get()'
         public Dictionary<string, string> Get()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'BestController.Get()'
         {
 			return new Dictionary<string, string> {
 				{"ID", best.GetEntry(null, image).Id.ToString() },

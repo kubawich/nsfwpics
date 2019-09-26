@@ -14,15 +14,21 @@ using Newtonsoft.Json;
 
 namespace NSFWpics.Pages.aditional
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'contactModel'
     public class contactModel : PageModel
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'contactModel'
     {
         MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'contactModel.OnGet()'
         public void OnGet()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'contactModel.OnGet()'
         {
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'contactModel.OnPostAsync()'
         public async Task<IActionResult> OnPostAsync()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'contactModel.OnPostAsync()'
         {
             var resultCaptcha = await VerifyCaptcha();
             if (!resultCaptcha.Success)

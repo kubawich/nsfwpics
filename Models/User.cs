@@ -9,14 +9,28 @@ using NSFWpics.Interfaces;
 
 namespace NSFWpics.Models
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'User'
 	public class User : Credentials , IUser
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'User'
 	{
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'User.Uid'
 		public string Uid		{ get; internal set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'User.Uid'
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'User.Guid'
 		public string Guid		{ get; internal set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'User.Guid'
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'User.Login'
 		public string Login		{ get; internal set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'User.Login'
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'User.Password'
 		public string Password	{ get; internal set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'User.Password'
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'User.Mail'
 		public string Mail		{ get; internal set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'User.Mail'
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'User.Uploads'
 		public string Uploads	{ get; internal set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'User.Uploads'
 
 		/// <summary>
 		/// Ctor with default null values

@@ -9,14 +9,18 @@ using Microsoft.AspNetCore.Mvc;
 namespace NSFWpics.Pages
 {
     [Route("api/[controller]")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'ViewController'
     public class ViewController : Controller
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'ViewController'
     {
 		NSFWpics.Models.Image image = new NSFWpics.Models.Image();
 		NSFWpics.Models.View view = new NSFWpics.Models.View();
 
 		[Produces("application/json")]		
 		[HttpGet("{id:int}")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'ViewController.Get(int)'
         public Dictionary<string, string> Get(int id)
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'ViewController.Get(int)'
         {
 			return new Dictionary<string, string> {
 				{"ID", view.GetEntry(id, image).Id.ToString() },

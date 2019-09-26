@@ -12,15 +12,21 @@ using Newtonsoft.Json;
 
 namespace NSFWpics.Pages.aditional
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'adsModel'
     public class adsModel : PageModel
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'adsModel'
     {
         MySqlConnectionStringBuilder connection = new MySqlConnectionStringBuilder();
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'adsModel.OnGet()'
         public void OnGet()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'adsModel.OnGet()'
         {
         }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'adsModel.OnPostAsync()'
         public async Task<IActionResult> OnPostAsync()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'adsModel.OnPostAsync()'
         {
             var resultCaptcha = await VerifyCaptcha();
             if (!resultCaptcha.Success)
@@ -65,16 +71,24 @@ namespace NSFWpics.Pages.aditional
         }
     }
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification'
     public class CaptchaVerification
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification'
     {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification.CaptchaVerification()'
         public CaptchaVerification()
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification.CaptchaVerification()'
         {
         }
 
         [JsonProperty("success")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification.Success'
         public bool Success { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification.Success'
 
         [JsonProperty("error-codes")]
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification.Errors'
         public IList Errors { get; set; }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'CaptchaVerification.Errors'
     }
 }

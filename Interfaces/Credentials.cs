@@ -4,7 +4,9 @@ using Renci.SshNet;
 
 namespace NSFWpics.Interfaces
 {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member 'Credentials'
 	public abstract class Credentials
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member 'Credentials'
 	{
 		/// <summary>
 		/// Used to connect to MySQL DB
